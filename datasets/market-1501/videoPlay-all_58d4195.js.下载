@@ -1,0 +1,1660 @@
+define("file-widget-1:videoPlay/FlashPlayer/p2p/p2p.js",function(e,t,n){var o=e("base:widget/libs/jquerypacket.js"),r=e("base:widget/vip/vip.js").getVipValue,i=-1!==location.protocol.indexOf("https:"),a=null;a=i?e("base:widget/httpProxy/httpProxy.js").ajax:o.ajax;var c=function(e){function t(e,t){return e<<t|e>>>32-t}function n(e,t){var n,o,r,i,a;return r=2147483648&e,i=2147483648&t,n=1073741824&e,o=1073741824&t,a=(1073741823&e)+(1073741823&t),n&o?2147483648^a^r^i:n|o?1073741824&a?3221225472^a^r^i:1073741824^a^r^i:a^r^i}function o(e,t,n){return e&t|~e&n}function r(e,t,n){return e&n|t&~n}function i(e,t,n){return e^t^n}function a(e,t,n){return t^(e|~n)}function c(e,r,i,a,c,l,u){return e=n(e,n(n(o(r,i,a),c),u)),n(t(e,l),r)}function l(e,o,i,a,c,l,u){return e=n(e,n(n(r(o,i,a),c),u)),n(t(e,l),o)}function u(e,o,r,a,c,l,u){return e=n(e,n(n(i(o,r,a),c),u)),n(t(e,l),o)}function f(e,o,r,i,c,l,u){return e=n(e,n(n(a(o,r,i),c),u)),n(t(e,l),o)}function p(e){for(var t,n=e.length,o=n+8,r=(o-o%64)/64,i=16*(r+1),a=Array(i-1),c=0,l=0;n>l;)t=(l-l%4)/4,c=l%4*8,a[t]=a[t]|e.charCodeAt(l)<<c,l++;return t=(l-l%4)/4,c=l%4*8,a[t]=a[t]|128<<c,a[i-2]=n<<3,a[i-1]=n>>>29,a}function s(e){var t,n,o="",r="";for(n=0;3>=n;n++)t=e>>>8*n&255,r="0"+t.toString(16),o+=r.substr(r.length-2,2);return o}function d(e){e=e.replace(/\r\n/g,"\n");for(var t="",n=0;n<e.length;n++){var o=e.charCodeAt(n);128>o?t+=String.fromCharCode(o):o>127&&2048>o?(t+=String.fromCharCode(o>>6|192),t+=String.fromCharCode(63&o|128)):(t+=String.fromCharCode(o>>12|224),t+=String.fromCharCode(o>>6&63|128),t+=String.fromCharCode(63&o|128))}return t}var v,g,y,m,h,b,T,x,j,I=Array(),P=7,k=12,_=17,w=22,C=5,S=9,U=14,R=20,O=4,L=11,V=16,E=23,A=6,B=10,D=15,F=21;for(e=d(e),I=p(e),b=1732584193,T=4023233417,x=2562383102,j=271733878,v=0;v<I.length;v+=16)g=b,y=T,m=x,h=j,b=c(b,T,x,j,I[v+0],P,3614090360),j=c(j,b,T,x,I[v+1],k,3905402710),x=c(x,j,b,T,I[v+2],_,606105819),T=c(T,x,j,b,I[v+3],w,3250441966),b=c(b,T,x,j,I[v+4],P,4118548399),j=c(j,b,T,x,I[v+5],k,1200080426),x=c(x,j,b,T,I[v+6],_,2821735955),T=c(T,x,j,b,I[v+7],w,4249261313),b=c(b,T,x,j,I[v+8],P,1770035416),j=c(j,b,T,x,I[v+9],k,2336552879),x=c(x,j,b,T,I[v+10],_,4294925233),T=c(T,x,j,b,I[v+11],w,2304563134),b=c(b,T,x,j,I[v+12],P,1804603682),j=c(j,b,T,x,I[v+13],k,4254626195),x=c(x,j,b,T,I[v+14],_,2792965006),T=c(T,x,j,b,I[v+15],w,1236535329),b=l(b,T,x,j,I[v+1],C,4129170786),j=l(j,b,T,x,I[v+6],S,3225465664),x=l(x,j,b,T,I[v+11],U,643717713),T=l(T,x,j,b,I[v+0],R,3921069994),b=l(b,T,x,j,I[v+5],C,3593408605),j=l(j,b,T,x,I[v+10],S,38016083),x=l(x,j,b,T,I[v+15],U,3634488961),T=l(T,x,j,b,I[v+4],R,3889429448),b=l(b,T,x,j,I[v+9],C,568446438),j=l(j,b,T,x,I[v+14],S,3275163606),x=l(x,j,b,T,I[v+3],U,4107603335),T=l(T,x,j,b,I[v+8],R,1163531501),b=l(b,T,x,j,I[v+13],C,2850285829),j=l(j,b,T,x,I[v+2],S,4243563512),x=l(x,j,b,T,I[v+7],U,1735328473),T=l(T,x,j,b,I[v+12],R,2368359562),b=u(b,T,x,j,I[v+5],O,4294588738),j=u(j,b,T,x,I[v+8],L,2272392833),x=u(x,j,b,T,I[v+11],V,1839030562),T=u(T,x,j,b,I[v+14],E,4259657740),b=u(b,T,x,j,I[v+1],O,2763975236),j=u(j,b,T,x,I[v+4],L,1272893353),x=u(x,j,b,T,I[v+7],V,4139469664),T=u(T,x,j,b,I[v+10],E,3200236656),b=u(b,T,x,j,I[v+13],O,681279174),j=u(j,b,T,x,I[v+0],L,3936430074),x=u(x,j,b,T,I[v+3],V,3572445317),T=u(T,x,j,b,I[v+6],E,76029189),b=u(b,T,x,j,I[v+9],O,3654602809),j=u(j,b,T,x,I[v+12],L,3873151461),x=u(x,j,b,T,I[v+15],V,530742520),T=u(T,x,j,b,I[v+2],E,3299628645),b=f(b,T,x,j,I[v+0],A,4096336452),j=f(j,b,T,x,I[v+7],B,1126891415),x=f(x,j,b,T,I[v+14],D,2878612391),T=f(T,x,j,b,I[v+5],F,4237533241),b=f(b,T,x,j,I[v+12],A,1700485571),j=f(j,b,T,x,I[v+3],B,2399980690),x=f(x,j,b,T,I[v+10],D,4293915773),T=f(T,x,j,b,I[v+1],F,2240044497),b=f(b,T,x,j,I[v+8],A,1873313359),j=f(j,b,T,x,I[v+15],B,4264355552),x=f(x,j,b,T,I[v+6],D,2734768916),T=f(T,x,j,b,I[v+13],F,1309151649),b=f(b,T,x,j,I[v+4],A,4149444226),j=f(j,b,T,x,I[v+11],B,3174756917),x=f(x,j,b,T,I[v+2],D,718787259),T=f(T,x,j,b,I[v+9],F,3951481745),b=n(b,g),T=n(T,y),x=n(x,m),j=n(j,h);var N=s(b)+s(T)+s(x)+s(j);return N.toLowerCase()},l=function(){var e=function(e){e?(this.url=""||e.url,this.logObjectName="fe_log",this.baseParam=null||e.baseParam,this.sendBaseParamTag=!0):(this.url="",this.logObjectName="fe_log",this.baseParam=null,this.sendBaseParamTag=!1),this.urlLength=900};return e.prototype={send:function(e){var t,n=e.url||this.url,o=(new Date).getTime(),r=this,i={};if(this.sendBaseParamTag)for(t in this.baseParam)i[t]="function"==typeof this.baseParam[t]?this.baseParam[t]():this.baseParam[t];var a={};for(t in e)"url"!==t&&(a[t]="function"==typeof e?e[t]():e[t]);for(var c=this._getRequestUrl(o,n,i,a),l=0,u=c.length;u>l;l++)this._request(o,l,c[l]);setTimeout(function(){r._sendBaiduLog(e)},3e3)},_sendBaiduLog:function(e){var t=window._hmt||[];for(var n in e)e.hasOwnProperty(n)&&"type"!==n&&t.push("count"===e.type?["_trackEvent",n,n+"-"+e[n]]:["_trackEvent",n,n,n,e[n]])},_request:function(e,t,n){var o=this.logObjectName+"_"+e+"_"+t;window[o]=new Image;var r=window[o];r.onload=r.onerror=function(){window[o]=null},r.src=n,r=null},_getRequestUrl:function(e,t,n,o){var r,i=[],a=[];if(n)for(r in n)a.push(r+"="+n[r]);a=a.join("&"),a=""===a?"":"&"+a;var c=t+"?_lsid="+e+"&_lsix=1"+a,l=1;for(r in o)if("[object Array]"===Object.prototype.toString.apply(o[r])){for(var u=o[r],f=[],p=c.length+r.length+2,s=0,d=u.length;d>s;s++)p+=u[s].length+1,p>this.urlLength?(i.push(c+"&"+r+"="+f.join()),l++,f=[],p=c.length+r.length+2,c=t+"?_lsid="+e+"&_lsix="+l+a,s--):f.push(u[s]);f.length>0&&(c+="&"+r+"="+f.join())}else c.length+r.length>this.urlLength&&(i.push(c),l++,c=t+"?_lsid="+e+"&_lsix="+l+a),c+="&"+r+"="+o[r];return i.push(c),i}},new e({url:"//update.pan.baidu.com/statistics",logObjectName:"fe_log",baseParam:{clienttype:0,op:"webvideo"}})}(),u=function(e){var t=new RegExp(e+"=([^?&]*)","g"),n=t.exec(location.search);return n?decodeURIComponent(n[1]):""};n.exports=function(){var e="true"===u("p2p_debug"),t={conf:{enable:!0,localUrl:"http://127.0.0.1",localPort:7475,currentPort:7475,portPollLimit:5,ajaxType:"jsonp",pollTimeout:250,guanjiaVersion:0,localServerReady:!1,playtime:0,totaltime:0,buffertime:0,player:null,vodId:0,reloadFunction:null,interval:null,timeout:null,tickTime:1e3,reloadTime:3e3,ajaxTimeout:3e3,tickStatus:!1},util:{init:function(){t.util.checkLocalServer()},compareVersion:function(e,t,n){return"string"==typeof e&&(e=e.replace(/(^|\.)(\d)(?=\.|$)/g,"$10$2").replace(/\./g,""),e=e.length<=6?e+="00":e,e=parseInt(e,10)),"string"==typeof t&&(t=t.replace(/(^|\.)(\d)(?=\.|$)/g,"$10$2").replace(/\./g,""),t=t.length<=6?t+="00":t,t=parseInt(t,10)),n?e>t:e>=t},checkLocalServer:function(e){if(t.conf.localServerReady)return"function"==typeof e&&e(!0),void t.util.debugInfo({server:{text:"成功",color:"green"}});if(!t.conf.enable||0!==r()||-1===navigator.platform.indexOf("Win"))return"function"==typeof e&&e(!1),void t.util.debugInfo({server:{text:"失败",color:"red"}});var n=navigator.userAgent.indexOf("IE")>-1,c=0;if(n?(c=2,t.conf.pollTimeout=3e3,t.conf.ajaxType="jsonp"):i?(c=1,t.conf.pollTimeout=3e3,t.conf.ajaxType="json"):(c=0,t.conf.pollTimeout=3e3,t.conf.ajaxType="json"),u("kerport")>0&&u("kerver"))return t.conf.currentPort=u("kerport"),t.conf.guanjiaVersion=u("kerver"),t.conf.localServerReady=!0,"function"==typeof e&&e(!0),t.util.debugInfo({server:{text:"成功",color:"green"}}),void l.send({p2pCheck:1,type:"count"});for(var f=!1,p=0,s=+new Date,d=function(n){var r=t.conf.localUrl+":"+n+"/vod/check";a({url:r,type:"GET",dataType:t.conf.ajaxType,timeout:t.conf.ajaxTimeout,success:function(r){try{r=o.parseJSON(r),l.send({requestType:c,checkTime:+new Date-s,type:"time"})}catch(a){}r&&r.version&&(!i||t.util.compareVersion(r.version,"2.0.7.6"))?(t.conf.currentPort=n,t.conf.guanjiaVersion=r.version,t.conf.localServerReady=!0,f||(f=!0,"function"==typeof e&&e(!0),t.util.debugInfo({server:{text:"成功",color:"green"}}),l.send({p2pCheck:1,type:"count"}))):!f&&++p>=t.conf.portPollLimit&&(f=!0,"function"==typeof e&&e(!1),t.util.debugInfo({server:{text:"失败",color:"red"}}),l.send({p2pCheck:0,type:"count"}))},error:function(){!f&&++p>=t.conf.portPollLimit&&(f=!0,"function"==typeof e&&e(!1),t.util.debugInfo({server:{text:"失败",color:"red"}}),l.send({p2pCheck:0,type:"count"}))}})},v=0;v<t.conf.portPollLimit;v++)d(t.conf.localPort+32*v);setTimeout(function(){f||(f=!0,"function"==typeof e&&e(!1),t.util.debugInfo({server:{text:"失败",color:"red"}}),l.send({p2pCheck:0,type:"count"}))},t.conf.pollTimeout)},startTick:function(){null===t.conf.interval&&(t.conf.interval=setInterval(function(){var e=t.conf.localUrl+":"+t.conf.currentPort+"/vod/info?vod_id="+t.conf.vodId;t.conf.player&&"function"==typeof t.conf.player.getBuffer&&(t.conf.buffertime=t.conf.player.getBuffer());var n={playtime:t.conf.playtime,buffertime:t.conf.buffertime};a({url:e,type:"GET",data:n,dataType:t.conf.ajaxType,timeout:t.conf.ajaxTimeout,success:function(e){try{e=o.parseJSON(e)}catch(n){}e&&(0===+e.errno?(clearTimeout(t.conf.timeout),t.conf.timeout=null,t.util.debugInfo({tick:{text:"正常",color:"green"}})):(clearInterval(t.conf.interval),t.conf.interval=null,t.util.debugInfo({tick:{text:"异常",color:"red"}})))},error:function(){t.util.debugInfo({tick:{text:"异常",color:"red"}})}}),null===t.conf.timeout&&(t.conf.timeout=setTimeout(function(){clearInterval(t.conf.interval),t.conf.interval=null,t.conf.guanjiaVersion=0,t.conf.localServerReady=!1,t.conf.vodId=0,t.conf.timeout=null,t.conf.enable=!1,t.conf.reloadFunction&&t.conf.reloadFunction(t.conf.playtime)},t.conf.reloadTime))},t.conf.tickTime))},debugInfo:function(n){var r=window.host&&window.host.HOST_PAN||"pan.baidu.com";if(n&&n.server?l.send({url:"//"+r+"/api/analytics",type:"p2p_server_"+n.server.color+"_"+(i?"https":"http")}):n&&n.enable?l.send({url:"//"+r+"/api/analytics",type:"p2p_enable_"+n.enable.color+"_"+(i?"https":"http")}):n&&n.tick&&!t.conf.tickStatus&&(t.conf.tickStatus=!0,l.send({url:"//"+r+"/api/analytics",type:"p2p_tick_"+n.tick.color+"_"+(i?"https":"http")})),e){var a=o("#p2p-debug-info");0===a.length&&(a=o('<div id="p2p-debug-info" style="position:fixed;left:20px;bottom:20px;z-index:100;"><p style="display:none;">探测p2p服务：<span class="p2p-server"></span></p><p style="display:none;">启用p2p播放：<span class="p2p-enable"></span></p><p style="display:none;">p2p心跳状况：<span class="p2p-tick"></span></p></div>'),o("body").append(a));for(var c in n)if(n.hasOwnProperty(c)){var u=a.find(".p2p-"+c);u.text(n[c].text).css("color",n[c].color).parent().show()}}},getTimeMD5:function(){var e=function(e){return 10>e?"0"+e:""+e},t=new Date,n=t.getFullYear(),o=t.getMonth()+1,r=t.getDate(),i=t.getHours(),a=n+e(o)+e(r)+e(i);return c(a)}}},n={getP2PUrl:function(e,n){var o="";return e&&e.playtype?(o="path="+encodeURIComponent(e.path)+"&type="+encodeURIComponent(e.playtype)+"&md5="+encodeURIComponent(e.md5)+"&uk="+encodeURIComponent(e.uk)+"&puk="+encodeURIComponent(e.puk)+"&webtype="+encodeURIComponent(e.webtype)+"&verify_info="+encodeURIComponent(t.util.getTimeMD5()),"function"!=typeof n?t.conf.guanjiaVersion?t.conf.localUrl+":"+t.conf.currentPort+"/vod/start?"+o:"":void(t.conf.guanjiaVersion?n(t.conf.localUrl+":"+t.conf.currentPort+"/vod/start?"+o):t.util.checkLocalServer(function(e){n(e?t.conf.localUrl+":"+t.conf.currentPort+"/vod/start?"+o:"")}))):"function"==typeof n?void n(""):""},setVodInfo:function(e,n){t.conf.vodId=e,t.conf.player=n,e?(t.util.startTick(),t.util.debugInfo({enable:{text:"成功",color:"green"}})):t.util.debugInfo({enable:{text:"失败",color:"red"}})},setReloadFunction:function(e){"function"==typeof e&&(t.conf.reloadFunction=e)},onTime:function(e,n,o){t.conf.playtime=e,t.conf.totaltime=n,t.conf.buffertime=o},onPlayOrPause:function(e){if(t.conf.vodId){var n=t.conf.localUrl+":"+t.conf.currentPort+"/vod/pause?vod_id="+t.conf.vodId;a({url:n,type:"GET",data:e,dataType:t.conf.ajaxType,timeout:t.conf.ajaxTimeout})}},onStop:function(e){if(t.conf.vodId){var n=t.conf.localUrl+":"+t.conf.currentPort+"/vod/stop?vod_id="+t.conf.vodId;a({url:n,type:"GET",data:e,dataType:t.conf.ajaxType,timeout:t.conf.ajaxTimeout})}}};return o(window).bind("beforeunload",function(){t.conf.guanjiaVersion&&n.onStop()}),n}()});
+;define("file-widget-1:videoPlay/context.js",function(t,e,n){var o={context:null},c={getContext:function(){return o.context},setContext:function(t){o.context=t}};n.exports=c});
+;define("file-widget-1:videoPlay/Werbung/WerbungConfig.js",function(e,n,t){var o=e("base:widget/tools/service/tools.browser.js"),i={container:null,shadow:function(){var e=o&&o.client().browser.chrome;return window.HTMLElement&&e?HTMLElement.prototype.attachShadow||HTMLElement.prototype.createShadowRoot||HTMLElement.prototype.webkitCreateShadowRoot:!1}(),adTime:0,ltime:0,fsid:"",adToken:"",timer:{fraud:null,ltime:null,adTime:null,overTime:null},progressAni:null},r={setContainer:function(e){i.container=e},getContainer:function(){return i.container},setShadow:function(e){i.shadow=e},getShadow:function(){return i.shadow},setAdTime:function(e){i.adTime=e},getAdTime:function(){return i.adTime},setltime:function(e){i.ltime=e},getltime:function(){return i.ltime},setAdToken:function(e){i.adToken=e},getAdToken:function(){return i.adToken},setFsid:function(e){i.fsid=e},getFsid:function(){return i.fsid},setTimer:function(e){for(var n in e)window.clearTimeout(i.timer[n]),i.timer[n]=e[n]},getTimer:function(e){return i.timer[e]},setProgressAni:function(e){i.progressAni=e},getProgressAni:function(){return i.progressAni}};t.exports=r});
+;define("file-widget-1:videoPlay/utils/device-info.js",function(e,n,r){function i(e,n,r){n||(n={}),e||(e=""),void 0===r&&(r="");var i=n[e],o=+e;if(!i)for(var a=$.map(n,function(e,n){return+n}).sort(function(e,n){return n-e}),d=0;d<a.length;d++){var t=a[d];if(o>t){i=n[t]+"101";break}}return i?i:r}function o(e,n){var r=n.toLowerCase(),i=function(e){return e.test(r)},o=function(e){try{return r.match(e).toString().replace(/[^0-9|_.]/g,"").replace(/_/g,".")}catch(n){return"xxx"}};return"windows"===e?i(/windows nt 5.0|windows 2000/g)?systemVs="2000":i(/windows nt 5.1|windows xp/g)?systemVs="xp":i(/windows nt 5.2|windows 2003/g)?systemVs="2003":i(/windows nt 6.0|windows vista/g)?systemVs="vista":i(/windows nt 6.1|windows 7/g)?systemVs="7":i(/windows nt 6.2|windows 8/g)?systemVs="8":i(/windows nt 6.3|windows 8.1/g)?systemVs="8.1":i(/windows nt 10.0|windows 10/g)&&(systemVs="10"):systemVs="mac"===e?o(/os x [\d._]+/g):"android"===e?o(/android [\d._]+/g):"ios"===e?o(/os [\d._]+/g):"xxx",systemVs}function a(e){var n=e||p.userAgent||{},r={},a={Trident:n.indexOf("Trident")>-1||n.indexOf("NET CLR")>-1,Presto:n.indexOf("Presto")>-1,WebKit:n.indexOf("AppleWebKit")>-1,Gecko:n.indexOf("Gecko/")>-1,KHTML:n.indexOf("KHTML/")>-1,Safari:n.indexOf("Safari")>-1,Chrome:n.indexOf("Chrome")>-1||n.indexOf("CriOS")>-1,IE:n.indexOf("MSIE")>-1||n.indexOf("Trident")>-1,Edge:n.indexOf("Edge")>-1||n.indexOf("Edg/")>-1||n.indexOf("EdgA")>-1||n.indexOf("EdgiOS")>-1,Firefox:n.indexOf("Firefox")>-1||n.indexOf("FxiOS")>-1,"Firefox Focus":n.indexOf("Focus")>-1,Chromium:n.indexOf("Chromium")>-1,Opera:n.indexOf("Opera")>-1||n.indexOf("OPR")>-1,Vivaldi:n.indexOf("Vivaldi")>-1,Yandex:n.indexOf("YaBrowser")>-1,Arora:n.indexOf("Arora")>-1,Lunascape:n.indexOf("Lunascape")>-1,QupZilla:n.indexOf("QupZilla")>-1,"Coc Coc":n.indexOf("coc_coc_browser")>-1,Kindle:n.indexOf("Kindle")>-1||n.indexOf("Silk/")>-1,Iceweasel:n.indexOf("Iceweasel")>-1,Konqueror:n.indexOf("Konqueror")>-1,Iceape:n.indexOf("Iceape")>-1,SeaMonkey:n.indexOf("SeaMonkey")>-1,Epiphany:n.indexOf("Epiphany")>-1,360:n.indexOf("QihooBrowser")>-1||n.indexOf("QHBrowser")>-1,"360EE":n.indexOf("360EE")>-1,"360SE":n.indexOf("360SE")>-1,UC:n.indexOf("UCBrowser")>-1||n.indexOf(" UBrowser")>-1||n.indexOf("UCWEB")>-1,QQBrowser:n.indexOf("QQBrowser")>-1,QQ:n.indexOf("QQ/")>-1,Baidu:n.indexOf("Baidu")>-1||n.indexOf("BIDUBrowser")>-1||n.indexOf("baidubrowser")>-1||n.indexOf("baiduboxapp")>-1||n.indexOf("BaiduHD")>-1,Maxthon:n.indexOf("Maxthon")>-1,Sogou:n.indexOf("MetaSr")>-1||n.indexOf("Sogou")>-1,Liebao:n.indexOf("LBBROWSER")>-1||n.indexOf("LieBaoFast")>-1,"2345Explorer":n.indexOf("2345Explorer")>-1||n.indexOf("Mb2345Browser")>-1||n.indexOf("2345chrome")>-1,"115Browser":n.indexOf("115Browser")>-1,TheWorld:n.indexOf("TheWorld")>-1,XiaoMi:n.indexOf("MiuiBrowser")>-1,Quark:n.indexOf("Quark")>-1,Qiyu:n.indexOf("Qiyu")>-1,Wechat:n.indexOf("MicroMessenger")>-1,WechatWork:n.indexOf("wxwork/")>-1,Taobao:n.indexOf("AliApp(TB")>-1,Alipay:n.indexOf("AliApp(AP")>-1,Weibo:n.indexOf("Weibo")>-1,Douban:n.indexOf("com.douban.frodo")>-1,Suning:n.indexOf("SNEBUY-APP")>-1,iQiYi:n.indexOf("IqiyiApp")>-1,DingTalk:n.indexOf("DingTalk")>-1,Huawei:n.indexOf("HuaweiBrowser")>-1||n.indexOf("HUAWEI/")>-1||n.indexOf("HONOR")>-1,Vivo:n.indexOf("VivoBrowser")>-1,Windows:n.indexOf("Windows")>-1,Linux:n.indexOf("Linux")>-1||n.indexOf("X11")>-1,"Mac OS":n.indexOf("Macintosh")>-1,Android:n.indexOf("Android")>-1||n.indexOf("Adr")>-1,HarmonyOS:n.indexOf("HarmonyOS")>-1,Ubuntu:n.indexOf("Ubuntu")>-1,FreeBSD:n.indexOf("FreeBSD")>-1,Debian:n.indexOf("Debian")>-1,"Windows Phone":n.indexOf("IEMobile")>-1||n.indexOf("Windows Phone")>-1,BlackBerry:n.indexOf("BlackBerry")>-1||n.indexOf("RIM")>-1,MeeGo:n.indexOf("MeeGo")>-1,Symbian:n.indexOf("Symbian")>-1,iOS:n.indexOf("like Mac OS X")>-1,"Chrome OS":n.indexOf("CrOS")>-1,WebOS:n.indexOf("hpwOS")>-1,Mobile:n.indexOf("Mobi")>-1||n.indexOf("iPh")>-1||n.indexOf("480")>-1,Tablet:n.indexOf("Tablet")>-1||n.indexOf("Pad")>-1||n.indexOf("Nexus 7")>-1},d=!1;if(l.chrome){var t=n.replace(/^.*Chrome\/([\d]+).*$/,"$1");l.chrome.adblock2345||l.chrome.common2345?a["2345Explorer"]=!0:x("type","application/360softmgrplugin")||x("type","application/mozilla-npqihooquicklogin")?d=!0:t>36&&l.showModalDialog?d=!0:t>45&&(d=x("type","application/vnd.chromium.remoting-viewer"),!d&&t>=69&&(d=x("type","application/hwepass2001.installepass2001")||x("type","application/asx")))}a.Mobile?a.Mobile=!(n.indexOf("iPad")>-1):d&&(x("type","application/gameplugin")?a["360SE"]=!0:p&&"undefined"!=typeof p.connection&&"undefined"==typeof p.connection.saveData?a["360SE"]=!0:a["360EE"]=!0),a.Baidu&&a.Opera?a.Baidu=!1:a.iOS&&(a.Safari=!0);var c={engine:["WebKit","Trident","Gecko","Presto","KHTML"],browser:["Safari","Chrome","Edge","IE","Firefox","Firefox Focus","Chromium","Opera","Vivaldi","Yandex","Arora","Lunascape","QupZilla","Coc Coc","Kindle","Iceweasel","Konqueror","Iceape","SeaMonkey","Epiphany","XiaoMi","Vivo","360","360SE","360EE","UC","QQBrowser","QQ","Huawei","Baidu","Maxthon","Sogou","Liebao","2345Explorer","115Browser","TheWorld","Quark","Qiyu","Wechat","WechatWork","Taobao","Alipay","Weibo","Douban","Suning","iQiYi","DingTalk"],os:["Windows","Linux","Mac OS","Android","HarmonyOS","Ubuntu","FreeBSD","Debian","iOS","Windows Phone","BlackBerry","MeeGo","Symbian","Chrome OS","WebOS"],device:["Mobile","Tablet"]};r.device="PC";for(var u in c)for(var s=0;s<c[u].length;s++){var $=c[u][s];a[$]&&(r[u]=$)}var O={Windows:function(){var e=n.replace(/^Mozilla\/\d.0 \(.*Windows NT ([\d.]+)[;)].*$/,"$1"),r={10:"10",6.4:"10",6.3:"8.1",6.2:"8",6.1:"7","6.0":"Vista",5.2:"XP",5.1:"XP","5.0":"2000"};return e==n&&(e=o(f,n)),r[e]||e},WindowsNum:function(){var e=n.replace(/^Mozilla\/\d.0 \(.*Windows NT ([\d.]+)[;)].*$/,"$1");return e},Android:function(){return n.replace(/^.*Android ([\d.]+);.*$/,"$1")},HarmonyOS:function(){var e=n.replace(/^Mozilla.*Android ([\d.]+)[;)].*$/,"$1"),r={10:"2"};return r[e]||""},iOS:function(){return n.replace(/^.*OS ([\d_]+) like.*$/,"$1").replace(/_/g,".")},Debian:function(){return n.replace(/^.*Debian\/([\d.]+).*$/,"$1")},"Windows Phone":function(){return n.replace(/^.*Windows Phone( OS)? ([\d.]+);.*$/,"$2")},"Mac OS":function(){var e=n.replace(/^.*Mac OS X ([\d_]+).*$/,"$1");return e==n?"":e.replace(/_/g,".")},WebOS:function(){return n.replace(/^.*hpwOS\/([\d.]+);.*$/,"$1")}};r.osVersion="",r.osVersionNum="",O[r.os]&&(r.osVersion=O[r.os](),r.osVersion==n&&(r.osVersion=""),r.osVersionNum=r.osVersion,"Windows"===r.os&&(r.osVersionNum=O.WindowsNum()));var w={Safari:function(){return n.replace(/^.*Version\/([\d.]+).*$/,"$1")},Chrome:function(){return n.replace(/^.*Chrome\/([\d.]+).*$/,"$1").replace(/^.*CriOS\/([\d.]+).*$/,"$1")},IE:function(){return n.replace(/^.*MSIE ([\d.]+).*$/,"$1").replace(/^.*rv:([\d.]+).*$/,"$1")},Edge:function(){return n.replace(/^.*Edge\/([\d.]+).*$/,"$1").replace(/^.*Edg\/([\d.]+).*$/,"$1").replace(/^.*EdgA\/([\d.]+).*$/,"$1").replace(/^.*EdgiOS\/([\d.]+).*$/,"$1")},Firefox:function(){return n.replace(/^.*Firefox\/([\d.]+).*$/,"$1").replace(/^.*FxiOS\/([\d.]+).*$/,"$1")},"Firefox Focus":function(){return n.replace(/^.*Focus\/([\d.]+).*$/,"$1")},Chromium:function(){return n.replace(/^.*Chromium\/([\d.]+).*$/,"$1")},Opera:function(){return n.replace(/^.*Opera\/([\d.]+).*$/,"$1").replace(/^.*OPR\/([\d.]+).*$/,"$1")},Vivaldi:function(){return n.replace(/^.*Vivaldi\/([\d.]+).*$/,"$1")},Yandex:function(){return n.replace(/^.*YaBrowser\/([\d.]+).*$/,"$1")},Arora:function(){return n.replace(/^.*Arora\/([\d.]+).*$/,"$1")},Lunascape:function(){return n.replace(/^.*Lunascape[\/\s]([\d.]+).*$/,"$1")},QupZilla:function(){return n.replace(/^.*QupZilla[\/\s]([\d.]+).*$/,"$1")},"Coc Coc":function(){return n.replace(/^.*coc_coc_browser\/([\d.]+).*$/,"$1")},Kindle:function(){return n.replace(/^.*Version\/([\d.]+).*$/,"$1")},Iceweasel:function(){return n.replace(/^.*Iceweasel\/([\d.]+).*$/,"$1")},Konqueror:function(){return n.replace(/^.*Konqueror\/([\d.]+).*$/,"$1")},Iceape:function(){return n.replace(/^.*Iceape\/([\d.]+).*$/,"$1")},SeaMonkey:function(){return n.replace(/^.*SeaMonkey\/([\d.]+).*$/,"$1")},Epiphany:function(){return n.replace(/^.*Epiphany\/([\d.]+).*$/,"$1")},360:function(){return n.replace(/^.*QihooBrowser\/([\d.]+).*$/,"$1")},"360SE":function(){var e={86:"13.0",78:"12.0",69:"11.0",63:"10.0",55:"9.1",45:"8.1",42:"8.0",31:"7.0",21:"6.3"},r=n.replace(/^.*Chrome\/([\d]+).*$/,"$1"),o=i(r,e);return o},"360EE":function(){var e={86:"13.0",78:"12.0",69:"11.0",63:"9.5",55:"9.0",50:"8.7",30:"7.5"},r=n.replace(/^.*Chrome\/([\d]+).*$/,"$1"),o=i(r,e);return o},Maxthon:function(){return n.replace(/^.*Maxthon\/([\d.]+).*$/,"$1")},QQBrowser:function(){return n.replace(/^.*QQBrowser\/([\d.]+).*$/,"$1")},QQ:function(){return n.replace(/^.*QQ\/([\d.]+).*$/,"$1")},Baidu:function(){return n.replace(/^.*BIDUBrowser[\s\/]([\d.]+).*$/,"$1").replace(/^.*baiduboxapp\/([\d.]+).*$/,"$1")},UC:function(){return n.replace(/^.*UC?Browser\/([\d.]+).*$/,"$1")},Sogou:function(){var e={38:"6.0",49:"7.0",58:"8.0",72:"10.0",80:"11.0"},r=n.replace(/^.*Chrome\/([\d]+).*$/,"$1"),o=n.replace(/^.*SE ([\d.X]+).*$/,"$1").replace(/^.*SogouMobileBrowser\/([\d.]+).*$/,"$1"),a=i(r,e,o);return a},Liebao:function(){var e="";n.indexOf("LieBaoFast")>-1&&(e=n.replace(/^.*LieBaoFast\/([\d.]+).*$/,"$1"));var r={57:"6.5",49:"6.0",46:"5.9",42:"5.3",39:"5.2",34:"5.0",29:"4.5",21:"4.0"},i=n.replace(/^.*Chrome\/([\d]+).*$/,"$1");return e||r[i]||""},"2345Explorer":function(){var e={69:"10.0",55:"9.9"},r=navigator.userAgent.replace(/^.*Chrome\/([\d]+).*$/,"$1"),o=n.replace(/^.*2345Explorer\/([\d.]+).*$/,"$1").replace(/^.*Mb2345Browser\/([\d.]+).*$/,"$1"),a=i(r,e,o);return a},"115Browser":function(){return n.replace(/^.*115Browser\/([\d.]+).*$/,"$1")},TheWorld:function(){return n.replace(/^.*TheWorld ([\d.]+).*$/,"$1")},XiaoMi:function(){return n.replace(/^.*MiuiBrowser\/([\d.]+).*$/,"$1")},Vivo:function(){return n.replace(/^.*VivoBrowser\/([\d.]+).*$/,"$1")},Quark:function(){return n.replace(/^.*Quark\/([\d.]+).*$/,"$1")},Qiyu:function(){return n.replace(/^.*Qiyu\/([\d.]+).*$/,"$1")},Wechat:function(){return n.replace(/^.*MicroMessenger\/([\d.]+).*$/,"$1")},WechatWork:function(){return n.replace(/^.*wxwork\/([\d.]+).*$/,"$1")},Taobao:function(){return n.replace(/^.*AliApp\(TB\/([\d.]+).*$/,"$1")},Alipay:function(){return n.replace(/^.*AliApp\(AP\/([\d.]+).*$/,"$1")},Weibo:function(){return n.replace(/^.*weibo__([\d.]+).*$/,"$1")},Douban:function(){return n.replace(/^.*com.douban.frodo\/([\d.]+).*$/,"$1")},Suning:function(){return n.replace(/^.*SNEBUY-APP([\d.]+).*$/,"$1")},iQiYi:function(){return n.replace(/^.*IqiyiVersion\/([\d.]+).*$/,"$1")},DingTalk:function(){return n.replace(/^.*DingTalk\/([\d.]+).*$/,"$1")},Huawei:function(){return n.replace(/^.*Version\/([\d.]+).*$/,"$1").replace(/^.*HuaweiBrowser\/([\d.]+).*$/,"$1")}};return r.version="",w[r.browser]&&(r.version=w[r.browser](),r.version==n&&(r.version="")),"Chrome"==r.browser&&n.match(/\S+Browser/)&&(r.browser=n.match(/\S+Browser/)[0],r.version=n.replace(/^.*Browser\/([\d.]+).*$/,"$1")),"Edge"==r.browser?r.engine=r.version>"75"?"Blink":"EdgeHTML":a.Chrome&&"WebKit"==r.engine&&parseInt(w.Chrome(),10)>27?r.engine="Blink":"Opera"==r.browser&&parseInt(r.version,10)>12?r.engine="Blink":"Yandex"==r.browser&&(r.engine="Blink"),r}function d(e,n){for(var r=e.split("."),i=n.split("."),o=0;o<r.length||o<i.length;++o){var a=0,d=0;if(o<r.length&&(a=parseInt(r[o],10)),o<i.length&&(d=parseInt(i[o],10)),a>d)return 1;if(d>a)return-1}return 0}function t(e,n,r){var i=d(e,n);return"="===r?0===i:"<="===r?1!==i:-1!==i}var c=e("base:widget/tools/service/tools.browser.js"),u=c.client()||{},s=u.browserString||"",f=c.os(),l=window,p=window.navigator,x=function(e,n){var r=p.mimeTypes;for(var i in r)if(r[i][e]==n)return!0;return!1},O={getSystemVersion:o,getBrowserInfo:a,checkIsVersionMatch:t};O.getSystemInfo=function(){var e={};try{var n=a(navigator.userAgent)||{},r=n.os+"_"+n.osVersion+"_"+n.browser+"_"+n.version,i=navigator.connection||{};e={channel:r,oscpu:navigator.oscpu||"",downlink:i.downlink||"",downlinkMax:i.downlinkMax||"",rtt:i.rtt||"",networkType:i.type||"",cpuNumber:navigator.hardwareConcurrency||"",deviceMemory:navigator.deviceMemory||""}}catch(d){e={}}if(!e.channel){var t=o(f);e.channel=f+"_"+t+"_"+s.replace(/[\d\.]/g,"")+"_"+s.replace(/[^\d\.]/g,"")}return e},r.exports=O});
+;define("file-widget-1:videoPlay/utils/dict.js",function(o,s,e){function r(o){return[n.h265,n.v7].indexOf(o)>-1}var i={video_h265:[],video_flash:[{os:"Windows",osVersion:"5.1",browser:"*",version:"*"}],video_v7:[{browser:"Chrome",version:"49.0",os:"*",osVersion:"*"},{browser:"Firefox",version:"72.0.2",os:"*",osVersion:"*"},{browser:"Safari",version:"13",os:"*",osVersion:"*"},{browser:"IE",version:"11.0",os:"*",osVersion:"*"},{browser:"Edge",version:"18.18363",os:"*",osVersion:"*"},{browser:"360SE",version:"10.0",os:"*",osVersion:"*"},{browser:"360EE",version:"11",os:"*",osVersion:"*"},{browser:"QQBrowser",version:"10.8",os:"*",osVersion:"*"},{browser:"2345Explorer",version:"10.0",os:"*",osVersion:"*"},{browser:"Sogou",version:"6.0",os:"*",osVersion:"*"},{browser:"Wechat",version:"7.0.20.1781",os:"*",osVersion:"*"},{browser:"SLBrowser",version:"7.0",os:"*",osVersion:"*"}],video_h265_black_uk:[],video_h265_black_ua_up:[],video_h265_black_ua:[],video_h256_os_version_white_scene:[]},n={h265:2,v7:1,flash:-1,v5:0},v={isNewSDK:r,uaDict:i,levelDict:n};e.exports=v});
+;define("file-widget-1:videoPlay/utils.js",function(e,t,r){var o=e("base:widget/libs/jquerypacket.js"),i=e("base:widget/vip/vip.js"),n=e("file-widget-1:videoPlay/Werbung/WerbungConfig.js"),s=e("file-widget-1:videoPlay/context.js"),a=e("file-widget-1:videoPlay/utils/device-info.js"),d=e("file-widget-1:videoPlay/utils/dict.js"),l={old:{core:20211222,hls:20211222,js:20210315,css:20210730},newer:{wasm:1712922671127,js:1681730947545,zhCN:20210315,css:1681730947545}},_=a.getSystemInfo()||{},p=_.channel||"",f={channel:p,systemInfo:_,supportType:"3gpp m3u8 m3u asf wmv avi flv f4v gif mkv mov mp4 m4a m4v 3gp 3g2 mj2 mp2 m2a mp3 mpeg mpg ts ogg MTS M2TS dat wma aac m4a ape flac rm rmvb wav webm".split(/\s+/),checkFileType:function(e){for(var t=this,r=e.path,o=r.substr(r.lastIndexOf(".")+1).toLowerCase(),i=t.supportType,n=0,s=i.length;s>n;++n)if(i[n]===o)return!0;return!1},getVideoCSS:function(){var t=s.getContext(),r=t.useNewSDK,i=d.isNewSDK(r),a=n.getShadow(),_=n.getContainer(),p="https://nd-static.bdstatic.com/m-static/base/thirdParty/"+(i?"video-player/_nomd5_nomod/video-player_"+l.newer.css+".css":"videojs/_nomd5_nomod/video-js_"+l.old.css+".css");t.loadedVideoCSS||e.loadCss(p,function(){t.loadedVideoCSS=!0,a&&_&&(f.moveStyle(_,o("head").find("style"),/video\-(js|player)|vjs/gi),f.moveLink(_,o("head").find("link"),/video\-(js|player)|vjs/gi))})},getScript:function(e){return new Promise(function(t,r){o.ajax({url:e,cache:!0,dataType:"script"}).done(t).fail(r)})},getVideoJS:function(){function e(){return r.loadedVideoJS=!0,r.loadingVideoJS=!1,window.videoPlayer}function t(){return r.loadingVideoJS=!1,Promise.reject()}var r=s.getContext();if(r.loadedVideoJS)return Promise.resolve(window.videoPlayer);if(r.loadingVideoJS)return r.loadingVideoJS;var o=s.getContext().useNewSDK,i=d.isNewSDK(o),n=this,a="https://nd-static.bdstatic.com/m-static/base/thirdParty/"+(i?"video-player/_nomd5_nomod/":"videojs/_nomd5_nomod/");if(i){var _=[n.getScript(a+"video-player_"+l.newer.js+".js")];o===d.levelDict.h265&&_.push(n.getScript(a+"wasm-player_"+l.newer.wasm+".js")),r.loadingVideoJS=Promise.all(_).then(e,t)}else r.loadingVideoJS=n.getScript(a+"video_"+l.old.core+".js").then(function(){return Promise.all([n.getScript(a+"lang/zh-CN_"+l.old.js+".js"),n.getScript(a+"videojs-ie8_"+l.old.js+".js"),n.getScript(a+"videojs-contrib-hls_"+l.old.hls+".js")])}).then(e,t);return r.loadingVideoJS},isFunction:function(e){return e&&"function"==typeof e},sendLog:function(e,t){var r=o.extend({url:location.protocol+"//update.pan.baidu.com/statistics",op:"webvideo",playerType:t&&t.playerType,from:t&&t.flag,path:encodeURIComponent(t&&t.file&&t.file.path),fsid:t&&t.file&&t.file.fs_id,md5:t&&t.file&&t.file.md5,fileType:""},e);s.getContext().log.send(r)},sendH5Log:function(e,t){var r=window.__LOG_INFO__||{},n=s.getContext();e=e||{},t=t||{};var a=t.file=t.file||{};e.uk&&(e.uk=r.uk);var d="";t.retryLogType?d=t.retryLogType:t.options&&t.options.retryLogType&&(d=t.options.retryLogType);var l=o.extend({url:"/api/analytics",op:"webvideo",playerType:t.playerType,from:t.flag,path:encodeURIComponent(a.path),fsid:a.fs_id,md5:a.md5,size:a.file_size||a.size||0,duration:a.duration||0,hitvideosample:n.useNewSDK,timestamp:(new Date).getTime(),"dp-logid":r.dpLogID,isvip:i.getVipValue(),retryLogType:d,currentResolution:t.currentResolution||"",BPSType:t.BPSType||"",channel:p},e);r.subLogID&&o.extend(l,{"sub-dp-logid":r.subLogID}),r.retryLogID&&o.extend(l,{"retry-dp-logid":r.retryLogID}),n.log.send(l)},sendVideoLog:function(e,t){var r=this;if(t.userInfo)r.sendVideoLogCore(e,t);else if(r.userInfo)t.userInfo=r.userInfo,r.sendVideoLogCore(e,t);else{var o=s.getContext();r.userInfo={},o.locals.get("is_svip","is_vip",function(o,i){r.userInfo.isSVip=!!o,r.userInfo.isVip=!!i,t.userInfo=r.userInfo,r.sendVideoLogCore(e,t)})}},sendVideoLogCore:function(e,t){var r=s.getContext(),i={},n=e.error_info,a=t.src;t.player&&d.isNewSDK(r.useNewSDK)&&(a=t.player.src()),a=a||"";var l=(a.match(/.*(M3U8_\w+_\d{3,4}).*/)||[])[1],_="";l=l||"",l.indexOf("M3U8_FLV")>=0?_="flv":l.indexOf("M3U8_AUTO")>=0&&(_="ts");var f={video_source:encodeURIComponent(a),media_source:"801",file_md5:t.file.md5||"",media_from:t.flag||t.options.flag};e.type=e.op,e.source_type=_,e.useNewSDK=r.useNewSDK,"vast_player_user_number"===e.op?(i["netdisk_"+t.currentResolution+"_user_number"]=o.extend(f,{pv_type:e.pv_type}),delete e.pv_type):"vast_player_summary_info"===e.op&&e.activity_create_time?(i["netdisk_"+t.currentResolution+"_summary_info"]=o.extend(f,{activity_create_time:e.activity_create_time,first_video_frame_rendered_time:e.first_video_frame_rendered_time,first_frame_type:e.first_frame_type}),delete e.activity_create_time,delete e.first_video_frame_rendered_time,delete e.first_frame_type):"vast_player_summary_info"===e.op&&e.play_stutter?(i["netdisk_"+t.currentResolution+"_summary_info"]=o.extend(f,{video_width:e.video_width,video_height:e.video_height,play_speed:e.play_speed,play_stutter:e.play_stutter,play_stutter_count:e.play_stutter.length||0}),delete e.video_width,delete e.video_height,delete e.play_speed,delete e.play_stutter):"vast_player_summary_info"===e.op&&e.play_avnosync_list?(i["netdisk_"+t.currentResolution+"_summary_info"]=o.extend(f,{video_width:e.video_width,video_height:e.video_height,play_speed:e.play_speed,out_sync:e.play_avnosync_list,out_sync_count:e.play_avnosync_list.length||0}),delete e.video_width,delete e.video_height,delete e.play_speed,delete e.play_avnosync_list):"vast_player_play_error"===e.op&&"SDK_ERROR"===e.error_type?(i["netdisk_"+t.currentResolution+"_play_error"]=o.extend({},{video_info:f},{error_info:e.error_info,error_retry_times:window.ERROR_RETRY_TIMES||0}),delete e.error_info):"vast_player_play_error"===e.op&&"CLIENT_ERROR"===e.error_type?(i.netdisk_get_mdedia_info_play_error=o.extend({},{video_info:f},{error_info:e.error_info,error_retry_times:window.ERROR_RETRY_TIMES||0}),delete e.error_info):"vast_player_auto_retry"===e.op?(i["netdisk_"+t.currentResolution+"_auto_retry"]=o.extend(f,{pv_type:e.pv_type}),delete e.pv_type):i[e.op||"default_key"]={video_info:f},e.value=JSON.stringify(i);var u=o.extend({url:location.protocol+"//update.pan.baidu.com/statistics",isvip:t.userInfo.isSVip?2:t.userInfo.isVip?1:0,channel:p,segementType:t.segementType},e);if(r.log.send(u),"vast_player_play_error"===e.op){var c=n.player_error.error_code||"unknow",y=o.extend({type:"web_video_play_error",resolution:t.currentResolution,from:c,useNewSDK:r.useNewSDK,isvip:t.userInfo.isSVip?2:t.userInfo.isVip?1:0,segementType:t.segementType,channel:p},f);r.log.send(y),r.log.send(o.extend(y,{type:"web_video_play_error_"+c,from:f.media_from}))}},moveStyle:function(e,t,r){var i="";t.each(function(e,t){var n=o(t).html();r.test(n)&&(i+=n)}),o(e).find("#videojsstyles").html(i)},moveLink:function(e,t,r){t.each(function(t,i){r.test(i.href)&&o.ajax({url:i.href,success:function(t){o("<style>").text(t).appendTo(o(e))}})})},errTip:function(e){e.container.addClass("error-tips");var t=['<div class="tips-box">',e.addIcon?'<i class="tips-fail-icon"></i>':"",'<span class="tips-txt">'+e.msg,e.addRetry?'<a href="javascript:void(0);" node-type="retry" class="retry">重试</a>':"","</span>",e.flashInstallBtn?'<a class="flash-install-btn" target="_blank" href="http://get.adobe.com/cn/flashplayer/">下载Flash插件</a>':"","</div>"];e.container.html(t.join(""))},removeErrTip:function(e){e.container.removeClass("error-tips"),o(".tips-box").remove()},MD5:function(e){function t(e,t){return e<<t|e>>>32-t}function r(e,t){var r,o,i,n,s;return i=2147483648&e,n=2147483648&t,r=1073741824&e,o=1073741824&t,s=(1073741823&e)+(1073741823&t),r&o?2147483648^s^i^n:r|o?1073741824&s?3221225472^s^i^n:1073741824^s^i^n:s^i^n}function o(e,t,r){return e&t|~e&r}function i(e,t,r){return e&r|t&~r}function n(e,t,r){return e^t^r}function s(e,t,r){return t^(e|~r)}function a(e,i,n,s,a,d,l){return e=r(e,r(r(o(i,n,s),a),l)),r(t(e,d),i)}function d(e,o,n,s,a,d,l){return e=r(e,r(r(i(o,n,s),a),l)),r(t(e,d),o)}function l(e,o,i,s,a,d,l){return e=r(e,r(r(n(o,i,s),a),l)),r(t(e,d),o)}function _(e,o,i,n,a,d,l){return e=r(e,r(r(s(o,i,n),a),l)),r(t(e,d),o)}function p(e){for(var t,r=e.length,o=r+8,i=(o-o%64)/64,n=16*(i+1),s=Array(n-1),a=0,d=0;r>d;)t=(d-d%4)/4,a=d%4*8,s[t]=s[t]|e.charCodeAt(d)<<a,d++;return t=(d-d%4)/4,a=d%4*8,s[t]=s[t]|128<<a,s[n-2]=r<<3,s[n-1]=r>>>29,s}function f(e){var t,r,o="",i="";for(r=0;3>=r;r++)t=e>>>8*r&255,i="0"+t.toString(16),o+=i.substr(i.length-2,2);return o}function u(e){e=e.replace(/\r\n/g,"\n");for(var t="",r=0;r<e.length;r++){var o=e.charCodeAt(r);128>o?t+=String.fromCharCode(o):o>127&&2048>o?(t+=String.fromCharCode(o>>6|192),t+=String.fromCharCode(63&o|128)):(t+=String.fromCharCode(o>>12|224),t+=String.fromCharCode(o>>6&63|128),t+=String.fromCharCode(63&o|128))}return t}var c,y,v,m,g,h,w,S,C,j=Array(),x=7,T=12,b=17,I=22,R=5,V=9,L=14,k=20,D=4,P=11,N=16,O=23,J=6,K=10,E=15,M=21;for(e=u(e),j=p(e),h=1732584193,w=4023233417,S=2562383102,C=271733878,c=0;c<j.length;c+=16)y=h,v=w,m=S,g=C,h=a(h,w,S,C,j[c+0],x,3614090360),C=a(C,h,w,S,j[c+1],T,3905402710),S=a(S,C,h,w,j[c+2],b,606105819),w=a(w,S,C,h,j[c+3],I,3250441966),h=a(h,w,S,C,j[c+4],x,4118548399),C=a(C,h,w,S,j[c+5],T,1200080426),S=a(S,C,h,w,j[c+6],b,2821735955),w=a(w,S,C,h,j[c+7],I,4249261313),h=a(h,w,S,C,j[c+8],x,1770035416),C=a(C,h,w,S,j[c+9],T,2336552879),S=a(S,C,h,w,j[c+10],b,4294925233),w=a(w,S,C,h,j[c+11],I,2304563134),h=a(h,w,S,C,j[c+12],x,1804603682),C=a(C,h,w,S,j[c+13],T,4254626195),S=a(S,C,h,w,j[c+14],b,2792965006),w=a(w,S,C,h,j[c+15],I,1236535329),h=d(h,w,S,C,j[c+1],R,4129170786),C=d(C,h,w,S,j[c+6],V,3225465664),S=d(S,C,h,w,j[c+11],L,643717713),w=d(w,S,C,h,j[c+0],k,3921069994),h=d(h,w,S,C,j[c+5],R,3593408605),C=d(C,h,w,S,j[c+10],V,38016083),S=d(S,C,h,w,j[c+15],L,3634488961),w=d(w,S,C,h,j[c+4],k,3889429448),h=d(h,w,S,C,j[c+9],R,568446438),C=d(C,h,w,S,j[c+14],V,3275163606),S=d(S,C,h,w,j[c+3],L,4107603335),w=d(w,S,C,h,j[c+8],k,1163531501),h=d(h,w,S,C,j[c+13],R,2850285829),C=d(C,h,w,S,j[c+2],V,4243563512),S=d(S,C,h,w,j[c+7],L,1735328473),w=d(w,S,C,h,j[c+12],k,2368359562),h=l(h,w,S,C,j[c+5],D,4294588738),C=l(C,h,w,S,j[c+8],P,2272392833),S=l(S,C,h,w,j[c+11],N,1839030562),w=l(w,S,C,h,j[c+14],O,4259657740),h=l(h,w,S,C,j[c+1],D,2763975236),C=l(C,h,w,S,j[c+4],P,1272893353),S=l(S,C,h,w,j[c+7],N,4139469664),w=l(w,S,C,h,j[c+10],O,3200236656),h=l(h,w,S,C,j[c+13],D,681279174),C=l(C,h,w,S,j[c+0],P,3936430074),S=l(S,C,h,w,j[c+3],N,3572445317),w=l(w,S,C,h,j[c+6],O,76029189),h=l(h,w,S,C,j[c+9],D,3654602809),C=l(C,h,w,S,j[c+12],P,3873151461),S=l(S,C,h,w,j[c+15],N,530742520),w=l(w,S,C,h,j[c+2],O,3299628645),h=_(h,w,S,C,j[c+0],J,4096336452),C=_(C,h,w,S,j[c+7],K,1126891415),S=_(S,C,h,w,j[c+14],E,2878612391),w=_(w,S,C,h,j[c+5],M,4237533241),h=_(h,w,S,C,j[c+12],J,1700485571),C=_(C,h,w,S,j[c+3],K,2399980690),S=_(S,C,h,w,j[c+10],E,4293915773),w=_(w,S,C,h,j[c+1],M,2240044497),h=_(h,w,S,C,j[c+8],J,1873313359),C=_(C,h,w,S,j[c+15],K,4264355552),S=_(S,C,h,w,j[c+6],E,2734768916),w=_(w,S,C,h,j[c+13],M,1309151649),h=_(h,w,S,C,j[c+4],J,4149444226),C=_(C,h,w,S,j[c+11],K,3174756917),S=_(S,C,h,w,j[c+2],E,718787259),w=_(w,S,C,h,j[c+9],M,3951481745),h=r(h,y),w=r(w,v),S=r(S,m),C=r(C,g);var U=f(h)+f(w)+f(S)+f(C);return U.toLowerCase()},getSysCfg:function(){var e=this.isChrome140OrLater();return e?new Promise(function(e){var t=JSON.stringify([{cfg_category_key:"sharelink_video_play_mode_chrome",cfg_version:"0"}]);o.ajax({url:"/api/getsyscfg?cfg_category_keys="+encodeURIComponent(t)+"&version=1.0.0"}).done(function(t){try{if(0===t.errno&&t.sharelink_video_play_mode_chrome){var r=t.sharelink_video_play_mode_chrome,o=r.cfg_list&&r.cfg_list[0];if(o&&"1"===o.sharelink_video_play_mode_chrome_web)return void e(!0)}e(!1)}catch(i){e(!1)}}).fail(function(){e(!1)})}):Promise.resolve(!1)},getChromeVersion:function(){var e=navigator.userAgent.toLowerCase(),t=e.match(/chrome\/([\d.]+)/);return t?t[1]:""},isChrome140OrLater:function(){var e=this.getChromeVersion();if(e){var t=parseFloat(e);return t>=140}return!1}};r.exports=f});
+;define("file-widget-1:videoPlay/Player/Player.js",function(e,t,o){function i(){}var r=e("base:widget/storage/storage.js"),n=e("file-widget-1:videoPlay/utils.js");i.prototype.getBPSType=function(e){if(e)return e;var e;return e=-1!==navigator.platform.indexOf("iPhone")||-1!==navigator.platform.indexOf("iPad")?"M3U8_AUTO_480":"M3U8_FLV_264_480"},i.prototype.getFilePosition=function(e){var t=0;return"undefined"!=typeof r&&(t=r.getItem("video_"+e)||0,t&&(t=parseInt(t,10),t=0>t?0:t),isNaN(t)&&(t=0),window.disk.DEBUG&&console.warn("get video position: ",e,"-",t)),t},i.prototype.setFilePosition=function(e,t,o){r&&e&&t&&(e="video_"+e,t+25>=o?(r.removeItem(e),window.disk.DEBUG&&console.warn("remove video position: ",e,"-",t)):(r.setItem(e,t),window.disk.DEBUG&&console.warn("add video position: ",e)))},i.prototype.play=function(){this.player.play&&this.player.play()},i.prototype.pause=function(){this.player.pause&&this.player.pause()},i.prototype.destroy=function(){function e(){t.player.pause&&t.player.pause(),t.player.muted&&t.player.muted(!0),t.playError.flag||t.player.isDisposed_||!t.player.dispose||t.player.dispose(),t.container.html(""),t.player=!1}var t=this;this.player&&!this.destroyed&&(this.destroyed=!0,n.isFunction(this.onBeforeDestroy)?this.onBeforeDestroy()&&e():e())},i.prototype.getBuffer=function(){return this.player.getBuffer&&this.player.getBuffer()},i.prototype.getPlayer=function(){return this.player},o.exports=i});
+;define("file-widget-1:videoPlay/FlashPlayer/swfUtil/swfUtil.js",function(e,t,a){function n(e,t){var a,r,s,f,m="",w={type:"application/x-shockwave-flash",width:"100%",height:"100%"},v={wmode:"transparent",menu:!1,allowScriptAccess:"always"};if(!t&&e&&(t=e,e=null),"[object Object]"===Object.prototype.toString.call(t)&&t.src){if("object"==typeof e?r=e:"string"==typeof e&&(r=o.getElementById(e)),function(e){for(var a,n=e.length,i={};n--;)i[e[n]]=1;for(a in t)i[a]?w[a]=t[a]:v[a]=t[a]}(p.split(" ")),b){if(m=l(w,v),parseFloat(t.version||y)>b){if(u)return;f=2,g=m,w.id=h,s=t.base||n.base||"",s&&"/"!==s.slice(-1)&&(s+="/"),v.src=s+d,!/%$/.test(w.width)&&parseInt(w.width,10)<310&&(w.width="310"),!/%$/.test(w.height)&&parseInt(w.height,10)<137&&(w.height="137"),a="MMredirectURL="+location.href+"&MMplayerType="+(c?"ActiveX":"PlugIn")+"&MMdoctitle="+encodeURIComponent(o.title.slice(0,47)+" - Flash Player Installation"),v.flashvars=v.flashvars?v.flashvars+"&"+a:a,m=l(w,v),u=!0}}else r&&r.firstChild||(m=i(w)),f=1;return r&&m&&(r.innerHTML=m),f&&"function"==typeof t.fallback&&t.fallback(f),r.getElementsByTagName("embed")[0]}}function i(e){var t=e.width,a=e.height,n="number"==typeof t?t+"px":t,i="number"==typeof a?a+"px":a;return'<a target="_blank" href="//www.adobe.com/go/getflash"><span style="display:block;cursor:pointer;background:#EFEFEF url(//www.adobe.com/images/shared/download_buttons/get_flash_player.gif) center center no-repeat;width:'+n+";height:"+i+';" title="Get Adobe Flash player"></span></a>'}function l(e,t){var a,n="";if(c){e.classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000",n+="<object"+r(e)+">";for(a in t)n+='<param name="'+a+'" value="'+t[a]+'">';n+="</object>"}else n+="<embed"+r(t)+r(e)+">";return n}function r(e){var t,a="";for(t in e)a+=" "+t+'="'+e[t]+'"';return a}function s(e){"string"==typeof e&&(e=o.getElementById(e).firstChild),e&&e.tagName&&(c&&"OBJECT"===e.tagName?(e.style.display="none",function(){if(4==e.readyState){for(var t in e)"function"==typeof e[t]&&(e[t]=null);e.parentNode.removeChild(e)}else setTimeout(arguments.callee,15)}()):e&&e.parentNode&&e.parentNode.removeChild(e),u=!1)}var o=document,c=!!window.ActiveXObject,f="",p="width height name id class style title type align tabindex usemap",d="expressInstall.swf?"+ +new Date,h="ExpressInstall",u=!1,g="",y="9,0,28,0",b=function(){var e,t,a="ShockwaveFlash";if(c)try{e=new ActiveXObject(a+"."+a).GetVariable("$version"),e&&(e=e.split(" ")[1].split(",").join("."))}catch(n){}else t=navigator.plugins["Shockwave Flash"],"object"==typeof t&&(e=t.description.split(" ")[2]);return parseFloat(e)}();n.destroy=s,n.flashVersion=b,n.base=function(e){if(!e){var t=o.getElementsByTagName("script"),a=t[t.length-1];e=a.src}return e.split("/").slice(0,-1).join("/")}(f),n.installCallback=function(){if(u){var e=o.getElementById(h),t=e.parentNode;s(e),t.innerHTML=g,g="",u=!1}},a.exports=n});
+;define("file-widget-1:videoPlay/FlashPlayer/FlashPlayer.js",function(e,n,o){function t(e){this.file=e.file,this.container=i(e.container),this.flag=e.flag,this.logurl=location.protocol+"//update.pan.baidu.com/statistics?clienttype=0&op=webvideo&from="+this.flag,this.playerType="Flash",this.p2p=e.p2p,this.adToken=e.adToken,this.callback=e.callback,this.logPrintToWeb=a.getParam("log_print"),this.flashLoaded=!1,this.werbung=e.werbung,this.werbungPlayer=e.werbungPlayer||!1,this.overTimer=0,this.id="flashplayer",this.rememberPosition=e.rememberPosition,this.autoplay=!!e.autoplay,this.url=e.getUrl(this.getBPSType())+"&check_blue=1&isplayer=1",this.flashUrl="/m-static/file-widget-1/videoPlay/FlashPlayer/swfUtil/DiskPlayer.swf",this.onPlay=e.onPlay,this.onPause=e.onPause,this.onBeforePlay=e.onBeforePlay,this.onTimeUpdate=e.onTimeUpdate,this.onBeforeDestroy=e.onBeforeDestroy,this.run=function(){var e=this;e.container.html("");var n="fsid="+encodeURIComponent(e.file.fs_id)+"&filename="+encodeURIComponent(i(".video-title-left").text())+"&file="+encodeURIComponent(e.url)+"&adToken="+encodeURIComponent(encodeURIComponent(e.adToken?e.adToken:""))+"&p2purl="+encodeURIComponent(e.file.p2purl?e.file.p2purl:"")+"&logurl="+encodeURIComponent(e.logurl)+"&md5="+encodeURIComponent(e.file.md5)+"&logPrintToWeb="+e.logPrintToWeb+"&onReady="+encodeURIComponent("videoPlayerEvent.onReady")+"&onLoad="+encodeURIComponent("videoPlayerEvent.onLoad")+"&onError="+encodeURIComponent("videoPlayerEvent.onPlayerErrorFunc")+"&onOver="+encodeURIComponent("videoPlayerEvent.onPlayerOverFunc")+"&onBeforeSeek="+encodeURIComponent("videoPlayerEvent.onPlayerBeforeSeekFunc")+"&onBeforePlay="+encodeURIComponent("videoPlayerEvent.onPlayerBeforePlayFunc")+"&onPlay="+encodeURIComponent("videoPlayerEvent.onPlayerPlayFunc")+"&onPause="+encodeURIComponent("videoPlayerEvent.onPlayerPauseFunc")+"&onSeek="+encodeURIComponent("videoPlayerEvent.onPlayerSeekFunc")+"&autoStart="+e.autoplay+"&playStart="+(e.rememberPosition?e.getFilePosition(e.file.md5):"")+"&onTime="+encodeURIComponent("videoPlayerEvent.onTimeFunc");p(e.container[0],{id:e.id,src:e.flashUrl,flashvars:n,allowFullScreenInteractive:!0,allowFullScreen:!0,wmode:"Opaque",quality:"high"}),e.player=e.container.find("#"+e.id)[0],this.createFlashCoreCallback(),e.overtimeCounting(),"function"==typeof e.callback&&e.callback(e)},this.createFlashCoreCallback=function(){var e=this,n=e.werbungPlayer,o={onLoad:function(n){e.flashLoaded=!0,e.container.find("#flashplayer").addClass("visiblevideo"),e.p2p&&(l.setVodInfo(n,e.container.find("embed,object").get(0)),l.setReloadFunction(function(n){e.file.p2purl="",e.setFilePosition(e.md5,n),e.run()}))},onReady:function(){},onPlayerErrorFunc:function(n){if(n||(n={}),!n.analytics){e.file&&(n.filepath=e.file.path);var o=n.errno,i="",a=!1;n.islive?(i="视频正在转码，请稍候重试...",a=!0):31346===o?(i="加载失败了，稍候重试一下吧",a=!0):31066===o||404==n.httpstatus?i="文件不存在，换一个吧！":31339===o?i="该视频无法播放噢，换一个试试吧！":31341===o?i="视频正在转码中，稍后再来试下吧...":31346===o?i="抱歉，视频转码失败了，请换一个试试吧！":31391===o?i="文件违规，已根据相关法律法规予以屏蔽":(i="服务器有点儿忙，稍后重试一下吧...",a=!0),r.getContext().message.trigger("video-trigger-list-error",{msg:i,addRetry:a}),u.sendLog({ajaxurl:e.url,fileType:t.getBPSType(),playError:1},e)}},onPlayerOverFunc:function(){},onPlayerPlayFunc:function(){u.isFunction(e.onPlay)&&e.onPlay(),e.p2p&&l.onPlayOrPause({pause:0})},onPlayerPauseFunc:function(){u.isFunction(e.onPause)&&e.onPause(),e.p2p&&l.onPlayOrPause({pause:1})},onPlayerSeekFunc:function(){},onPlayerBeforePlayFunc:function(){return u.isFunction(e.onBeforePlay)?e.onBeforePlay():!0},onPlayerBeforeSeekFunc:function(){return!0},onTimeFunc:function(o,t,i){!n||n.contentPlayerReady&&n.adTimePass?(u.isFunction(e.onTimeUpdate)&&e.onTimeUpdate(o,t),e.rememberPosition&&e.setFilePosition(e.file.md5,o,t),e.p2purl&&l.onTime(o,t,i)):e.player.pause()}};window.videoPlayerEvent=o},this.overtimeCounting=function(){var e,n=this;"undefined"!=typeof document.hidden?e="hidden":"undefined"!=typeof document.msHidden?e="msHidden":"undefined"!=typeof document.webkitHidden&&(e="webkitHidden"),e&&(n.overTimer=window.setTimeout(function(){n.flashLoaded||document[e]||r.getContext().message.trigger("video-trigger-list-error",{msg:"无法连接到网络，请连接后再试",addRetry:!0})},1e4))},this.init=function(){var e=this;e.p2p?l.getP2PUrl({path:e.file.path,playtype:e.getBPSType(),md5:e.file.md5,uk:d,puk:d,webtype:1},function(n){e.file.p2purl=n,e.run()}):e.run(),r.getContext().log.send({type:"video_new_init_flash"}),u.sendLog({type:"init"},e),r.getContext().log.send({type:"playVideo",uk:d,file:e.file.path,fs_id:e.file.fs_id,playbyflash:1})},this.init()}var i=e("base:widget/libs/jquerypacket.js"),a=e("base:widget/tools/service/tools.url.js"),l=e("file-widget-1:videoPlay/FlashPlayer/p2p/p2p.js"),r=e("file-widget-1:videoPlay/context.js"),s=e("file-widget-1:videoPlay/Player/Player.js"),p=e("file-widget-1:videoPlay/FlashPlayer/swfUtil/swfUtil.js"),d=window.locals.get("uk"),u=e("file-widget-1:videoPlay/utils.js");t.prototype=new s,t.prototype.constructor=t,t.prototype.play=function(){try{this.player.play?this.player.play():this.player.playMe&&this.player.playMe()}catch(e){this.player.playMe&&this.player.playMe()}},t.prototype.pause=function(){try{this.player.pause?this.player.pause():this.player.pauseMe&&this.player.pauseMe()}catch(e){this.player.pauseMe&&this.player.pauseMe()}},t.isSupport=function(){var e=t.getFlashVersion();return e&&parseFloat(e,10)>=11.4},t.getFlashVersion=function(){var e=null,n=navigator;if(n.plugins&&n.plugins.length){for(var o=0,t=n.plugins.length;t>o;o++)if(-1!==n.plugins[o].name.indexOf("Shockwave Flash")){e=n.plugins[o].description.split("Shockwave Flash ")[1];break}}else if(window.ActiveXObject)try{var i=new ActiveXObject("ShockwaveFlash.ShockwaveFlash");if(i){var a=i.GetVariable("$version"),l=/WIN ([\d\.\,]+)/g,r=l.exec(a);r&&(e=r[1])}}catch(s){}return e},t.getBPSType=function(){var e;return e=-1!==navigator.platform.indexOf("iPhone")||-1!==navigator.platform.indexOf("iPad")?"M3U8_AUTO_480":"M3U8_FLV_264_480"},t.create=function(e){return new t(e)},o.exports=t});
+;define("file-widget-1:videoPlay/HTML5Player/pauseAd.js",function(e,a,n){function s(e,a){function n(a){return f?document.querySelector(a):".video-js"===a?e.el_:e.$(a)}function s(){I.curItem&&setTimeout(function(){var a=e.currentTime(),n=e.duration();e.paused()&&a>0&&n>a&&r()},100)}function t(){j&&clearTimeout(j)}function o(){n(g).classList.add("vjs-pause-ad-mode")}function c(){n(g).classList.remove("vjs-pause-ad-mode")}function d(){I.curItem&&n(".vjs-pause-ad-modal")&&(n(".vjs-pause-ad-modal").style.display="none")}function i(){f=!0,g="#video-wrap",I.curItem&&r()}function u(e){I.adConfig=e.data,I.curItem=e.data.list[0],f&&I.curItem&&r()}function r(){e.trigger({type:"pause_ad_show",data:{item:I.curItem,scene:f?"convert":"pause"}}),setTimeout(m,0)}function l(){var a=n(".vjs-pause-ad-modal");a.remove(),a=null,e.off("pause",s),e.off("play",d),e.off("pan_error_converting",i),e.off("pause_ad_config_ready",u)}function p(){var e=n(g),a=document.createElement("div");a.className="vjs-pause-ad-modal";var s='<div class="vjs-pause-ad-close"><img class="vjs-pause-ad-close-icon" src="https://staticsns.cdn.bcebos.com/amis/2021-7/1626764725754/ad_close%402x.png" alt="关闭按钮" /></div><div class="vjs-pause-ad-badge">广告</div><img class="vjs-pause-ad-content" src="'+I.curItem.contentUrl+'" />';a.innerHTML=s,e.appendChild(a)}function v(){var a=n(".vjs-pause-ad-modal"),s=n(".vjs-pause-ad-close");s.addEventListener("click",function(e){e.stopPropagation(),a.style.display="none",c(),I.adConfig.isShowAdWhenUserClose?(I.curIndex=I.curIndex<I.adConfig.list.length-1?I.curIndex+1:0,I.curItem=I.adConfig.list[I.curIndex],n(".vjs-pause-ad-content").src=I.curItem.contentUrl):l()}),a.addEventListener("click",function(){window.open(I.curItem.targetUrl),e.trigger({type:"pause_ad_click",data:{item:I.curItem,scene:f?"convert":"pause"}})})}function m(){o(),n(".vjs-pause-ad-modal")?(n(".vjs-pause-ad-modal").style.display="block",n(".vjs-pause-ad-modal").style.zIndex="1"):(p(),v())}a||(a={});var f=!1,g=".video-js",j=null,I={adConfig:a,curIndex:0,curItem:a.list?a.list[0]:null};e.on("pause",s),e.on("seeking",t),e.on("play",d),e.on("pan_error_converting",i),e.on("pause_ad_config_ready",u)}n.exports=s});
+;define("file-widget-1:videoPlay/HTML5Player/getPauseAd.js",function(t,i,n){function e(t,i){var n="/act/api/activityentry",e=parseInt(+new Date/1e3,10),r="2.0",o="mdaqit#gxan@tm",u=a.MD5(t+e+o+r);$.ajax({url:n,data:{rand:u,version:r,time:e,entry_type:2}}).done(function(t){if(t&&0===t.errno){var n=t.popup_list.filter(function(t){return 52===t.show_position}).map(function(t){return{id:t.activityid,contentUrl:t.popup_icon_url,targetUrl:t.popup_content_url}});i(n)}}).fail(function(){})}var a=t("file-widget-1:videoPlay/utils.js");n.exports=e});
+;define("file-widget-1:videoPlay/log/points.js",function(e,t,r){function a(){var e=(new Date).getTime(),t=g.getContext();if(f||_)return void clearTimeout(c);if(4e4>e-m)return void(c=setTimeout(a,1e3));n(!0),p.sendVideoLog({op:"vast_player_play_error",error_type:"CLIENT_ERROR",error_info:{player_error:{system_time:+new Date,error_code:7300004}}},t.playerInstance||t.param||{}),t.message.trigger("video-trigger-list-error",{msg:"加载失败了，稍后重试一下吧...",addRetry:!0,currentResolution:t.playerInstance&&t.playerInstance.currentResolution});try{t.playerInstance.player.hls.masterPlaylistController_.mainSegmentLoader_.pause()}catch(r){}}function o(){clearTimeout(c),c=setTimeout(a,1e3)}function n(e){f=!!e}function i(){return!!f}function l(){m=(new Date).getTime()}function s(e){_=!!e}function d(e){l(),s(e)}function u(){y||(y=!0,window.addEventListener("unload",function(){var e=(new Date).getTime(),t=g.getContext();f||_||2e4>e-m||(clearTimeout(c),p.sendVideoLog({op:"vast_player_play_error",error_type:"CLIENT_ERROR",error_info:{player_error:{system_time:+new Date,error_code:7300003}}},t.playerInstance||t.param||{}))}))}var c,p=e("file-widget-1:videoPlay/utils.js"),g=e("file-widget-1:videoPlay/context.js"),y=!1,m=(new Date).getTime(),_=!1,f=!1;r.exports={startCheckLoadeTimeout:o,updatePlayTime:l,updateLoadedMetadata:s,updatePlayLoadFlag:d,updateErrorFlag:n,getErrorFlag:i,listeneLoadingTimeout:u}});
+;define("file-widget-1:videoPlay/log/playerLog.js",function(e,o,t){function r(e){function o(o,t){var n=t.xhr.url;r.log.send({type:"web_video_segment_error",from:e.flag,segmentUrl:encodeURIComponent(n),segmentCode:t.code,segmentHttpStatus:t.status})}if(e&&e.player){var t=e.player,r=a.getContext();n.sendH5Log({type:"video_player_created_success"},e);var s={video_h5_retry_play:"video_h5_retry_play_success",video_v7_retry_play:"video_v7_retry_play_success",video_h265_retry_play:"video_h265_retry_play_success"},d=e.options.retryLogType;d&&s[d]&&n.sendH5Log({type:s[d]},e),t.one("loadeddata",function(){n.sendH5Log({type:"vedio_h5_get_real_loadeddata"},e)}),t.one("canplay",function(){n.sendH5Log({type:"vedio_h5_real_playing"},e),r.log.send({type:"web_h5_video_playing",is_auto_retry:e.options.autoDowngradeFlag?1:0,error_code:e.options.autoDowngradeCode,from:e.flag}),e.options.autoDowngradeFlag&&n.sendVideoLog({op:"vast_player_auto_retry",pv_type:"retry_success",error_code:e.options.autoDowngradeCode},e)}),t.on("trackclose",function(){n.sendLog({type:"vedio_close_track"},e)}),t.on("segmentloaderror",function(o,t){var r=t.xhr.url;n.sendLog({type:"segmentLoaderror",sendServerLog:!0,segmentUrl:encodeURIComponent(r),segmentCode:t.code,segmentHttpStatus:t.status},e)}),t.on("segmentloaderror",o),t.on("segmentError",o)}}var n=e("file-widget-1:videoPlay/utils.js"),a=e("file-widget-1:videoPlay/context.js");t.exports={bindPlayerLog:r}});
+;define("file-widget-1:videoPlay/log/logger.js",function(e,i,l){var t=e("base:widget/libs/jquerypacket.js"),o=e("base:widget/vip/vip.js"),d=e("file-widget-1:videoPlay/context.js"),g=e("file-widget-1:videoPlay/utils.js"),s=e("file-widget-1:videoPlay/log/points.js"),a=e("file-widget-1:videoPlay/log/playerLog.js"),n={sendLog:function(e){var i=d.getContext(),l={from:i.param.flag,isvip:o.getVipValue(),useNewSDK:i.useNewSDK,channel:g.channel};i.log.send(t.extend({},l,e))}};t.extend(n,s),t.extend(n,a),l.exports=n});
+;define("file-widget-1:videoPlay/WasmPlayer/wasmProbeController.js",function(e,t,n){!function(e,r){"object"==typeof t&&"object"==typeof n?n.exports=r():"function"==typeof define&&define.amd?define([],r):"object"==typeof t?t.WasmProbePlayer=r():e.WasmProbePlayer=r()}(window,function(){return function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={};return t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{enumerable:!0,get:r})},t.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},t.t=function(e,n){if(1&n&&(e=t(e)),8&n)return e;if(4&n&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(t.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&n&&"string"!=typeof e)for(var o in e)t.d(r,o,function(t){return e[t]}.bind(null,o));return r},t.n=function(e){var n=e&&e.__esModule?function(){return e["default"]}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=125)}({1:function(e,t,n){"use strict";n.d(t,"a",function(){return r}),n.d(t,"b",function(){return o});var r={TEST_INIT:"TEST_INIT",TEST_SAMPLE:"TEST_SAMPLE",TEST_READY:"TEST_READY",TEST_RESULT:"TEST_RESULT"},o={SILENT:"SILENT",PENDING:"PENDING",RESOLVED:"RESOLVED",REJECTED:"REJECTED"}},125:function(e,t,n){e.exports=n(62)},49:function(e,t,n){function r(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={};t.m=e,t.c=n,t.i=function(e){return e},t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.r=function(e){Object.defineProperty(e,"__esModule",{value:!0})},t.n=function(e){var n=e&&e.__esModule?function(){return e["default"]}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="/",t.oe=function(e){throw console.error(e),e};var r=t(t.s=ENTRY_MODULE);return r.default||r}function o(e){return(e+"").replace(/[.?*+^$[\]\\(){}|-]/g,"\\$&")}function i(e){return!isNaN(1*e)}function a(e,t,r){var a={};a[r]=[];var u=t.toString(),c=u.match(/^function\s?\w*\(\w+,\s*\w+,\s*(\w+)\)/);if(!c)return a;for(var l,p=c[1],d=new RegExp("(\\\\n|\\W)"+o(p)+s,"g");l=d.exec(u);)"dll-reference"!==l[3]&&a[r].push(l[3]);for(d=new RegExp("\\("+o(p)+'\\("(dll-reference\\s('+f+'))"\\)\\)'+s,"g");l=d.exec(u);)e[l[2]]||(a[r].push(l[1]),e[l[2]]=n(l[1]).m),a[l[2]]=a[l[2]]||[],a[l[2]].push(l[4]);for(var E=Object.keys(a),S=0;S<E.length;S++)for(var T=0;T<a[E[S]].length;T++)i(a[E[S]][T])&&(a[E[S]][T]=1*a[E[S]][T]);return a}function u(e){var t=Object.keys(e);return t.reduce(function(t,n){return t||e[n].length>0},!1)}function c(e,t){for(var n={main:[t]},r={main:[]},o={main:{}};u(n);)for(var i=Object.keys(n),c=0;c<i.length;c++){var f=i[c],s=n[f],l=s.pop();if(o[f]=o[f]||{},!o[f][l]&&e[f][l]){o[f][l]=!0,r[f]=r[f]||[],r[f].push(l);for(var p=a(e,e[f][l],f),d=Object.keys(p),E=0;E<d.length;E++)n[d[E]]=n[d[E]]||[],n[d[E]]=n[d[E]].concat(p[d[E]])}}return r}var f="[\\.|\\-|\\+|\\w|/|@]+",s="\\(\\s*(/\\*.*?\\*/)?\\s*.*?("+f+").*?\\)";e.exports=function(e,t){t=t||{};var o={main:n.m},i=t.all?{main:Object.keys(o.main)}:c(o,e),a="";Object.keys(i).filter(function(e){return"main"!==e}).forEach(function(e){for(var t=0;i[e][t];)t++;i[e].push(t),o[e][t]="(function(module, exports, __webpack_require__) { module.exports = __webpack_require__; })",a=a+"var "+e+" = ("+r.toString().replace("ENTRY_MODULE",JSON.stringify(t))+")({"+i[e].map(function(t){return""+JSON.stringify(t)+": "+o[e][t].toString()}).join(",")+"});\n"}),a=a+"new (("+r.toString().replace("ENTRY_MODULE",JSON.stringify(e))+")({"+i.main.map(function(e){return""+JSON.stringify(e)+": "+o.main[e].toString()}).join(",")+"}))(self);";var u=new window.Blob([a],{type:"text/javascript"});if(t.bare)return u;var f=window.URL||window.webkitURL||window.mozURL||window.msURL,s=f.createObjectURL(u),l=new window.Worker(s);return l.objectURL=s,l}},62:function(e,t,n){"use strict";function r(e){function t(){c!==a.b.PENDING&&c!==a.b.RESOLVED&&(c=a.b.PENDING,u.postMessage({type:a.a.TEST_INIT,data:{scriptSrc:r,wasmSrc:o}}))}function n(){return c===a.b.SILENT?(f=!0,void t()):void(c!==a.b.PENDING&&u.postMessage({type:a.a.TEST_SAMPLE,data:{scriptSrc:r,wasmSrc:o}}))}var r=e.scriptSrc,o=e.wasmSrc,u=i()(63),c=a.b.SILENT,f=!1;return u.onmessage=function(t){var r=t.data,o=r.type,i=r.data;switch(o){case a.a.TEST_READY:c=a.b.RESOLVED,f&&n();break;case a.a.TEST_RESULT:e.onDecoded&&e.onDecoded(i)}},{init:t,test:n}}n.r(t);var o=n(49),i=n.n(o),a=n(1);t["default"]=r},63:function(e,t,n){"use strict";function r(e){self.postMessage({type:u.a.TEST_RESULT,data:e})}function o(){return self.Module._wasm_run_test()}function i(){var e=o();r(e)}function a(e){var t=e.scriptSrc,n=void 0===t?"":t,r=e.wasmSrc;self.Module=self.Module||{},self.Module.onRuntimeInitialized=function(){self.postMessage({type:u.a.TEST_READY})},self.Module.locateFile=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";if(r)return r;if(!e.replace(/\w+\.wasm/,"")){var t=n.replace(/\w+\.js/,""),o=t+e;return o}return e},self.importScripts(n)}n.r(t);var u=n(1);t["default"]=function(e){e.onmessage=function(e){var t=e.data,n=t.type,r=t.data;switch(n){case u.a.TEST_INIT:a(r);break;case u.a.TEST_SAMPLE:i(r)}}}}})["default"]})});
+;define("file-widget-1:videoPlay/WasmPlayer/wasmProbe.js",function(e,t,o){var i=e("base:widget/storage/storage.js"),n=e("file-widget-1:videoPlay/log/logger.js"),d=e("file-widget-1:videoPlay/WasmPlayer/wasmProbeController.js"),r={};r.isSupport=function(){var e=!(!window.AudioContext&&!window.webkitAudioContext),t=!!window.WebAssembly,o=document.createElement("canvas");if(!o||!o.getContext)return!1;var i=o.getContext("webgl")||o.getContext("experimental-webgl"),n=!!window.Worker,d=!1;return i&&window.WebGLRenderingContext&&i instanceof window.WebGLRenderingContext&&(d=!0),t&&e&&d&&n},r.decodeTest=function(){if(!r.testing&&r.isSupport()){var e=i.getItem("web_h265_decode_time");if(!e){var t="https://nd-static.bdstatic.com/m-static/base/thirdParty/video-player/_nomd5_nomod/",o=t+"WasmDecoder_1651135045076";o.indexOf("http")<0&&(o=location.origin+o);var s=d({scriptSrc:o+".min.js",wasmSrc:o+".wasm",onDecoded:function(e){n.sendLog({type:"web_h265_decode_time",decodeTime:e}),i.setItem("web_h265_decode_time",e)}});r.testing=!0,s.test()}}},o.exports=r});
+;define("file-widget-1:videoPlay/utils/user-info.js",function(e,r,u){var t={};t.hasAudioVisualProduct=function(){try{var e=yunHeader.user.data.userData.currentAudioVisualProduct;return e.end_time>0}catch(r){return!1}},u.exports=t});
+;define("file-widget-1:videoPlay/utils/SubTitle/api.js",function(t,e,a){var n=t("file-widget-1:videoPlay/context.js").getContext,i={};i.getSubtitleList=function(t){return $.ajax({type:"GET",url:t,dataType:"text"})},i.getOutlineSubtitle=function(t){return $.ajax({url:"/api/filemetas",type:"GET",data:{target:$.stringify([t]),text:1,dlink:1},dataType:"json"})},i.getConfig=function(t){var e=JSON.stringify([{cfg_category_key:"web_aisubtitle_control",cfg_version:"0"}]);$.ajax({url:"/api/getsyscfg?cfg_category_keys="+encodeURIComponent(e)+"&version=1.0.0"}).done(function(e){try{if(0===e.errno&&"1"===e.web_aisubtitle_control.cfg_list[0].web_aisubtitle_open)return void t(!0)}catch(a){}t(!1)}).fail(function(){t(!1)})},i.getSubtitleData=function(t){return $.ajax({type:"GET",url:t,dataType:"text"})},i.applySubtitle=function(t,e,a){return $.ajax({url:"/richsearch/autosubtitle/common",data:{method:"apply",fsid:t,share_uk:e,from:0,client_type:2}}).done(function(t){0===t.errno?a(t):n().ui.tip(10009===t.errno?{mode:"caution",msg:t.show_msg||"网络错误，请稍候重试"}:{mode:"caution",msg:"网络错误，请稍候重试"})})},i.EApplyState={canApply:1,generateing:2,generated:3,svipuse:4,tryout:5,buysvip:6,tryouting:7},i.getSubtitleProcess=function(t,e,a){var r={canApply:!1,state:i.EApplyState.canApply},s=this;try{$.ajax({url:"/richsearch/autosubtitle/common",data:{method:"status",fsid:t,share_uk:e,from:0,client_type:2}}).done(function(t){if(0===t.errno){var e=t.res||{},i=e.subtitle_status,o=e.roi_status,u=e.user_type,p=i.residue_count,c=i.current_status;switch(c){case 100:1===o&&a(1===u?{state:s.EApplyState.canApply,canApply:!0}:{state:s.EApplyState.buysvip,canApply:!0});break;case 200:a({state:s.EApplyState.generateing,canApply:!0});break;case 300:a(1===u?{state:s.EApplyState.generated,canApply:!0}:{state:s.EApplyState.generated,residue_count:p,canApply:!0});break;case 1:a({state:s.EApplyState.tryouting,residue_count:p,canApply:!0});break;case 0:a(1===o?{state:s.EApplyState.tryout,residue_count:p,canApply:!0}:{state:s.EApplyState.tryout,residue_count:p,canApply:!1});break;default:a(r)}}else n().ui.tip(10009===t.errno?{mode:"caution",msg:t.show_msg||"网络错误，请稍候重试"}:{mode:"caution",msg:"网络错误，请稍候重试"})}).fail(function(){a(r)})}catch(o){a(r)}},a.exports=i});
+;define("file-widget-1:videoPlay/utils/SubTitle/index.js",function(t,e,i){var s=t("base:widget/libs/jquerypacket.js"),n=t("base:widget/libs/underscore.js"),a=t("file-widget-1:videoPlay/Werbung/WerbungConfig.js"),o=t("file-widget-1:videoPlay/context.js").getContext,l=t("file-widget-1:videoPlay/utils/SubTitle/api.js"),p=window.host&&window.host.HOST_PAN||"pan.baidu.com",r="https://"+p+"/buy/checkoutcounter?svip=1&from=",u=function(){var t=navigator.userAgent,e=t.indexOf("compatible")>-1&&t.indexOf("MSIE")>-1,i=t.indexOf("Trident")>-1&&t.indexOf("rv:11.0")>-1,s=-1;if(e){var n=new RegExp("MSIE (\\d+\\.\\d+);");n.test(t);var a=parseFloat(RegExp.$1);s=7===a?7:8===a?8:9===a?9:10===a?10:6}else s=i?11:-1;return s},c=function(){var t=window.yunHeader||{},e=t.abTest||{},i=e.newStyle||0;return i},d=function(){var t=!1;return u()>=10||-1===u()?t=!0:o().log.send({type:"web_low_ie_buy_guide",from:"subtitle"+c()}),c()&&t},g={},h=function(t,e){var i=o();return function(s){i.log.send({type:s.type,smart_zimu_type:s.smart_zimu_type,user_type:s.user_type,video_path:t.path,zimu_name:s.zimu_name,video_name:t.name,video_md5:t.md5,video_fsid:t.fs_id,source:e,time_stamp:Date.now()})}},b=null,f=function(t){var e=t.split("\n"),i=[];try{for(var s=2;s<e.length;s+=2){var n=e[s]||"";if(-1!==n.indexOf("#EXT-X-MEDIA:")){for(var a=n.replace("#EXT-X-MEDIA:","").split(","),o={},l=0;l<a.length;l++){var p=a[l].split("=");o[(p[0]||"").toLowerCase().replace("-","_")]=String(p[1]).replace(/"/g,"")}o.uri=e[s+1],i.push(o)}}}catch(r){}return i};g.sendLog=function(t){var e="",i="-1";switch(this.subtitleCanApply===!0&&(e="apply"),this.subtitleState){case l.EApplyState.canApply:i="100";break;case l.EApplyState.generateing:i="200";break;case l.EApplyState.generated:i="300";break;case l.EApplyState.svipuse:e="use";break;case l.EApplyState.tryout:e="tryuse_only";break;case l.EApplyState.buysvip:e="buy_only";break;case l.EApplyState.tryouting:e="tryuse_only"}t.smart_zimu_type=i,t.user_type=e,"function"==typeof b&&b(t)},g.init=function(t,e,i,s){this.isSvip=t.isSVip;var n=o();if(this.param=n.param,this.flag=n.param&&n.param.flag||"",this.uk=n.locals.get("uk"),"mboxvideo"===this.flag?this.from_uk=e.from_uk:"sharevideo"===this.flag&&(this.from_uk=window.locals.get("share_uk")),this.fs_id=e.fs_id,this.player=i,this.filename=e.server_filename,this.path=e.path,this.subDOM=s,this.residue_count=0,this.subtitleList=[{text:"不显示字幕",checked:!0,hide:!0}],b=h(e,this.flag),1===n.locals.get("loginstate")){var a=this;l.getConfig(function(t){t===!0?(a.getGenerateProcess(!1),g.sendLog({type:"zimu_dis"})):i.controlBar.SubtitleMenu.hide()}),clearTimeout(this.generateProcessTimer)}},g.switchSubtitle=function(t,e){if(e.hide===!0)return"function"==typeof e.doneCallback&&e.doneCallback(),void g.sendLog({type:"zimu_close"});var i=g;if(i.isSvip===!1){if(i.residue_count<=0&&i.subtitleState!==l.EApplyState.tryouting)return void i.createSVipGuide.call(i,"auto_subtitle_web");i.subtitleState!==l.EApplyState.tryouting&&i.apply.call(i,!0)}l.getSubtitleData(e.uri).done(function(t){try{i.player.setSubtitle(t),"function"==typeof e.doneCallback&&e.doneCallback()}catch(s){console.log(s)}}).fail(function(){}),g.sendLog({type:"zimu_clk",zimu_name:e.text})},g.showUseTryOutTip=function(){this.showSutitleTip("试用成功"),this.createFooterTip(this.residue_count-1),this.subtitleState=l.EApplyState.tryouting},g.apply=function(t){if(g.sendLog({type:"smart_apply_clk",from:c()}),g.sendLog({type:"wangpan_web_17238_pay_payRevolution_clk_buyGuideCashierPrivilegeClk",from:"smartapplyclk"+c()}),t===!1&&this.isSvip===!1)return void this.createSVipGuide("auto_subtitle_apply_web");var e=this.uk;("mboxvideo"===this.flag||"sharevideo"===this.flag)&&(e=this.from_uk),l.applySubtitle(this.fs_id,e,function(){t===!0?g.showUseTryOutTip():g.getGenerateProcess(!0)})},g.showSetting=function(){g.sendLog({type:"zimu_set_clk"})},g.scheduleChange=function(){g.sendLog({type:"zimu_time_adjust_clk"})},g.sizeChange=function(){g.sendLog({type:"zimu_size_adjust_clk"})},g.createApplyDOM=function(){var t=this.subDOM,e=s(t.target).find(".vjs-subtitle-footer");if(1===this.subtitleList.length&&s(t.target).find(".vjs-subtitle-list-wrap").hide(),void 0!==e){var i=s('<div style="cursor: pointer;user-select: none;text-align: left;padding-left: 36px;position: relative;margin-bottom: 20px;margin-top: 3px;"><div style="height: 14px;font-size: 0;"><img src="https://staticsns.cdn.bcebos.com/amis/2022-11/1669376964136/Ai.png"style="width: 14px;vertical-align: middle;margin-right: 3px;"><span style="font-size: 12px;vertical-align: middle;">智能字幕</span></div><div style="color: #818999;margin-top: 7px;">支持生成中/英/中英双语字幕</div><button style="cursor: pointer;padding: 8px 16px;font-size: 12px;line-height: 12px;background: #0095ff;border-radius: 18px;position: absolute;right: 30px;top: 50%;margin-top: -14px;"><span>立即生成</span><img src="https://staticsns.cdn.bcebos.com/amis/2022-11/1669376965177/svipbadge.png"style="position: absolute;right: -11px;top: -7px;width: 34px;height: 15px;"></button></div>');i.on("click",this.apply.bind(this,!1)),e.css("position","relative"),e.html(i),g.sendLog({type:"dis_fun_smartapply"})}},g.createGenerateDOM=function(){var t=this.subDOM,e=s(t.target).find(".vjs-subtitle-footer");if(1===this.subtitleList.length&&s(t.target).find(".vjs-subtitle-list-wrap").hide(),void 0!==e){var i='<div style="text-align: left;padding: 7px 0 7px 36px;margin-bottom: 20px;"><img src="https://staticsns.cdn.bcebos.com/amis/2022-11/1669376964136/Ai.png"style="width: 14px;vertical-align: text-bottom;margin-right: 3px;"><span style="color: #818999;">智能字幕生成中，预计5-20分钟</span></div>';e.css("position","relative"),e.html(i)}},g.createFooterTip=function(t){var e=this.subDOM,i=s(e.target).find(".vjs-subtitle-footer");if(1===this.subtitleList.length&&s(e.target).find(".vjs-subtitle-list-wrap").hide(),this.residue_count=t,void 0!==i){var n='<button style="padding: 6px 4px 4px 4px;width: 100%;text-align: center;"><div style="background: #131a24;border-radius: 3px;height: 40px;line-height: 40px;text-align: center;font-size: 0;cursor: pointer;"><img style="width: 13px;vertical-align: middle;"src="https://staticsns.cdn.bcebos.com/amis/2022-11/1669609953475/svip-icon.png"><span style="background: #131a24;color: #FFDBA6;font-size: 12px;vertical-align: middle;margin-left: 6px;">本月剩'+t+"次试用，申请SVIP无限量挂载</span></div></button>",a=s(n);a.on("click",function(){window.open(r+"video_subtitle_web")}),i.html(a),i.parent().css("padding-bottom","50px")}},g.emptyFooterTip=function(){var t=this.subDOM,e=s(t.target).find(".vjs-subtitle-footer");e.html("")},g.getOutlineSubtitle=function(){var t=this,e=this.path.split(".");e[e.length-1]="srt",l.getOutlineSubtitle(e.join(".")).done(function(e){if(0===e.errno&&0===e.info[0].errno){var i=e.info[0].dlink,n=t.filename.split("/"),a=n[n.length-1],o=a.split(".");o[o.length-1]="srt";var l={icon:void 0,text:o.join("."),value:t.filename,badge:void 0,uri:i};t.subtitleList.length>1?t.subtitleList.splice(1,0,l):t.subtitleList.push(l),t.player.updateSubtitleList(t.subtitleList);var p="ai_subtitle_show_new"+t.uk,r=localStorage.getItem(p)||"";""===r&&(localStorage.setItem(p,"1"),t.player.subtitleShowNew()),s(t.subDOM.target).find(".vjs-subtitle-list-wrap").show()}})},g.getGenerateProcess=function(t){var e=this,i=this.uk;("mboxvideo"===this.flag||"sharevideo"===this.flag)&&(i=this.from_uk),l.getSubtitleProcess(this.fs_id,i,function(i){return e.subtitleState=i.state,e.subtitleCanApply=i.canApply,i.state===l.EApplyState.canApply||i.state===l.EApplyState.buysvip?void(i.canApply&&e.createApplyDOM()):i.state===l.EApplyState.generateing?(e.createGenerateDOM(),clearTimeout(e.generateProcessTimer),void(e.generateProcessTimer=window.setTimeout(e.getGenerateProcess.bind(e,t),5e3))):(t===!0&&(e.showSutitleTip("智能字幕已生成~"),g.sendLog({type:"smart_ready_toast"})),e.isSvip===!0?e.showGuide():o().message.listen("player-play",function(){e.showGuide()}),e.getSubtitleList(i),void g.sendLog({type:"dis_fun_smartapply"}))})},g.showGuide=function(){var t="ai_subtitle_show_guide"+this.uk,e=localStorage.getItem(t)||"";""===e&&(localStorage.setItem(t,"1"),g.sendLog({type:"zimu_guide_dis"}),this.player.subtitleShowGuide("智能字幕功能上线啦，可生成中英字幕~","https://staticsns.cdn.bcebos.com/amis/2022-11/1669622474055/ai-guide-icon.png"),setTimeout(this.player.subtitleHideGuide,5e3))},g.mouseenter=function(){g.sendLog(this.subtitleList.length>1?{type:"zimu_panel1_dis",dis_num_smart:this.subtitleList.length-1}:{type:"zimu_panel0_dis"})},g.mouseleave=function(){},g.getSubtitleList=function(t){var e=this,i=this.param.getUrl("M3U8_SUBTITLE_SRT");this.isSvip===!1&&(i+="&check_blue=1&isplayer=1&adToken="+encodeURIComponent(a.getAdToken())),l.getSubtitleList(i).done(function(i){if(i=f(i),0!==i.length){var a=!1,o=[];n.forEach(i,function(t){var i="YES"===t.ai_sub;i===!0&&(a=!0),i===!0&&o.push({icon:i?"https://staticsns.cdn.bcebos.com/amis/2022-11/1669376964136/Ai.png":void 0,text:t.name,value:t.video_lan,badge:"https://staticsns.cdn.bcebos.com/amis/2022-11/"+(e.isSvip?"1669792379583/svipbadge.png":"1669792379145/trial.png"),uri:t.uri})}),e.subtitleList=e.subtitleList.concat(o),e.subtitleList.length>1&&(e.player.updateSubtitleList(e.subtitleList),s(e.subDOM.target).find(".vjs-subtitle-list-wrap").show()),a===!1?t.canApply&&e.createApplyDOM():t.state===l.EApplyState.tryout||t.state===l.EApplyState.tryouting?e.createFooterTip(t.residue_count):e.emptyFooterTip()}}).fail(function(){t.canApply&&e.createApplyDOM()})},g.showSutitleTip=function(t){function e(){a.remove()}var i=s("#video-wrap-outer"),n='<div class="subtitle-tip"><img class="subtitle-tip__icon" src="https://staticsns.cdn.bcebos.com/amis/2022-11/1669622474055/ai-guide-icon.png"><span class="subtitle-tip__font">'+t+'</span><span class="subtitle-tip__close"></span></div>',a=s(n);a.on("click",".subtitle-tip__close",e),i.append(a[0]),setTimeout(e,7e3)},g.createSVipGuide=function(t){var e={theme_id:2,button_list:[{action_id:2,text:"成为超级会员",cluster:"svip",price:"25元/月",button_type:0,action_type:0,action_url:"https://pan.baidu.com/buy/checkoutcounter?from="+t+"&svip=1",theme_type:2}],content:"成为SVIP，生成你的专属字幕",dialogTitle:"成为超级会员",icon:"https://staticsns.cdn.bcebos.com/amis/2022-11/1669722330736/subtitle-vip-guide.png",sourceConf:{from:t,width:474,afterGuide:function(){var t=s("<em>（若已开通，请刷新当前页面重试）</em>").css({fontSize:"12px"});s("#vip-guide-vip-intro").find(".dialog-header-title").append(t),s("#vip-guide-vip-intro").find(".content-extra-title").html('<p>成为SVIP，生成你的专属字幕</p><p style="color: #A2ABBD;font-size: 12px;margin-top: 12px;"> 智能字幕每月10次生成，已有智能字幕资源无限次挂载使用</p>')}}};if(d()){var e={};e.extraInfo={},e.extraInfo.from="videosubtitle",e.scene_id=23,o().message.callPlugin("商业付费@com.baidu.pan",e)}else o().message.callPlugin("会员引导@com.baidu.pan",e);g.sendLog({type:"buy_guard_dis",from:c()}),g.sendLog({type:"wangpan_web_17238_pay_payRevolution_clk_buyGuideCashierClk",from:"buyguarddis"+c()})},i.exports=g});
+;define('file-widget-1:videoPlay/HTML5Player/videoPrivilegesMixin.js', function(require, exports, module){ var $ = require('base:widget/libs/jquerypacket.js');
+var context = require('file-widget-1:videoPlay/context.js');
+var utils = require('file-widget-1:videoPlay/utils.js');
+var pauseAd = require('file-widget-1:videoPlay/HTML5Player/pauseAd.js');
+var getPauseAd = require('file-widget-1:videoPlay/HTML5Player/getPauseAd.js');
+var logger = require('file-widget-1:videoPlay/log/logger.js');
+var dict = require('file-widget-1:videoPlay/utils/dict.js');
+var wasmProbe = require('file-widget-1:videoPlay/WasmPlayer/wasmProbe.js');
+var userInfo = require('file-widget-1:videoPlay/utils/user-info.js');
+var Subtitle = require('file-widget-1:videoPlay/utils/SubTitle/index.js');
+
+var IMG_PATH = 'https://staticsns.cdn.bcebos.com/amis/2022-12/';
+
+var HOST_PAN = ((window.host && window.host.HOST_PAN) || 'pan.baidu.com');
+var CHECKOU_TCOUNTER = 'https://' + HOST_PAN + '/buy/checkoutcounter?svip=1&from=';
+// 在 2021-4-1 之前控制栏上的倍速和清晰度切换显示 new 图标
+var SHOW_CONTROL_BADGE = 1617206400000 - $.now() > 0;
+var newBadge = SHOW_CONTROL_BADGE && (IMG_PATH + '1608641372233/ic_new.png');
+var logoSVipBadge = IMG_PATH + '1670394888635/logo_svip.png';
+var icSVip = IMG_PATH + '1670394888285/ic_svip.png';
+var icFree = IMG_PATH + '1670394887919/ic_free.png';
+
+var timer = {
+    resetRate: 0
+};
+// 接口错误做统一错误提示
+function handleNetworkError() {
+    context
+        .getContext().ui.tip({
+            mode: 'caution',
+            msg: '网络错误，请稍候重试',
+            hasClose: false,
+            autoClose: true
+        });
+}
+
+function getResolutionClassName(noble, showControlBadge) {
+    // 对于一开始就是用了高于 480P 资源的用户需要使用金色进行高亮
+    var resolutionClassName = noble ? 'vjs-noble-privilege' : '';
+    // 针对有无图标进行样式适配
+    resolutionClassName = showControlBadge
+        ? resolutionClassName + ' vjs-playback-resolution-badge'
+        : resolutionClassName;
+
+    return resolutionClassName;
+}
+
+// 获取视频支持的清晰度列表
+function getSupportResolution(resolutionStr) {
+    resolutionStr = resolutionStr || '';
+
+    var list = [480, 360]; // 如果没有拿到分辨率信息就默认只支持 480P 和 360P
+    var matched = resolutionStr.match(/width:(\d+),height:(\d+)/) || [
+        '',
+        '',
+        ''
+    ];
+    var resolution = +matched[1] * +matched[2];
+
+    if (!resolution) {
+        return list;
+    }
+    if (resolution > 854 * 480) {
+        list.unshift(720);
+    }
+    if (resolution > 1280 * 720) {
+        list.unshift(1080);
+    }
+
+    return list;
+}
+
+var VIDEO_RECORD_INFO_KEY = 'videoRecordInfo';
+var RECORD_RATE_KEY = 'rate';
+var RECORD_RESOLUTION_KEY = 'resolution';
+var DEFAULT_RATE = 1;
+var DEFAULT_RESOLUTION = 480;
+var VIP_DEFAULT_RESOLUTION = 1080;
+var ORDINARY_USERS_CAN_USE_RATE_LIST = [1];
+var currentVideoRecordInfoKey = '';
+
+
+
+function initRecordVideoInfo() {
+    if (currentVideoRecordInfoKey === '') {
+        // 设置当前用户记录的key
+        currentVideoRecordInfoKey = VIDEO_RECORD_INFO_KEY + getRecordUkKey();
+    }
+}
+
+function getRecordVideoInfoFromLocal() {
+    initRecordVideoInfo();
+    var INFO = localStorage.getItem(currentVideoRecordInfoKey);
+    var DEFAULT_VIDEO_RECORD_INFO = {
+        [RECORD_RATE_KEY]: '',
+        [RECORD_RESOLUTION_KEY]: '' // 默认为空，用户选择后记录
+    };
+    // 获取当前用户记录的info 没有使用默认info
+    var videoInfo = DEFAULT_VIDEO_RECORD_INFO;
+    if (INFO) {
+        try {
+            videoInfo = JSON.parse(INFO);
+        } catch (error) {}
+    }
+    return videoInfo;
+}
+function recordVideoInfoToLocal(key, value) {
+    // 设置新的记录值
+    var videoInfo = getRecordVideoInfoFromLocal();
+    videoInfo[key] = value;
+    try {
+        var newInfoStr = JSON.stringify(videoInfo);
+        localStorage.setItem(currentVideoRecordInfoKey, newInfoStr);
+    } catch (error) {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * 记录选择的倍速到local
+ * @param {*} rate
+ */
+function recordSelectedRate(rate) {
+    recordVideoInfoToLocal(RECORD_RATE_KEY, rate);
+}
+
+function recordSelectedResolution(resolution) {
+    recordVideoInfoToLocal(RECORD_RESOLUTION_KEY, resolution);
+}
+
+function getRecordVideoInfoFromKey(key) {
+    return getRecordVideoInfoFromLocal()[key];
+}
+function getRecordRate() {
+    return getRecordVideoInfoFromKey(RECORD_RATE_KEY);
+}
+function getRecordResolution() {
+    return getRecordVideoInfoFromKey(RECORD_RESOLUTION_KEY);
+}
+
+function canUseVideoPrivileges(userInfo) {
+    return userInfo.isSVip || userInfo.isAudioVisualProduct;
+}
+
+function getUseRate(userInfo) {
+    var rate = getRecordRate() || DEFAULT_RATE; // 若未记录使用默认
+    if (ORDINARY_USERS_CAN_USE_RATE_LIST.indexOf(rate) === -1 && !canUseVideoPrivileges(userInfo)) {
+            // 非vip使用vip才能用的倍速,不能用，使用默认
+            return DEFAULT_RATE;
+    }
+    return rate;
+}
+
+function getUseResolution(userInfo, list, freeList) {
+    var resolution = getRecordResolution();
+    var canUsePrivileges = canUseVideoPrivileges(userInfo);
+
+    if (freeList.indexOf(resolution) === -1 && !canUsePrivileges) {
+        // 非vip使用vip才能用的清晰度,不能用，使用默认
+        return DEFAULT_RESOLUTION;
+    }
+    if (resolution === '') {
+        //  未记录
+        //  清晰度默认设置：
+        //  ① Svip用户视频默认清晰度的逻辑：
+        //  原视频清晰度大等于1080(超清)时,默认使用1080作为视频播放清晰度
+        //  原视频清晰度小于1080时，使用默认清晰度（原视频最大清晰度）
+        if (canUsePrivileges) {
+            // vip使用视频支持最高清晰度
+            resolution = Math.min(list[0], VIP_DEFAULT_RESOLUTION);
+        } else {
+            //  ② 非Svip用户视频默认清晰度的逻辑
+            //  默认使用480p作为视频播放
+            resolution = DEFAULT_RESOLUTION;
+        }
+    }
+    // vip 记录了， 看是否大于了最大清晰度
+    resolution = Math.min(list[0], resolution);
+    return resolution;
+}
+
+function getRecordUkKey() {
+    var logInfo = window.__LOG_INFO__ || {};
+    return logInfo.uk ? 'Uk' + logInfo.uk : 'NotLogin';
+}
+
+
+// 埋点数据
+var BuryPointData = {
+    // 是否是播放结束并重播的flag
+    isEndedReplayFlag: false,
+    isEndedReplayFlagFirstFrame: false,
+    // 记录当下的play的时间戳
+    palyTimestamp: 0,
+    // 记录当前视频是否有过卡顿
+    isLag: false,
+    // 首帧时长
+    firstFrameTime: 0,
+    // seeking时间戳
+    seekingStamp: 0,
+    // 重试logid
+    cacheRetryLogID: 0,
+    cacheRetryLogIDFrame: 0,
+    // 上一次分辨率
+    isChangeResolution: false,
+    // 上一次视频的subLogID
+    lastSubLogID: window.__LOG_INFO__ || 0,
+    waitingStamp: 0,
+    palyingStamp: 0,
+    seekedStamp: 0,
+    // 判断是不是起播
+    isStartPlaying: true,
+    // 起播时间戳
+    isStartPlayingStamp: 0,
+    // 拖拽时间戳
+    isSeekedStamp: 0,
+    // 卡顿当前的时间
+    waitingCurTime: 0,
+    // 设置起播放定时器
+    startPlayerTimer: null,
+    seekTimer: null
+};
+// 当前视频卡顿的数据
+var play_stutter_list = [];
+// 当前音画不同步的数据
+var play_avnosync_list = [];
+// 用户切换过的所有倍速
+var currentVideoRateList = [];
+// 缓存上一个视频的实例
+var cacheVideoObj = null;
+// 清空初始化埋点Flags
+function initBuryPointFlags() {
+    BuryPointData.isEndedReplayFlag = false;
+    BuryPointData.isEndedReplayFlagFirstFrame = false;
+    BuryPointData.palyTimestamp = 0;
+    BuryPointData.isLag = false;
+    BuryPointData.firstFrameTime = 0;
+    BuryPointData.seekingStamp = 0;
+    BuryPointData.lagTimesecond = 0;
+    BuryPointData.waitingStamp = 0;
+    BuryPointData.palyingStamp = 0;
+    BuryPointData.isSeekedStamp = 0;
+    BuryPointData.isStartPlayingStamp = 0;
+    BuryPointData.cacheRetryLogID = 0;
+    BuryPointData.cacheRetryLogIDFrame = 0;
+    BuryPointData.isStartPlaying = true;
+    BuryPointData.seekedStamp = 0;
+    BuryPointData.waitingCurTime = 0;
+    BuryPointData.isChangeResolution = false;
+    clearTimeout(BuryPointData.startPlayerTimer);
+    clearTimeout(BuryPointData.seekTimer);
+}
+
+function updateParams(file, flag) {
+    // 切换视频时，如果之前的视频正在播放，上报一次
+    if (window.logViewParam) {
+        reportTime();
+    };
+    if (!file) {
+        return;
+    }
+    try {
+        var uaplatform = navigator.userAgentData && navigator.userAgentData.platform || navigator.platform || '';
+        window.logViewParam = {
+            fsid: file.fs_id,
+            file_ext: file.path && file.path.split('.').pop(),
+            file_name: file.path && file.path.split('/').pop(),
+            file_size: file.file_size || '',
+            file_path: file.path,
+            os: uaplatform,
+            scene: flag,
+            client: 'web'
+        };
+    } catch (err) {}
+}
+// 绑定埋点事件
+function bindBuryPointEvent(playerObj) {
+    playerObj.player.on('play', function () {
+        BuryPointData.palyTimestamp = +new Date();
+        // 计算播放PV
+        getVideoPV(playerObj);
+    });
+    playerObj.player.on('pause', function () {
+        reportTime();
+    });
+    playerObj.player.on('playing', function () {
+        window.viewStartTime = +new Date();
+        BuryPointData.palyingStamp = +new Date();
+        // 计算首帧
+        getVideoFirstFrame(playerObj);
+        // 计算卡顿
+        getVideoLag(playerObj);
+    });
+    playerObj.player.on('ended', function () {
+        BuryPointData.isEndedReplayFlag = true;
+        BuryPointData.isEndedReplayFlagFirstFrame = true;
+    });
+
+    playerObj.player.on('seeking', function () {
+        BuryPointData.seekingStamp = +new Date();
+    });
+    playerObj.player.on('seeked', function () {
+        BuryPointData.seekedStamp = +new Date();
+    });
+    playerObj.player.on('waiting', function () {
+        if (!BuryPointData.firstFrameTime || (+new Date() - BuryPointData.seekingStamp < 500)) {
+            return;
+        }
+        if (!BuryPointData.isStartPlayingStamp && !BuryPointData.isSeekedStamp) {
+            BuryPointData.waitingCurTime = playerObj.player.currentTime(); // 卡顿时，视频播放的时间点
+            BuryPointData.waitingStamp = +new Date(); // 卡顿的时间点
+            BuryPointData.isLag = true;
+        }
+    });
+}
+// 针对Wasm的埋点统计
+// TODO: 请求和同步事件由播放器直接触发
+function bindWasmBuryPointEvent(playerObj) {
+    playerObj.player.one('ready', function () {
+        var useNewSDK = context.getContext().useNewSDK;
+
+        if (dict.levelDict.h265 !== useNewSDK) {
+            return;
+        }
+
+        if (!playerObj.player || !playerObj.player.tech) {
+            return;
+        }
+
+        var wasmTech = playerObj.player.tech({ IWillNotUseThisInPlugins: true });
+
+        if (!wasmTech) {
+            return;
+        }
+
+        wasmTech.on('avnosync', function (data) {
+            var syncInfo = data || {};
+            play_avnosync_list.push({
+                out_sync_start: syncInfo.start,
+                out_sync_end: syncInfo.end,
+                out_sync_pos: syncInfo.pos
+            });
+        });
+
+        if (!wasmTech.wasmPlayer) {
+            return;
+        }
+
+        wasmTech.wasmPlayer.on('REQUEST_DATA', function (data) {
+            var requestInfo = data || {};
+
+            if (requestInfo.type === 0) {
+                logger.sendLog({
+                    type: 'video_request_h5_h265',
+                    video_source: encodeURIComponent(requestInfo.url || ''),
+                    resolution: playerObj.currentResolution
+                });
+            }
+        });
+    });
+}
+// 计算播放PV
+function getVideoPV(player) {
+    var logInfo = window.__LOG_INFO__ || {};
+    if (logInfo.retryLogID && (logInfo.retryLogID !== BuryPointData.cacheRetryLogID)) {
+        BuryPointData.cacheRetryLogID = logInfo.retryLogID;
+        utils.sendVideoLog({
+            op: 'vast_player_user_number',
+            pv_type: 'retry_play' // 重试播放PV
+        }, player);
+        window.ERROR_RETRY_TIMES = 1; // 区分是否是重试
+    }
+    if (BuryPointData.isEndedReplayFlag) {
+        BuryPointData.isEndedReplayFlag = false;
+        BuryPointData.firstFrameTime = 0; // 重新播放需要重新计算首帧时长
+        utils.sendVideoLog({
+            op: 'vast_player_user_number',
+            pv_type: 'replay_video' // 播放结束重播播放PV
+        }, player);
+    }
+}
+// 计算视频首帧
+function getVideoFirstFrame(player) {
+    if (!BuryPointData.firstFrameTime) {
+        BuryPointData.firstFrameTime = BuryPointData.palyingStamp - BuryPointData.palyTimestamp;
+        var logInfo = window.__LOG_INFO__ || {};
+        var first_frame_type;
+        if (logInfo.subLogID && (BuryPointData.lastSubLogID !== logInfo.subLogID)) {
+            BuryPointData.lastSubLogID = logInfo.subLogID;
+            first_frame_type = 'change_video'; // 如果有subLogID说明是切换视频
+        } else {
+            if (BuryPointData.isEndedReplayFlagFirstFrame) {
+                BuryPointData.isEndedReplayFlagFirstFrame = false;
+                first_frame_type = 'replay_video'; // 重新播放
+            } else if (logInfo.retryLogID && (logInfo.retryLogID !== BuryPointData.cacheRetryLogIDFrame)) {
+                BuryPointData.cacheRetryLogIDFrame = logInfo.retryLogID;
+                first_frame_type = 'retry_play'; // 重试播放
+            } else if (BuryPointData.isChangeResolution) {
+                BuryPointData.isChangeResolution = false;
+                first_frame_type = 'change_resolution'; // 切换分辨率
+            } else {
+                first_frame_type = 'into_page'; // 进入页面
+            }
+        }
+        // 如果有卡顿或不同步
+        if (play_stutter_list.length || play_avnosync_list.length) {
+            sendLagData(cacheVideoObj);
+        }
+        BuryPointData.isStartPlaying = true;
+        utils.sendVideoLog({
+            op: 'vast_player_summary_info',
+            activity_create_time: BuryPointData.palyTimestamp, // 用户点击视频播放时间戳
+            first_video_frame_rendered_time: BuryPointData.palyingStamp, // 首帧渲染时间戳
+            first_frame_type: first_frame_type
+        }, player);
+        clearTimeout(BuryPointData.startPlayerTimer);
+        clearTimeout(BuryPointData.seekTimer);
+    }
+}
+// 计算卡顿次数
+function getVideoLag(player) {
+    cacheVideoObj = player;
+    // 是否是起播
+    if (BuryPointData.isStartPlaying) {
+        BuryPointData.isStartPlaying = false;
+        BuryPointData.seekedStamp = 0;
+        // 起播的时间戳
+        BuryPointData.isStartPlayingStamp = BuryPointData.palyingStamp;
+        BuryPointData.startPlayerTimer = setTimeout(function () {
+            BuryPointData.isStartPlayingStamp = 0;
+        }, 2000);
+    }
+    // 是否是拖拽
+    if (!BuryPointData.isStartPlaying && (BuryPointData.palyingStamp - BuryPointData.seekedStamp < 500)) {
+        // 拖拽时间戳
+        BuryPointData.isSeekedStamp = BuryPointData.palyingStamp;
+        BuryPointData.seekTimer = setTimeout(function () {
+            BuryPointData.isSeekedStamp = 0;
+        }, 2000);
+    }
+    // 已经卡顿，并且没有上报
+    if (BuryPointData.isLag) {
+        play_stutter_list.push({
+            stutter_begin: BuryPointData.waitingStamp, // 卡顿开始时间
+            stutter_pos: BuryPointData.waitingCurTime, // 卡顿发生时视频播放的时间
+            stutter_end: BuryPointData.palyingStamp // 卡顿结束的时间
+        });
+        BuryPointData.isLag = false;
+    }
+}
+// 发送卡顿/音视频不同步埋点
+function sendLagData(player) {
+    var useNewSDK = context.getContext().useNewSDK;
+    var speedData;
+    if (dict.isNewSDK(useNewSDK) && currentVideoRateList.length) {
+        speedData = currentVideoRateList;
+    } else {
+        speedData = [{
+            set_speed_time: 0, // 设置倍速的时间
+            speed: 1 // 用户设置的倍速
+        }];
+    }
+    if (play_stutter_list.length) {
+        utils.sendVideoLog({
+            op: 'vast_player_summary_info',
+            video_width: player.player.height_,
+            video_height: player.player.width_,
+            play_speed: speedData,
+            play_stutter: play_stutter_list
+        }, player);
+        play_stutter_list = [];
+        currentVideoRateList = [];
+    }
+    if (play_avnosync_list.length) {
+        utils.sendVideoLog({
+            op: 'vast_player_summary_info',
+            video_width: player.player.height_,
+            video_height: player.player.width_,
+            play_speed: speedData,
+            play_avnosync_list: play_avnosync_list
+        }, player);
+        play_avnosync_list = [];
+    }
+}
+// 上报使用时间
+function reportTime() {
+    if (!window.viewStartTime) {
+        return;
+    }
+    var ctx = context.getContext();
+    var shareid = ctx.locals.get('shareid');
+    var share_uk = ctx.locals.get('share_uk');
+    var filename = self.metaData.file.server_filename;
+    var path = self.metaData.file.share_path;
+    ctx.log.send($.extend({
+        type: 'video_player_view_time',
+        play_time: Date.now() - window.viewStartTime,
+        shareid: shareid,
+        share_uk: share_uk,
+        filename: filename,
+        path: path
+    }, window.logViewParam));
+    window.viewStartTime = null;
+}
+// 页面卸载
+$(window).on('unload', function () {
+    if (play_stutter_list.length || play_avnosync_list.length) {
+        sendLagData(cacheVideoObj);
+    }
+});
+
+function videoPrivilegesMixin(HTML5Player) {
+    HTML5Player.prototype.createPlayer = function () {
+        var self = this;
+        var ctx = context.getContext();
+        utils.getVideoJS().then(function () {
+            self._createPlayerCore(getVideoConfig());
+        }, function () {
+            utils.sendVideoLog({
+                op: 'vast_player_play_error',
+                error_type: 'CLIENT_ERROR',
+                error_info: {
+                    player_error: {
+                        system_time: +new Date(), // 错误时间
+                        error_code: 400004 // 错误码
+                    }
+                }
+            }, self);
+            ctx.message.trigger('video-trigger-list-error', {
+                msg: '视频出错了，请稍后重试...',
+                addRetry: true,
+                currentResolution: self.currentResolution
+            });
+        });
+        // ie 版本校验
+        function ieCheck() {
+            // ie 浏览器版本校验
+            var userAgent = navigator.userAgent; // 取得浏览器的userAgent字符串
+            var isIE = userAgent.indexOf('compatible') > -1 && userAgent.indexOf('MSIE') > -1; // 判断是否IE<11浏览器
+            var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf('rv:11.0') > -1; // 判断是否IE11浏览器
+            var ieValue = -1;
+            if (isIE) {
+                var reIE = new RegExp('MSIE (\\d+\\.\\d+);');
+                reIE.test(userAgent);
+                var fIEVersion = parseFloat(RegExp.$1);
+                if (fIEVersion === 7) {
+                    ieValue = 7;
+                } else if (fIEVersion === 8) {
+                    ieValue = 8;
+                } else if (fIEVersion === 9) {
+                    ieValue = 9;
+                } else if (fIEVersion === 10) {
+                    ieValue = 10;
+                } else {
+                    ieValue = 6; // IE版本<=7
+                }
+            } else if (isIE11) {
+                ieValue = 11; // IE11
+            } else {
+                ieValue = -1; // 不是ie浏览器
+            }
+            return ieValue;
+        };
+        // 获取实验数据
+        function getNewStyle() {
+            var yunHeader = window.yunHeader || {};
+            var abTest = yunHeader.abTest || {};
+            var newStyle = abTest.newStyle || 0;
+            return newStyle;
+        };
+        // 是否使用新实验
+        function useNewGuide() {
+            var isNotLowIe = false;
+            if (ieCheck() >= 10 || ieCheck() === -1) {
+                isNotLowIe = true;
+            } else {
+                context.getContext().log.send({
+                    type: 'web_low_ie_buy_guide',
+                    from: 'video' + getNewStyle()
+                });
+            }
+            return getNewStyle() && isNotLowIe;
+        };
+        function getVideoConfig() {
+            var config = {
+                controlBar: {
+                    children: [
+                        'playToggle',
+                        {
+                            name: 'VolumeControlPanel',
+                            inline: false,
+                            percent: true
+                        },
+                        'currentTimeDisplay',
+                        'timeDivider',
+                        'durationDisplay',
+                        'progressControl',
+                    ]
+                },
+                needPauseAd: ctx.needPauseAd,
+                pauseAdConfig: ctx.pauseAdConfig
+            };
+            if (dict.isNewSDK(ctx.useNewSDK)) {
+                var resolutionClassName = getResolutionClassName(self.sources.noble, SHOW_CONTROL_BADGE);
+                var resolutionSwitcherMenu = {
+                    name: 'ResolutionSwitcherMenu',
+                    text: '流畅',
+                    htmlTitle: '清晰度',
+                    badge: newBadge,
+                    className: resolutionClassName,
+                    rememberPosition: false,
+                    title: {
+                        icon: logoSVipBadge,
+                        text: '选择画质清晰度'
+                    },
+                    list: self.sources,
+                    hooks: {
+                        beforeChange: beforeResolutionChange,
+                        mouseenter: onResolutionSwitcherMenuMouseEnter,
+                        mouseleave: showSideMenu
+                    }
+                };
+                // 用户状态设置完成后，重新从localStorage读取并更新倍速值
+                self.userInfo.currentRate = getUseRate(self.userInfo);
+                var playbackRateMenu = {
+                    name: 'PlaybackRateMenu',
+                    text: '倍速',
+                    badge: newBadge,
+                    className: SHOW_CONTROL_BADGE && 'vjs-playback-rate-badge',
+                    defaultValue: getUseRate(self.userInfo), // 默认倍速
+                    title: {
+                        icon: logoSVipBadge,
+                        text: 'SVIP专享倍速播放'
+                    },
+                    list: [
+                        {
+                            text: '0.75倍',
+                            value: 0.75,
+                            controlBadge: newBadge
+                        },
+                        {
+                            text: '正常',
+                            value: 1,
+                            controlText: '倍速',
+                            controlBadge: newBadge
+                        },
+                        {
+                            text: '1.25倍',
+                            value: 1.25,
+                            controlBadge: newBadge
+                        },
+                        {
+                            text: '1.5倍',
+                            value: 1.5,
+                            controlBadge: newBadge
+                        },
+                        {
+                            text: '2.0倍',
+                            value: 2,
+                            controlBadge: newBadge
+                        }
+                    ],
+                    footnote: self.userInfo.isSVip ? null : {
+                        btnText: '立即开通SVIP',
+                        onClick: function () {
+                            context.getContext().log.send({
+                                type: 'videoplayback_nonsvip_straibuy',
+                                from: getNewStyle()
+                            });
+                            context.getContext().log.send({
+                                type: 'wangpan_web_17238_pay_payRevolution_clk_buyGuideCashierClk',
+                                from: 'videoplaybacknonsvip' + getNewStyle()
+                            });
+                            if (useNewGuide()) {
+                                // 未登录情况，去登录
+                                if (+ctx.locals.get('loginstate') !== 1) {
+                                    if (window.yunHeader) {
+                                        window.yunHeader.login.util.loginNew();
+                                        return;
+                                    }
+                                }
+                                var params = {};
+                                params.extraInfo = {};
+                                params.extraInfo.from = 'videoplayback';
+                                // https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/L6mTL4V2wc/YMprfXOey15MGQ scene_id
+                                params.scene_id = 15;
+                                context.getContext().message.callPlugin(
+                                    '商业付费@com.baidu.pan',
+                                    params
+                                );
+                            } else {
+                                window.open(CHECKOU_TCOUNTER + 'videoplayback_web');
+                            }
+                        }
+                    },
+                    hooks: {
+                        beforeChange: beforeRateChange,
+                        mouseenter: onPlaybackRateMenuMouseEnter,
+                        mouseleave: showSideMenu
+                    }
+                };
+                var subtitleMenu = {
+                    // 组件名
+                    name: 'SubtitleMenu',
+                    // 显示在controlbar上的名称
+                    text: '字幕',
+                    // 原生title提示属性
+                    htmlTitle: '字幕',
+                    // 选中后字体是显示svip尊享的颜色还是普通的品牌色
+                    noble: false,
+                    // width: '6.5em',
+                    // 控制条右上角标
+                    badge: {
+                        src: 'https://staticsns.cdn.bcebos.com/amis/2022-11/1669710735173/subtitle-is-new.png',
+                        className: 'vjs-subtitle-new'
+                    },
+                    // 切换过后从上次重载到上次
+                    rememberPosition: false,
+                    title: {
+                        icon: 'https://staticsns.cdn.bcebos.com/amis/2022-11/1669376964619/setting.png',
+                        text: '字幕'
+                    },
+                    settingConfig: {
+                        schedule: {
+                            defaultValue: 0, // 默认进度
+                            step: 0.5 // 每次变更步数
+                        },
+                        fontSize: {
+                            list: [
+                                {
+                                    name: '小',
+                                    value: 16,
+                                },
+                                {
+                                    name: '标准',
+                                    value: 20,
+                                },
+                                {
+                                    name: '大',
+                                    value: 28,
+                                },
+                                {
+                                    name: '超大',
+                                    value: 36
+                                }
+                            ],
+                            defaultValue: 20
+                        }
+                    },
+                    list: [],
+                    footnote: {},
+                    hooks: {
+                        // 配置需要监听的事件，key 为事件名称，值为
+                        mouseenter: function () {
+                            hideSideMenu();
+                            this.hideGuide();
+                            Subtitle.mouseenter();
+                        },
+                        mouseleave: function () {
+                            showSideMenu();
+                            Subtitle.mouseleave();
+                        },
+                        showSetting: Subtitle.showSetting,
+                        scheduleChange: Subtitle.scheduleChange,
+                        sizeChange: Subtitle.sizeChange,
+                         // eslint-disable-next-line
+                        switchSubtitle: Subtitle.switchSubtitle,
+                         // eslint-disable-next-line
+                        domReady(e) {
+                            try {
+                                // 加载智能字幕配置
+                                Subtitle.init(self.userInfo, self.file, self.player, e);
+                                // 检测字幕流量
+                            } catch (e) {
+                                console.log('subtitle init error');
+                            }
+                        }
+                    }
+                };
+                config.controlBar.children.push(resolutionSwitcherMenu);
+                config.controlBar.children.push(playbackRateMenu);
+                config.controlBar.children.push(subtitleMenu);
+            }
+            config.controlBar.children.push('fullscreenToggle');
+            return config;
+        }
+
+        function onResolutionSwitcherMenuMouseEnter() {
+            hideSideMenu();
+            context.getContext().log.send({
+                type: 'video_resolution_switcher_menu_show'
+            });
+        }
+
+        function onPlaybackRateMenuMouseEnter() {
+            hideSideMenu();
+            context.getContext().log.send({
+                type: 'video_playback_rate_menu_show'
+            });
+        }
+
+        function hideSideMenu() {
+            $('.video-content .video-functions-tips').hide();
+        }
+
+        function showSideMenu() {
+            $('.video-content .video-functions-tips').show();
+        }
+
+        function tipSuccess() {
+            self.toast(getToastConfig({
+                state: 'success',
+                autoClose: true
+            }));
+        }
+
+        function tipFailed() {
+            self.toast(getToastConfig({
+                state: 'failed',
+                autoClose: true
+            }));
+        }
+
+        function beforeResolutionChange(item, cb) {
+            reportTime();
+            var ctx = context.getContext();
+            var isH265 = ctx.originSDKType === dict.levelDict.h265;
+            var preSDK = ctx.useNewSDK;
+            var hasAudioVisualProduct = userInfo.hasAudioVisualProduct();
+            var logType = 'video_definition_nonsvipclick';
+
+            if (self.userInfo.isSVip) {
+                logType = 'video_definition_svipclick';
+            } else if (hasAudioVisualProduct) {
+                logType = 'video_definition_packageclick';
+            }
+
+            ctx.log.send({
+                type: logType
+            });
+
+            if (self.player.src() === item.value) {
+                return;
+            }
+
+            var num = Number((item.label.match(/\d+/) || [0])[0]);
+            var text = item.label.replace(/\s.*/, '');
+
+            // 未登录情况，去登录
+            if (+ctx.locals.get('loginstate') !== 1) {
+                if (window.yunHeader) {
+                    window.yunHeader.login.util.loginNew();
+                    return;
+                }
+            }
+            // 如果是会员，或者具有限免资格，或者是其它可以播放的低清晰度
+            if (self.userInfo.isSVip || self.userInfo.freeList.indexOf(num) > -1 || hasAudioVisualProduct) {
+                // 取消之前的绑定，可能由于快速切换没有执行
+                self.player.off('canplay', tipSuccess);
+                self.player.off('error', tipFailed);
+                self.toast(getToastConfig({
+                    text: text,
+                    state: 'start'
+                }));
+                // 监听视频可以播放的时候再提示
+                self.player.one('canplay', tipSuccess);
+                // 出错的时候还需要提示、取消监听和移除之前的提示
+                self.player.one('error', tipFailed);
+                self.antiSpam();
+                cb();
+
+                if (isH265) {
+                    // 480、360 采用 Wasm，其它采用 H5
+                    ctx.useNewSDK = num > 480 ? dict.levelDict.v7 : dict.levelDict.h265;
+                }
+                // 如果从 H5 转换为 Wasm 需要重新绑定
+                if (preSDK !== dict.levelDict.h265 && ctx.useNewSDK === dict.levelDict.h265) {
+                    bindWasmBuryPointEvent(self);
+                }
+                // 设置当前清晰度
+                self.currentResolution = num;
+                setColorForNoble(item, num);
+                self.segementType = '';
+
+                BuryPointData.firstFrameTime = 0;
+                BuryPointData.isChangeResolution = true;
+                utils.sendVideoLog({
+                    op: 'vast_player_user_number',
+                    pv_type: 'change_resolution'
+                }, self);
+                logger.updatePlayLoadFlag(false);
+                logger.startCheckLoadeTimeout();
+                utils.sendH5Log(
+                    {
+                        type: 'video_resolution_change',
+                        from: getNewStyle()
+                    },
+                    self
+                );
+                utils.sendH5Log(
+                    {
+                        type: 'wangpan_web_17238_pay_payRevolution_clk_buyGuideCashierPrivilegeClk',
+                        from: 'changeresolution' + getNewStyle()
+                    },
+                    self
+                );
+                recordSelectedResolution(num);
+                return;
+            }
+
+            payGuide(17);
+        }
+
+        function beforeRateChange(item, cb) {
+            var logType = 'videoplayback_nonsvipclick';
+            var hasAudioVisualProduct = userInfo.hasAudioVisualProduct();
+
+            if (self.userInfo.isSVip) {
+                logType = 'videoplayback_svipclick';
+            } else if (hasAudioVisualProduct) {
+                logType = 'videoplayback_packageclick';
+            }
+
+            context.getContext().log.send({
+                type: logType,
+                from: getNewStyle()
+            });
+
+            context.getContext().log.send({
+                type: 'wangpan_web_17238_pay_payRevolution_clk_buyGuideCashierPrivilegeClk',
+                from: 'videoplayback' + getNewStyle()
+            });
+
+            if (self.userInfo.currentRate === item.rate) {
+                return;
+            }
+            // 未登录情况，去登录
+            if (+ctx.locals.get('loginstate') !== 1) {
+                if (window.yunHeader) {
+                    window.yunHeader.login.util.loginNew();
+                    return;
+                }
+            }
+            // 切换倍速
+            if (self.userInfo.isSVip || hasAudioVisualProduct) {
+                self.toast(getToastConfig({
+                    type: 'rate',
+                    state: 'start'
+                }));
+                self.userInfo.currentRate = item.rate;
+                currentVideoRateList.push({
+                    set_speed_time: +new Date(),
+                    speed: item.rate
+                });
+                self.antiSpam();
+                cb();
+                setColorForNoble(item, item.rate);
+
+                if (self.player.paused()) {
+                    self.toast(getToastConfig({
+                        type: 'rate',
+                        state: 'paused',
+                        text: item.label,
+                        autoClose: true
+                    }));
+                } else {
+                    self.toast(getToastConfig({
+                        type: 'rate',
+                        state: 'success',
+                        text: item.label,
+                        autoClose: true
+                    }));
+                }
+                recordSelectedRate(item.rate);
+                return;
+            }
+
+            payGuide(3);
+        }
+
+        /**
+         *
+         * 对于倍速而言，除了 1 之外其他都显示为金色，而对于清晰度达到 720 就显示金色
+         * @param {*} value
+         */
+        function setColorForNoble(item, value) {
+            if ((value !== 1 && value < 360) || value > 480) {
+                item.addMenuClass('vjs-noble-privilege');
+            } else {
+                item.removeMenuClass('vjs-noble-privilege');
+            }
+        }
+
+        // sid 3 标识倍速，17 标识视频
+        function payGuide(sid) {
+            if (self.player.isFullscreen()) {
+                self.player.exitFullscreen();
+            }
+            var data = {
+                // 用户的身份
+                user_status: self.userInfo.isSVip ? 2 : self.userInfo.isVip ? 1 : 0,
+                try_count: 0
+            };
+            self.stashState();
+
+            var sourceConfFrom = sid === 3
+                ? 'videoplayback_guide_click'
+                : sid === 17
+                ? 'video_definition_guide_click'
+                : '';
+            var params = {
+                sourceConf: {
+                    from: sourceConfFrom,
+                    width: 474,
+                    configuration: true,
+                    afterGuide: function () {
+                        var $tip = $(
+                            '<em>（若已开通，请刷新当前页面重试）</em>'
+                        ).css({
+                            fontSize: '12px'
+                        });
+                        $('#vip-guide-vip-intro')
+                            .find('.dialog-header-title')
+                            .append($tip);
+                    }
+                },
+                apiParams: {
+                    sid: sid,
+                    version: '11.10.0',
+                    data: $.stringify(data)
+                },
+            };
+            if (useNewGuide()) {
+                var params = {};
+                params.extraInfo = {};
+                params.extraInfo.user_status = self.userInfo.isSVip ? 2 : self.userInfo.isVip ? 1 : 0;
+                params.extraInfo.try_count = 0;
+                params.extraInfo.from = sid === 17 ? 'videoresolution' : 'videoplayback';
+                // https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/L6mTL4V2wc/YMprfXOey15MGQ scene_id
+                params.scene_id = sid === 17 ? 16 : 15;
+                context.getContext().message.callPlugin(
+                    '商业付费@com.baidu.pan',
+                    params
+                );
+            } else {
+                context.getContext().message.callPlugin(
+                    '会员引导@com.baidu.pan',
+                    params
+                );
+            }
+            if (sid === 17) {
+                context.getContext().log.send({
+                    type: 'video_definition_guide',
+                    from: getNewStyle()
+                });
+                context.getContext().log.send({
+                    type: 'wangpan_web_17238_pay_payRevolution_clk_buyGuideCashierClk',
+                    from: 'videoresolution' + getNewStyle()
+                });
+            }
+            if (sid === 3) {
+                // 倍速付费弹窗
+                context.getContext().log.send({
+                    type: 'videoplayback_guide',
+                    from: getNewStyle()
+                });
+                context.getContext().log.send({
+                    type: 'wangpan_web_17238_pay_payRevolution_clk_buyGuideCashierClk',
+                    from: 'videoplayback' + getNewStyle()
+                });
+            }
+        }
+
+        /**
+         *
+         * @param {*} options
+         *  options.type 获取的是分辨率还是倍速的配置
+         *  options.text 将要切换成的清晰度
+         *  options.state 执行阶段或状态
+         *  options.autoClose 是否自动关闭
+         */
+        function getToastConfig(options) {
+            var type = options.type || 'resolution'; // 获取的是分辨率还是倍速的配置
+            var isNormal = !self.userInfo.isSVip; // 不是超级会员，也不是音视频畅享卡，WEB 暂无音视频畅享卡
+            var isSVip = self.userInfo.isSVip;
+            var level = self.userInfo.vipLevel;
+            var prefix = isSVip ? '尊敬的v' + level + '超级会员，' : '';
+            var isFree = isNormal ? '免费' : '';
+            var resolutionConfigMap = {
+                start: {
+                    text: prefix + '正在为您切换到' + options.text + '清晰度...'
+                },
+                success: {
+                    text: prefix + '切换清晰度成功'
+                },
+                failed: {
+                    text: prefix + '清晰度切换失败，请重试'
+                }
+            };
+            var rateConfigMap = {
+                start: {
+                    text: prefix + '正在' + isFree + '切换倍速播放...'
+                },
+                paused: {
+                    text: prefix
+                        + '播放时将'
+                        + isFree
+                        + '开启'
+                        + options.text
+                        + '速度'
+                },
+                success: {
+                    text: prefix
+                        + '已为您'
+                        + isFree
+                        + '开启'
+                        + options.text
+                        + '速度播放'
+                },
+                failed: {
+                    text: prefix + '倍速切换失败，请重试'
+                }
+            };
+            var configMap = {
+                resolution: resolutionConfigMap,
+                rate: rateConfigMap
+            };
+            var config = $.extend({}, configMap[type][options.state]);
+
+            config.icon = isNormal ? '' : logoSVipBadge; // 仅（或后续可能出现的音视频畅享卡）超级会员会添加图标
+            config.autoClose = options.autoClose;
+
+            return config;
+        }
+    };
+
+    HTML5Player.prototype.createPlayerCore = function (options) {
+        var self = this;
+
+        if (!self.browser.safari) {
+            self._createPlayerCore(options);
+            return;
+        }
+
+        $.ajax({
+            url: self.src
+        })
+        .done(function () {
+            self._createPlayerCore(options);
+        })
+        .fail(function (err) {
+            self.handleError('pretreatment', err);
+        });
+    };
+
+    HTML5Player.prototype._createPlayerCore = function (options, extraOptions) {
+        initBuryPointFlags();
+        var ctx = context.getContext();
+        var useNewSDK = ctx.useNewSDK;
+        var self = this;
+
+        // 清除重置倍速计时器
+        clearTimeout(timer.resetRate);
+        this.createEl();
+        var isH265 = dict.levelDict.h265 === useNewSDK;
+        var commonConfig = {
+            smartHost: true,
+            segmentTimeout: 5000,
+            retryCount: 30,
+            retryDelay: 1000,
+            retryCode: [31341],
+            segmentRetryCount: 50,
+            segmentRetryDelay: 1000
+        };
+        var player = videoPlayer(this.container.find('video')[0], $.extend({
+            html5: {
+                preRequest: function () {
+                    return !!self.browser.safari;
+                },
+                vhs: $.extend({}, commonConfig, {
+                    prohibitSwitchPlaylist: true,
+                    retryText: '努力加载中，请耐心等待',
+                    overrideNative: utils.isChrome140OrLater(),
+                    segmentStartTimeKey:
+                        self.browser.chrome && self.browser.chrome < 75
+                            ? 'dtsTime'
+                            : 'ptsTime'
+                })
+            },
+            language: 'zh-cn',
+            wasmTech: {
+                xhr: commonConfig
+            },
+            techOrder: isH265 ? ['WasmTech', 'html5'] : ['html5'] // videojs 只负责 h5 播放，flash 播放交给原逻辑
+        }, options));
+        player && player.done(function (player) {
+            self.afterCreated(player);
+        }, function (err, resp) {
+            resp = resp || {};
+            self.handleError('pretreatment', resp);
+        });
+    };
+
+    HTML5Player.prototype.afterCreated = function (player) {
+        var ctx = context.getContext();
+        var useNewSDK = ctx.useNewSDK;
+        var self = this;
+        updateParams(self.file, self.flag);
+
+        this.player = player;
+        logger.bindPlayerLog(this);
+        if (ctx.needPauseAd) {
+            getPauseAd(ctx.channel, function (list) {
+                var config = {
+                    list: list,
+                    isShowAdWhenUserClose: !locals.get('is_svip'), // svip 关闭后不再展示
+                };
+                !player.isDisposed_ && player.trigger({ type: 'pause_ad_config_ready', data: config });
+            });
+        }
+        // 旧播放内核在 v3 业务层处理，未来全量升级到新播放内核后可移除
+        if (!useNewSDK && ctx.needPauseAd) {
+            pauseAd(player);
+        }
+        player.on('loadedmetadata', function() {
+            logger.updatePlayLoadFlag(true);
+            try {
+                wasmProbe.decodeTest();
+            } catch (err) {
+                logger.sendLog({
+                    type: 'web_h265_decode_error',
+                    message: err.message
+                });
+            }
+        });
+        player.on('hostchange', function (ev, data) {
+            var data = data || {};
+            logger.sendLog({
+                type: 'web_video_req_host',
+                host: data.host
+            });
+        });
+        utils.sendH5Log(
+            {
+                type: 'vedio_h5_init_real_video'
+            },
+            this
+        );
+        // 绑定v8.3视频核心指标埋点事件
+        bindBuryPointEvent(this);
+        bindWasmBuryPointEvent(this);
+        this.player.on('ratechange', function () {
+            // 仅在没有权限的用户改变倍速时进行上报
+            if (self.userInfo.isSVip || userInfo.hasAudioVisualProduct()) {
+                return;
+            }
+
+            ctx.log.send({
+                type: 'videoplayback_nonsvip_change',
+                uk: (window.__LOG_INFO__ || {}).uk,
+                status: self.userInfo.isVip ? 1 : 0
+            });
+        });
+        this.player.on('segementType', function (event) {
+            var info = event.data;
+            var shouldSend = false;
+
+            if (!self.segementType) {
+                shouldSend = true;
+            }
+
+            self.segementType = info.segementType;
+
+            if (shouldSend) {
+                ctx.log.send({
+                    type: 'web_video_segement_type',
+                    useNewSDK: ctx.useNewSDK,
+                    from: self.segementType
+                });
+            }
+        });
+
+        this.antiSpam();
+        this.checkPoster();
+        this.bindEvents();
+        $.isFunction(this.callback) && this.callback(this);
+    };
+
+    HTML5Player.prototype.stashState = function () {
+        if (this.player) {
+            this.preStateIsPaused = this.player.paused();
+            this.player.pause();
+        }
+    };
+
+    HTML5Player.prototype.popState = function () {
+        if (this.player && this.preStateIsPaused === false) {
+            this.player.play();
+            this.preStateIsPaused = null;
+        }
+    };
+
+    // 获取资源的地址: 请求后台接口判断是否使用新版 SDK 进行播放
+    HTML5Player.prototype.getSources = function () {
+        var self = this;
+        // 每项的值会影响提示文本
+        var textMap = {
+            1080: {
+                des: '超清',
+                clarity: '1080P'
+            },
+            720: {
+                des: '高清',
+                clarity: '720P'
+            },
+            480: {
+                des: '流畅',
+                clarity: '480P'
+            },
+            360: {
+                des: '省流',
+                clarity: '360P'
+            }
+        };
+        var list = [480, 360];
+        var badgeInfo = {};
+        self.userInfo = {
+            isSVip: false,
+            isVip: false,
+            vipLevel: 0,
+            isNormal: true,
+            overCount: 0, // 倍速功能剩余试用次数
+            freeList: [360, 480], // 对哪些清晰度具有限免资格
+            currentRate: DEFAULT_RATE // 用户当前应该处在的倍速  默认倍速
+        };
+        self.type = HTML5Player.supportsNativeHls
+            ? 'application/x-mpegURL'
+            : 'application/x-flvURL';
+        self.BPSType = HTML5Player.getBPSType();
+        context
+          .getContext()
+          .locals.get('is_svip', 'is_vip', 'vip_level', getURLCore);
+
+        function getURLCore(_isSVip, _isVip, _vipLevel) {
+            var useNewSDK = context.getContext().useNewSDK;
+
+            utils.sendH5Log(
+                {
+                    type: 'vedio_h5_toget_privilege'
+                },
+                self
+            );
+            self.userInfo.isSVip = !!_isSVip;
+            self.userInfo.isVip = !!_isVip;
+            self.userInfo.vipLevel = _vipLevel;
+            self.userInfo.isNormal = !_isSVip && !_isVip;
+            self.userInfo.isAudioVisualProduct = userInfo.hasAudioVisualProduct();
+            if (dict.isNewSDK(useNewSDK)) {
+                // 需要根据用户身份、剩余特权次数等信息来确定传给 SDK 的配置
+                getBadgeInfo();
+                self.type = 'application/x-mpegURL';
+                list = getSupportResolution(self.file.resolution);
+            } else {
+                utils.sendH5Log(
+                    {
+                        type: 'vedio_h5_get_real_m3u8'
+                    },
+                    self
+                );
+                self.currentResolution = getRecordResolution();
+                self.src = self.options.getUrl(self.BPSType)
+                    + '&isplayer=1'
+                    + '&check_blue=1'
+                    + '&adToken='
+                    + encodeURIComponent(self.adToken ? self.adToken : '');
+                self.run();
+            }
+        }
+
+        // 获取高清和超清图标的配置信息
+        function getBadgeInfo() {
+            $.ajax({
+                url: '/api/getconfig',
+                data: {
+                    type: 'fetch',
+                    version: 0,
+                    keys: $.stringify({private_video_quality_setting: 0})
+                },
+                dataType: 'json'
+            })
+                .done(function (res) {
+                    if (res && res.list) {
+                        var list = res.list;
+                        var i = 0;
+                        var item;
+
+                        if (!list.length) {
+                            return;
+                        }
+
+                        for (; i < list.length; i++) {
+                            item = list[i];
+                            if (item.conf_key === 'private_video_quality_setting') {
+                                badgeInfo = $.parseJSON(item.value || '{}');
+                                break;
+                            }
+                        }
+                    }
+                })
+                .fail(handleNetworkError)
+                .always(getVideoSourceMap);
+        }
+
+        // 获取播放器的配置信息
+        function getVideoSourceMap() {
+            utils.sendH5Log(
+                {
+                    type: 'vedio_h5_get_privilege'
+                },
+                self
+            );
+
+            var ctx = context.getContext();
+            var useNewSDK = ctx.useNewSDK;
+            var badgeKey = self.userInfo.isSVip ? 'svip' : self.userInfo.isVip ? 'vip' : 'normal';
+            var badgeItem = badgeInfo[badgeKey];
+            var initResolutinNoble = false;
+            var isH265 = dict.levelDict.h265 === useNewSDK;
+            if (badgeInfo.xm_switch) {
+                // 当前仅对 720P 支持限免
+                self.userInfo.freeList.push(720);
+            }
+            var currentResolution = self.options.currentResolution;
+            var recordResolution = getUseResolution(self.userInfo, list, self.userInfo.freeList);
+            currentResolution = currentResolution || recordResolution;
+            var sources = $.map(list, function (value, index) {
+                var BPSType = HTML5Player.getBPSType(value, isH265);
+                // adToken 确定是否需要播放广告，同一个 adToken 播放一次
+                var url = self.options.getUrl(BPSType)
+                    + '&isplayer=1'
+                    + '&check_blue=1'
+                    + (isH265 && value <= 480 ? '&trans=hevc:1' : '')
+                    + '&adToken='
+                    + encodeURIComponent(self.adToken ? self.adToken : '');
+                // 对于重试将使用之前切换失败的清晰度
+                // 否则，超级会员默认使用视频支持的最高清晰度，其它身份则使用 480P
+                var isDefault = currentResolution
+                    ? currentResolution === value
+                    : value === DEFAULT_RESOLUTION;
+
+                if (isDefault) {
+                    // 创建video标签给了资源后，初始化时会判断url是否有变化，如果不变化则不重新调用资源的播放方式，就不会判断是使用浏览器的还是videojs的
+                    self.src = utils.isChrome140OrLater() ? url + '&src_id=1' : url;
+                    self.BPSType = BPSType;
+                    self.currentResolution = value;
+
+                    // 如果默认播放的清晰度高于 480 则需要将每项的高亮颜色改为金色
+                    if (value > 480 && !initResolutinNoble) {
+                        initResolutinNoble = true;
+                    }
+                    if (isH265 && value <= 480) {
+                        self.type = 'wasm';
+                    }
+                }
+
+                return {
+                    text: textMap[value].des + ' ' + textMap[value].clarity,
+                    type: isH265 && value <= 480 ? 'wasm' : 'application/x-mpegURL',
+                    value: url,
+                    badge: getBadge(value),
+                    // SVIP 默认播放最高清晰度，其它默认播放 480P
+                    'default': isDefault,
+                    controlText: textMap[value].des,
+                    controlBadge: newBadge
+                };
+            });
+
+
+
+            utils.sendH5Log(
+                {
+                    type: 'vedio_h5_get_real_m3u8'
+                },
+                self
+            );
+
+            utils.sendH5Log(
+                {
+                    type: 'wangpan_web_17238_pay_payRevolution_clk_buyGuideCashierPrivilegeClk',
+                    from: 'vedioad'
+                },
+                self
+            );
+
+            self.sources = sources;
+            sources.noble = initResolutinNoble;
+
+            self.createPlayer();
+
+            function getBadge(value) {
+                if (value < 720) {
+                    return;
+                }
+                if (!badgeItem) {
+                    return;
+                }
+
+                var key = 'super_quality';
+                var icon = icSVip;
+
+                if (value === 720) {
+                    key = 'high_quality';
+                }
+                if (badgeItem[key] === '限免') {
+                    icon = icFree;
+                }
+
+                return icon;
+            }
+        }
+    };
+
+    HTML5Player.prototype.window = function (options) {
+        options = options || {};
+
+        var dialog = this.dialog = context.getContext().ui.window(options);
+
+        dialog.show();
+
+        return dialog;
+    };
+
+    HTML5Player.prototype.toast = function (options) {
+        // 同一时间仅显示一个提示
+        if (this.$toast_) {
+            this.$toast_.remove();
+        }
+
+        options = options || {};
+
+        var icon = options.icon;
+        var text = options.text;
+        var isSVip = this.userInfo && this.userInfo.isSVip;
+        // only remove
+        if (!icon && !text) {
+            return;
+        }
+        var sVipNoticeClass = isSVip ? ' video-svip-notice' : '';
+        var htmlStr = [
+            '<div class="html5-video-notice' + sVipNoticeClass + '">',
+            icon ? '<span class="html5-video-icon"></span>' : '',
+            '<span class="html5-video-text">' + options.text + '</span>',
+            '</div>'
+        ].join('');
+        var container = $(options.container || '#video-wrap-outer');
+
+        if (!container.get(0)) {
+            container = $('#video-warp-outer');
+        }
+
+        var toast = this.$toast_ = $(htmlStr).appendTo(container);
+
+        if (options.autoClose) {
+            setTimeout(function () {
+                toast && toast.remove();
+            }, 3000);
+        }
+
+        return toast;
+    };
+
+    HTML5Player.prototype.antiSpam = function () {
+        var self = this;
+        var playerEl = $(self.player.el()).get(0);
+        var videoEl = $(playerEl).find('video').get(0);
+        var hasAudioVisualProduct = userInfo.hasAudioVisualProduct();
+
+        // 有倍速权限的用户无需处理
+        if (self.userInfo.isSVip || hasAudioVisualProduct) {
+            if (self.__antiSpam) {
+                clearTimeout(timer.resetRate);
+                videoEl && delete videoEl.playbackRate;
+                self.__antiSpam = false;
+            }
+            return;
+        }
+        if (self.__antiSpam) {
+            return;
+        }
+
+        self.__antiSpam = true;
+        // 定时根据用户身份设置当前应该属于的倍速
+        timer.resetRate = setTimeout(function resetRate() {
+            if (self.userInfo.isSVip || hasAudioVisualProduct) {
+                return;
+            }
+            if (self.player) {
+                self.player.playbackRate(self.userInfo.currentRate);
+            }
+
+            timer.resetRate = setTimeout(resetRate, 500);
+        }, 500);
+
+        if (!playerEl) {
+            return;
+        }
+
+        $(playerEl).on('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        // 在Firefox中无需劫持，否则无法重置浏览器右键更改的值
+        if (!videoEl || !Object.defineProperty || self.browser.firefox) {
+            return;
+        }
+
+        Object.defineProperty(videoEl, 'playbackRate', {
+            configurable: true,
+            get: function () {
+                return self.player && self.player.playbackRate();
+            },
+            set: function () {
+                // 劫持之后失去了控制，无法再设置为其它值
+            }
+        });
+    };
+}
+
+module.exports = videoPrivilegesMixin;
+ 
+});
+;define("file-widget-1:videoPlay/HTML5Player/HTML5Player.js",function(e,r,t){function o(e){var r=g.getContext();r.playerInstance&&(r.playerInstance.destroy(),r.playerInstance.toast()),r.playerInstance=this,m.updatePlayLoadFlag(!1),m.startCheckLoadeTimeout(),m.listeneLoadingTimeout(),this.options=e,this.clientResult=l.client()||{},this.browser=this.clientResult.browser||{},this.file=e.file,this.container=i(e.container),this.flag=e.flag,this.playerType="HTML5",this.player=e.player,this.adToken=e.adToken,this.callback=e.callback,this.logPrintToWeb=!!s.getParam("log_print"),this.id="html5player",this.controls=!0,this.autoplay=e.autoplay?" autoplay":"",this.rememberPosition=e.rememberPosition,this.getSources(),this.onPlay=e.onPlay,this.onPause=e.onPause,this.onBeforePlay=e.onBeforePlay,this.onTimeUpdate=e.onTimeUpdate,this.onBeforeDestroy=e.onBeforeDestroy,this.loading={order:1,time:0,startTimeStamp:0,loadingStatus:!1},this.seeking={time:0,startTimeStamp:0,loadingStatus:!1},this.playError={flag:!1,send:!1},this.init()}function a(e,r){var t=e.player&&e.player.error()||{},o=t.errorInfo||{},a=e.player&&e.player.tech({IWillNotUseThisInPlugins:!0}).error(),n=e.videoDom.errorinfo||a||{},s={};try{s=i.parseJSON(n.responseText||n||r||"{}")}catch(l){}var p=s.errno||s.error_code||o.errno||o.error_code;return p=p||s.errorCode||t.errorCode,p=p||(e.browser.safari?7300002:7300001),{errno:p,error:t,errorInfo:n}}var i=e("base:widget/libs/jquerypacket.js"),n=e("base:widget/libs/underscore.js"),s=e("base:widget/tools/service/tools.url.js"),l=e("base:widget/tools/service/tools.browser.js"),p=e("base:widget/tools/service/tools.util.js").inherits,d=e("system-core:context/context.js").instanceForSystem,y=(e("base:widget/storage/storage.js"),e("file-widget-1:videoPlay/Player/Player.js")),u=e("file-widget-1:videoPlay/utils.js"),g=e("file-widget-1:videoPlay/context.js"),c=e("file-widget-1:videoPlay/HTML5Player/videoPrivilegesMixin.js"),m=e("file-widget-1:videoPlay/log/logger.js"),f=e("file-widget-1:videoPlay/utils/dict.js"),v={domEventHandles:{playerKeyDown:function(){}},h5Player:null};p(o,y),c(o),o.prototype.run=function(){var e=this;e.player?(e.player.src({src:e.src,type:e.type}),e.player.canSeek(!0),e.player.controls(!0),e.player.muted(!1),e.checkPoster(),e.bindEvents(),"function"==typeof e.callback&&e.callback(e)):u.getVideoJS().then(function(){e.createPlayerCore({controlBar:{volumeMenuButton:{inline:!1}}})},function(){u.sendVideoLog({op:"vast_player_play_error",error_type:"CLIENT_ERROR",error_info:{player_error:{system_time:+new Date,error_code:400004}}},e),g.getContext().message.trigger("video-trigger-list-error",{msg:"视频出错了，请稍后重试...",addRetry:!0,currentResolution:e.currentResolution})})},o.prototype.createEl=function(){var e=['<video id="'+this.id+'" ','width="'+this.container.width()+'" height="'+this.container.height()+'" ','class="video-js vjs-default-skin"',this.autoplay,this.controls?" controls":"",' preload="auto"',(this.loop?" loop":"")+">",'<source src="'+this.src+'"','type="'+this.type+'">',"</video>"].join("");this.container.html(e)},o.prototype.checkPoster=function(){var e=this;if(e.file&&e.file.thumbs){if(e.file.thumbs.url3)e.poster=e.file.thumbs.url3;else if(e.file.thumbs.url2)e.poster=e.file.thumbs.url2;else{if(!e.file.thumbs.url1)return;e.poster=e.file.thumbs.url1}e.poster&&i.ajax({url:e.poster,method:"GET"}).done(function(){e.player&&e.player.poster(e.poster)})}},o.prototype.handleError=function(e,r){var t=this,o=t.browser,a=r;if(t.playError.flag||m.getErrorFlag())return void(t.playError.flag=!0);t.playError.flag=!0,"pretreatment"!==e&&(a=t.videoDom.errorinfo);var n=a&&i.parseJSON(a.responseText||a.body);t.logPrintToWeb&&(console.error(a),console.error(n)),n||(n={});var s=n.errno||n.error_code,l=t.player&&t.player.error()||{},p=l.errorCode,d="",y=!1;31346===s?(d="加载失败了，稍候重试一下吧",y=!0):31066===s||a&&404===a.status?(s=s||p,d="文件不存在，换一个吧！"):31339===s?d="该视频无法播放噢，换一个试试吧！":31341===s?(d="视频正在转码中，稍后再来试下吧...","pretreatment"!==e&&t.player.trigger({type:"pan_error_converting"})):31346===s?d="抱歉，视频转码失败了，请换一个试试吧！":31304===s?d="文件格式不支持在线播放～":31347===s?d="视频过长暂不支持在线播放～":31338===s?d="该视频分辨率或码率太高暂不支持在线播放～":31023===s?d="文件异常，请刷新后重试～":31391===s?d="文件违规，已根据相关法律法规予以屏蔽":31326===s||31426===s?d="视频播放失败":(d=navigator.onLine?"视频播放失败，请稍后重试～":"网络异常，请联网后重试～",y=!0,s||o.safari||(s=p||7300001),s=s||p||7300002),u.sendVideoLog({op:"vast_player_play_error",error_type:"SDK_ERROR",error_info:{player_error:{status:a&&a.status,message:l.message,code:l.code,system_time:+new Date,error_code:s}}},t),g.getContext().message.trigger("video-trigger-list-error",{msg:d,addRetry:y,currentResolution:t.currentResolution}),u.sendH5Log({type:"vedio_h5_real_play_error",errno:s},t),u.sendLog({type:"playError",playError:1},t)},o.prototype.handleV7AutoDowngrade=function(e){var r=g.getContext(),t=d.locals.get("autoDowngradeCodes")||[];t.indexOf(e)>-1&&!this.options.autoDowngradeFlag&&(this.options.autoDowngradeFlag=!0,this.options.autoDowngradeCode=e,u.sendVideoLog({op:"vast_player_user_number",pv_type:"auto_retry"},r.playerInstance),u.sendH5Log({type:"video_v7_player_auto_retry",errno:e},self),r.message.trigger("video-player-retry","v5"))},o.prototype.handleH265AutoDowngrade=function(e){var r=g.getContext();this.options.autoDowngradeFlag=!0,this.options.autoDowngradeCode=e,u.sendH5Log({type:"video_h265_player_auto_retry",errno:e},self),u.sendVideoLog({op:"vast_player_user_number",pv_type:"auto_retry"},r.playerInstance),r.message.trigger("video-player-retry","v7")},o.prototype.errorReport=function(e){var r=this,t=e.errno,o=e.error,a=e.errorInfo||{},i=g.getContext(),n=i.useNewSDK;u.sendVideoLog({op:"vast_player_play_error",error_type:"SDK_ERROR",error_info:{player_error:{status:a.status||a.statusCode,system_time:+new Date,error_code:t,message:o.message,code:o.code,use_new_sdk:n}}},r);var s="vedio_h5_real_play_error";f.levelDict.h265===n&&(s="vedio_h265_real_play_error"),u.sendH5Log({type:s,errno:t},r),u.sendLog({type:"playError",playError:1},r)},o.prototype.bindEvents=function(){var e=this,r=g.getContext(),t=r.useNewSDK;e.videoDom=e.player.el().firstChild,v.domEventHandles.playerKeyDown=function(r){if(e.player)switch(r.keyCode){case 39:return e.player.currentTime(e.player.currentTime()+22),!1;case 37:return e.player.currentTime(e.player.currentTime()-22),!1;case 38:return e.player.volume(e.player.volume()+.1),!1;case 40:return e.player.volume(e.player.volume()-.1),!1;case 32:return e.player.paused()?e.player.play():e.player.pause(),!1}},i(window).on("keydown",v.domEventHandles.playerKeyDown);var o=!1;e.player.on("loadstart",function(){if(e.container.find("#html5player").addClass("visiblevideo"),e.rememberPosition){var r=e.getFilePosition(e.file.md5);r&&e.setCurrentTime(r),o=!0}}),e.player.ready(function(){!e.triggeredPlay&&e.player.trigger&&e.player.trigger("play")}),e.player.on("play",function(){e.triggeredPlay=!0,u.isFunction(e.onBeforePlay)?e.onBeforePlay()?u.isFunction(e.onPlay)&&e.onPlay():e.player.pause():u.isFunction(e.onPlay)&&e.onPlay(),e.loading.loadingStatus&&(e.loading.startTimeStamp=new Date)}),e.player.on("pause",function(){u.isFunction(e.onPause)&&e.onPause(),e.loading.loadingStatus&&(e.loading.time+=new Date-e.loading.startTimeStamp)}),e.player.on("timeupdate",function(){if(e.player&&u.isFunction(e.player.currentTime)){var r=e.player.currentTime();if(e.rememberPosition){var t=parseInt((new Date).getTime()/1e3%3,10);if(o&&0===t){r=e.player.currentTime();var a=e.player.duration();e.setFilePosition(e.file.md5,r,a)}}u.isFunction(e.onTimeUpdate)&&e.onTimeUpdate(e.player.currentTime(),e.player.duration())}}),e.player.on("error",function(r,o){if(e.playError.flag||m.getErrorFlag())return void(e.playError.flag=!0);if(e.playError.flag=!0,m.updateErrorFlag(!0),f.isNewSDK(t)){var i=a(e,o);f.levelDict.v7===t&&e.handleV7AutoDowngrade(i.errno),f.levelDict.h265===t&&e.handleH265AutoDowngrade(i.errno),e.errorReport(i)}else e.handleError()}),e.player.on("waitstart",function(){e.loading.startTimeStamp=new Date,e.loading.loadingStatus=!0}),e.player.on("waitend",function(){e.loading.loadingStatus&&(1===e.loading.order?(e.loading.time+=new Date-e.loading.startTimeStamp,u.sendLog({type:"firstBuffer",loadingType:"firstBuffer",loadingTime:e.loading.time,playError:0},e),e.loading.time=0,e.loading.order++):2===e.loading.order?(e.loading.time+=new Date-e.loading.startTimeStamp,u.sendLog({type:"firstLoading",loadingType:"firstLoading",loadingTime:e.loading.time},e),e.loading.time=0,e.loading.order++):(e.loading.time+=new Date-e.loading.startTimeStamp,u.sendLog({type:"loading",loadingType:"loading",loadingTime:e.loading.time},e),e.loading.time=0,e.loading.order++),e.loading.loadingStatus=!1)}),e.player.on("seeking",function(){e.seeking.startTimeStamp=new Date,e.seeking.loadingStatus=!0}),e.player.on("seeked",function(){e.seeking.loadingStatus&&(e.seeking.time+=new Date-e.seeking.startTimeStamp,u.sendLog({type:"seek",loadingType:"seek",loadingTime:e.seeking.time},e),e.seeking.time=0,e.seeking.loadingStatus=!1)})},o.prototype.listenMessage=function(){var e=this;g.getContext().message.listen("player-pause",function(){e.player&&e.player.pause()}),g.getContext().message.listen("player-play",function(){if(e.player){var r=e.player.play();r&&u.isFunction(r.then)&&r.then(i.noop,i.noop)}})},o.prototype.getDuration=function(){return this.player.duration()},o.prototype.setCurrentTime=function(e){var r=this;if(!r.player||!r.player.currentTime)return void setTimeout(function(){r.setCurrentTime(e)},500);r.player.currentTime(e);var t=r.player.currentTime();t!==e&&setTimeout(function(){r.setCurrentTime(e)},500)},o.prototype.reset=function(){i(window).unbind("keydown",v.domEventHandles.playerKeyDown),this.player&&this.player.pause()},o.prototype.init=function(){var e=this;e.reset(),e.listenMessage(),g.getContext().log.send({type:"video_new_init_h5"}),u.sendLog({type:"init"},e),g.getContext().log.send({type:"playVideo",uk:g.getContext().locals.get("uk"),file:e.file.path,fs_id:e.file.fs_id,playbyflash:0})},o.isSupport=function(){return o.supportsNativeHls||o.supportsNativeMediaSources()},o.supportsNativeHls=function(){var e=document.createElement("video");if(!e||!e.canPlayType)return!1;try{e.volume=.5}catch(r){return!1}var t=["application/vnd.apple.mpegurl","audio/mpegurl","audio/x-mpegurl","application/x-mpegurl","video/x-mpegurl","video/mpegurl","application/mpegurl"];return n.some(t,function(r){return/maybe|probably/i.test(e.canPlayType&&e.canPlayType(r))})}(),o.supportsNativeMediaSources=function(){return window.MediaSource&&window.MediaSource.isTypeSupported&&window.MediaSource.isTypeSupported('video/mp4;codecs="avc1.4d400d,mp4a.40.2"')},o.getBPSType=function(e,r){var t=e||480,a=o.supportsNativeHls||480!==t||r?"M3U8_AUTO_":"M3U8_FLV_264_";return a+t},o.create=function(e){return new o(e)},t.exports=o});
+;define("file-widget-1:videoPlay/Werbung/Werbung.tmpl.js",function(e,d,i){window.host&&window.host.HOST_PAN||"pan.baidu.com";i.exports={rootTmpl:['<div id="video-root"></div>'],mainTmpl:['<div class="werbung-video">',"    <style><%- data.werbungStyle %></style>",'    <style id="videojsstyles"></style>','    <div id="video-wrapper" class="video-wrapper">','        <% if (data.type === "HTML5") { %>','        <div id="video-player" class="video-player" ','           style="width: <%- data.width %>px; height: <%- data.height %>px">','           <video id="html5-content-player"></video>',"        </div>",'        <div id="werbung-player" class="video-player" ','           style="width: <%- data.width %>px; height: <%- data.height %>px">','           <video id="html5-werbung-player" class="video-js vjs-default-skin" ','                  width="<%- data.width %>" height="<%- data.height %>" autoplay muted preload="none" loop>',"           </video>","        </div>",'        <% } else if (data.type === "Flash") { %>','        <div id="video-player" class="video-player" ','           style="width: <%- data.width %>px; height: <%- data.height %>px"></div>','        <div id="werbung-player" class="video-player" ','           style="width: <%- data.width %>px; height: <%- data.height %>px"></div>',"        <% } %>",'        <div id="werbung-info-container" class="werbung-info-container" node-type="werbung-info-container"','            style="width: <%- data.width %>px; height: <%- data.height %>px" >','            <div class="werbung-default" node-type="werbung-default">','               <div class="default-img"></div>',"            </div>",'            <div class="top-right-box" node-type="top-right-box">','                <div class="button-box g-clearfix">','                    <div class="button-box-bg"></div>','                    <div class="sale-text" node-type="sale-text"></div>','                    <a class="button-url" href="javascript:;" node-type="button-url">','                       <span node-type="button-text"></span>',"                    </a>","                </div>","            </div>",'            <div class="werbung-progress-bar-wrapper" node-type="werbung-progress-bar-wrapper">','                <div class="werbung-progress-bar">','                    <div class="werbung-progress" node-type="werbung-progress">',"                    </div>","                </div>",'                <div class="loading-box" node-type="loading-box"></div>','                <div class="werbung-progress-text" node-type="werbung-progress-text"></div>',"            </div>",'            <div class="werbung-img-preload">','               <div class="muted-off"></div>','               <div class="fail-bg">',"            </div>","        </div>","    </div>","</div>"].join("")}});
+;define("file-widget-1:videoPlay/Werbung/Werbung.js",function(e,t,o){function i(){}var r=e("base:widget/libs/jquerypacket.js"),a=e("base:widget/libs/underscore.js"),n=e("file-widget-1:videoPlay/context.js"),p=e("file-widget-1:videoPlay/Werbung/WerbungConfig.js"),d=e("file-widget-1:videoPlay/Werbung/Werbung.tmpl.js"),s=function(){var e=navigator.userAgent,t=e.indexOf("compatible")>-1&&e.indexOf("MSIE")>-1,o=e.indexOf("Trident")>-1&&e.indexOf("rv:11.0")>-1,i=-1;if(t){var r=new RegExp("MSIE (\\d+\\.\\d+);");r.test(e);var a=parseFloat(RegExp.$1);i=7===a?7:8===a?8:9===a?9:10===a?10:6}else i=o?11:-1;return i},l=function(){var e=window.yunHeader||{},t=e.abTest||{},o=t.newStyle||0;return o},g=function(){var e=!1;return s()>=10||-1===s()?e=!0:n.getContext().log.send({type:"web_low_ie_buy_guide",from:"videoad"+l()}),l()&&e};i.prototype.createContainer=function(e){e.container.html(d.rootTmpl);var t=e.container.find("#video-root")[0],o=p.getShadow();p.setContainer(o?o.call(t,{mode:"closed"}):t),n.getContext().log.send({type:"werbung_init"})},i.prototype.createWerbungPlayer=function(e){p.getContainer().innerHTML=a.template(d.mainTmpl,{variable:"data"})({width:r(e.container).width(),height:r(e.container).height(),werbungStyle:'.global-clearfix:after,.g-clearfix:after{content:".";display:block;visibility:hidden;height:0;line-height:0;font-size:0;clear:both}.global-clearfix,.g-clearfix{zoom:1}.video-wrapper{position:relative;background-color:#000;+position:absolute;+top:0;+left:0}.video-wrapper .video-player{background-color:#000;position:absolute;top:0;left:0;z-index:1}.video-wrapper .video-player .video-js{width:100%;height:100%}.video-wrapper .werbung-player{z-index:2}.video-wrapper .werbung-info-container{width:100%;height:100%;position:absolute;top:0;left:0;z-index:3}.video-wrapper .werbung-default{position:absolute;+top:0;+left:0;display:none;width:100%;height:100%;padding-top:15%;background-color:#2e2e2e;text-align:center;color:#fff;line-height:1;box-sizing:border-box}.video-wrapper .werbung-default .default-img{width:192px;height:157px;margin:0 auto 30px;background:url(https://nd-static.bdstatic.com/m-static/file-widget-1/videoPlay/img/werbung-default_d9cad77.png?__sprite) no-repeat 0 0}.video-wrapper .werbung-default .default-text{margin-bottom:10px;color:#fff;font-size:18px}.video-wrapper .werbung-default .default-guide-text{font-size:16px}.video-wrapper .werbung-default .default-guide-text a{display:inline;color:#ff6e66}.video-wrapper .werbung-progress-bar-wrapper{position:absolute;+left:0;bottom:0;width:100%;height:44px}.video-wrapper .werbung-progress-bar{width:100%;height:100%;background-color:#000;filter:alpha(opacity=60);-moz-opacity:.6;opacity:.6}.video-wrapper .werbung-progress-bar .werbung-progress{position:relative;width:0;height:0;background-color:#999}.video-wrapper .werbung-progress-bar-wrapper .loading-box{position:absolute;left:0;top:0;width:44px;height:44px;line-height:1}.video-wrapper .werbung-progress-bar-wrapper .werbung-progress-text{position:absolute;left:40px;top:0;height:100%;line-height:44px;font-size:12px;color:#fff}.video-wrapper .top-left-box{position:absolute;top:30px;left:35px;display:none}.video-wrapper .top-left-box .text-bg{width:40px;height:20px;border-radius:5px;background:#fff;filter:alpha(opacity=30);-moz-opacity:.3;opacity:.3}.video-wrapper .top-left-box .text{position:absolute;top:0;left:0;width:40px;height:20px;line-height:20px;text-align:center;color:#000}.video-wrapper .top-right-box{position:absolute;top:30px;right:7%;display:none}.video-wrapper .top-right-box-share{right:3%}.video-wrapper .top-right-box .button-box{position:relative;float:right;+position:absolute;+right:50px;+width:170px;height:40px;margin-right:10px;line-height:40px;text-align:center;font-size:14px}.video-wrapper .top-right-box .button-box-bg{position:absolute;top:0;left:0;z-index:0;width:100%;height:100%;background-color:#000;border-radius:5px;filter:alpha(opacity=60);-moz-opacity:.6;opacity:.6}.video-wrapper .top-right-box .sale-text{position:relative;z-index:1;float:left;display:block;height:40px;padding-left:10px;text-align:center;color:#a5a4a8}.video-wrapper .top-right-box .button-url{position:relative;z-index:1;float:right;display:block;width:auto;height:100%;color:#eb5347;margin:0 10px}.video-wrapper .top-right-box .muted-button{position:relative;float:right;width:40px;height:40px;border-radius:5px;cursor:pointer}.video-wrapper .top-right-box .muted-button-bg{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:5px;background-color:#000;filter:alpha(opacity=60);-moz-opacity:.6;opacity:.6}.video-wrapper .top-right-box .muted-button-icon{position:absolute;z-index:1;top:12px;left:9px;width:20px;height:16px}.video-wrapper .top-right-box .muted-icon-on{background:url(https://nd-static.bdstatic.com/m-static/file-widget-1/videoPlay/img/muted-on_9236364.png?__sprite) no-repeat 0 0}.video-wrapper .top-right-box .muted-icon-off{background:url(https://nd-static.bdstatic.com/m-static/file-widget-1/videoPlay/img/muted-off_dc71fa6.png?__sprite) no-repeat 0 0}.video-wrapper .bottom-right-box{position:absolute;bottom:25px;right:35px;display:none}.video-wrapper .bottom-right-box .detail-link-box-bg{position:absolute;z-index:0;width:100%;height:100%;background:#000;border-radius:3px;filter:alpha(opacity=60);-moz-opacity:.6;opacity:.6}.video-wrapper .bottom-right-box .detail-link-text{position:relative;z-index:1;right:0;height:40px;line-height:40px;padding:0 15px;color:#fff}.video-wrapper a,.video-wrapper a:hover{display:block;width:100%;height:100%;text-decoration:none;color:#666}#flashplayer,#werbungplayer,#html5player,#html5-werbung-player{opacity:0}#flashplayer.visiblevideo,#werbungplayer.visiblevideo,#html5player.visiblevideo,#html5-werbung-player.visiblevideo{opacity:1!important;-webkit-transition:opacity 1s ease 0s;-moz-transition:opacity 1s ease 0s;-o-transition:opacity 1s ease 0s;transition:opacity 1s ease 0s}.loading-container{position:absolute;left:50%;top:50%;z-index:100;margin:-10px 0 0 -10px;display:none}.spinner{-webkit-animation:rotator 1.4s linear infinite;animation:rotator 1.4s linear infinite}@-webkit-keyframes rotator{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(270deg);-ms-transform:rotate(360deg);transform:rotate(270deg)}}@keyframes rotator{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(270deg);-ms-transform:rotate(360deg);transform:rotate(270deg)}}.path{stroke-dasharray:187;stroke-dashoffset:50;-webkit-transform-origin:center;transform-origin:center;stroke:#4285F4;-webkit-animation:dash 1.4s ease-in-out infinite;animation:dash 1.4s ease-in-out infinite}@-webkit-keyframes colors{0%{stroke:#4285F4}25%{stroke:#DE3E35}50%{stroke:#F7C223}75%{stroke:#1B9A59}100%{stroke:#4285F4}}@keyframes colors{0%{stroke:#4285F4}25%{stroke:#DE3E35}50%{stroke:#F7C223}75%{stroke:#1B9A59}100%{stroke:#4285F4}}@-webkit-keyframes dash{0%{stroke-dashoffset:187}50%{stroke-dashoffset:46.75;-webkit-transform:rotate(135deg);transform:rotate(135deg)}100%{stroke-dashoffset:187;-webkit-transform:rotate(450deg);transform:rotate(450deg)}}@keyframes dash{0%{stroke-dashoffset:187}50%{stroke-dashoffset:46.75;-webkit-transform:rotate(135deg);transform:rotate(135deg)}100%{stroke-dashoffset:187;-webkit-transform:rotate(450deg);transform:rotate(450deg)}}.video-wrapper .werbung-img-preload .muted-off{width:0;height:0;background:url(https://nd-static.bdstatic.com/m-static/file-widget-1/videoPlay/img/muted-off_dc71fa6.png?__sprite) 0 0 no-repeat}.video-wrapper .werbung-img-preload .fail-bg{width:0;height:0;background:url(https://nd-static.bdstatic.com/m-static/file-widget-1/videoPlay/img/video-fail-bg_2f1ebd4.png?__sprite) 0 0 no-repeat}',type:e.type})},i.prototype.updateWerbungView=function(e){var t=r(p.getContainer()),o=e.data,i=e.pageFlag,a=window.host&&window.host.HOST_PAN||"pan.baidu.com";if(o)var d=parseInt(o.type,10),s=o.button_text,b=o.button_url,f=o.sale_text;"sharevideo"===i&&t.find('[node-type="top-right-box"]').addClass("top-right-box-share");var h="";1===d?(t.find('[node-type="top-right-box"]').show(),t.find('[node-type="button-text"]').text(s?s:"跳过广告"),h=b?b:"https://"+a+"/buy/checkoutcounter?svip=1&from=playhsc",t.find('[node-type="sale-text"]').text(f).show()):2===d?(t.find('[node-type="top-right-box"]').show(),t.find('[node-type="button-text"]').text(s?s:"开通超级会员"),h=b?b:"https://"+a+"/buy/checkoutcounter?svip=1&from=playhsc",t.find('[node-type="sale-text"]').hide()):(t.find('[node-type="top-right-box"]').show(),t.find('[node-type="button-text"]').text("立即开通"),h=b?b:"https://"+a+"/buy/checkoutcounter?svip=1&from=playhsc",t.find('[node-type="sale-text"]').text(f?f:"超级会员高速播放通道").show(),t.find('[node-type="werbung-default"]').show(),t.find("#video-wrapper").addClass("visiblevideo"));var u=n.getContext().ui.loading({container:t.find('[node-type="loading-box"]'),text:!1,size:20});u.show(),this.actionLogEventBind(),t.find('[node-type="werbung-info-container"]').show(),t.find('[node-type="button-url"]').on("click",function(){if(g()){var e={};e.extraInfo={},e.extraInfo.from="videoresolution",e.scene_id=17,n.getContext().message.callPlugin("商业付费@com.baidu.pan",e)}else window.open(h);n.getContext().log.send({type:"video_play_werbung_click",value:t.find('[node-type="button-text"]').text()}),n.getContext().log.send({type:"wangpan_web_17238_pay_payRevolution_clk_buyGuideCashierClk",from:"videoad"+l()})})},i.prototype.actionLogEventBind=function(){var e=r(p.getContainer());e.find('[node-type="link"]').on("click",function(){var e=r(this).data("action");n.getContext().log.send({type:"werbung_"+e})})},i.prototype.callOriginPlayer=function(){},i.prototype.countDown=function(){},o.exports=i});
+;define("file-widget-1:videoPlay/Werbung/progressAnimation/progressAnimation.js",function(t,n,e){var i=t("base:widget/libs/jquerypacket.js"),r=function(t){this.totalDuration=t.duration,this.totalPercent=t.percent,this.prevFinishPercent=0,this.currentFinishPercent=0,this.prevFinishDuration=0,this.currentFinishDuration=0,this.dom=t.dom,this.style=t.style,this.update=t.update,this.easingArr=[],this.selectFrom=function(t,n){var e=n-t+1;return Math.floor(Math.random()*e+t)},this.animate=function(t,n,e){var i=this;i.extendEasing();var r,a=function(t,n,e){for(var s=0;s<t.length&&t.length<n;s++){var u=t[s];if(u>e){var o=i.selectFrom(e,u),c=u-o;c>e&&(t[s]=t[s]-o,t.splice(s,0,o),s++)}}return r=t,t.length<n&&a(t,n,e),t},s=3,u=[n],o=[t];if(n>0&&t>0){var c=n/(2*s);try{u=a(u,s,c)}catch(h){console.error("percentList",n,r)}var f=t/(2*s);try{o=a(o,s,f)}catch(h){console.error("durationList",t,r)}}for(var p=0,v=function(t,n){var r=i.easingArr[i.selectFrom(0,i.easingArr.length-1)];i.dom.animate({width:"+="+t+"%"},{duration:n,easing:r,progress:function(t,e,r){i.currentFinishDuration=i.prevFinishDuration+(n-r);var a=this.style[i.style];i.currentFinishPercent=a.substr(0,a.length-1),i.update(i.currentFinishPercent)},done:function(){i.prevFinishPercent=i.currentFinishPercent,i.prevFinishDuration=i.currentFinishDuration,++p,e&&p>=u.length&&e()}})},l=0;l<u.length;l++){{Math.min(u[l],i.totalPercent-i.prevFinishPercent),Math.min(o[l],i.totalDuration-i.prevFinishDuration)}v(u[l],o[l])}},this.stop=function(){var t=this;t.dom.stop(!0),t.dom.clearQueue(),t.prevFinishPercent=t.currentFinishPercent,t.prevFinishDuration=t.currentFinishDuration},this.start=function(t){var n=this;n.stop();var e=0,i=0;e=n.totalPercent-n.prevFinishPercent,t.duration?(n.prevFinishDuration=n.currentFinishDuration=n.totalDuration-t.duration,i=t.duration):i=n.totalDuration-n.prevFinishDuration,n.animate(i,e)},this.go=function(t){var n=this;if(!(this.finished||n.prevFinishPercent>98)){n.stop();var e=this.selectFrom(75,95)/100,i=n.prevFinishPercent<98?(n.totalPercent-n.prevFinishPercent)*e:0;n.animate(n.totalDuration,i,t)}},this.finish=function(t){this.finished=!0;var n=this;n.stop();var e=Math.max(n.totalPercent-n.prevFinishPercent,0);n.animate(1e3,e,t)},this.extendEasing=function(){var t=i;t.easing.jswing=t.easing.swing,t.extend(t.easing,{def:"easeOutQuad",swing:function(n,e,i,r,a){return t.easing[t.easing.def](n,e,i,r,a)},easeInQuad:function(t,n,e,i,r){return i*(n/=r)*n+e},easeOutQuad:function(t,n,e,i,r){return-i*(n/=r)*(n-2)+e},easeInOutQuad:function(t,n,e,i,r){return(n/=r/2)<1?i/2*n*n+e:-i/2*(--n*(n-2)-1)+e},easeInCubic:function(t,n,e,i,r){return i*(n/=r)*n*n+e},easeOutCubic:function(t,n,e,i,r){return i*((n=n/r-1)*n*n+1)+e},easeInOutCubic:function(t,n,e,i,r){return(n/=r/2)<1?i/2*n*n*n+e:i/2*((n-=2)*n*n+2)+e},easeInQuart:function(t,n,e,i,r){return i*(n/=r)*n*n*n+e},easeOutQuart:function(t,n,e,i,r){return-i*((n=n/r-1)*n*n*n-1)+e},easeInOutQuart:function(t,n,e,i,r){return(n/=r/2)<1?i/2*n*n*n*n+e:-i/2*((n-=2)*n*n*n-2)+e},easeInQuint:function(t,n,e,i,r){return i*(n/=r)*n*n*n*n+e},easeOutQuint:function(t,n,e,i,r){return i*((n=n/r-1)*n*n*n*n+1)+e},easeInOutQuint:function(t,n,e,i,r){return(n/=r/2)<1?i/2*n*n*n*n*n+e:i/2*((n-=2)*n*n*n*n+2)+e},easeInSine:function(t,n,e,i,r){return-i*Math.cos(n/r*(Math.PI/2))+i+e},easeOutSine:function(t,n,e,i,r){return i*Math.sin(n/r*(Math.PI/2))+e},easeInOutSine:function(t,n,e,i,r){return-i/2*(Math.cos(Math.PI*n/r)-1)+e},easeInExpo:function(t,n,e,i,r){return 0==n?e:i*Math.pow(2,10*(n/r-1))+e},easeOutExpo:function(t,n,e,i,r){return n==r?e+i:i*(-Math.pow(2,-10*n/r)+1)+e},easeInOutExpo:function(t,n,e,i,r){return 0==n?e:n==r?e+i:(n/=r/2)<1?i/2*Math.pow(2,10*(n-1))+e:i/2*(-Math.pow(2,-10*--n)+2)+e},easeInCirc:function(t,n,e,i,r){return-i*(Math.sqrt(1-(n/=r)*n)-1)+e},easeOutCirc:function(t,n,e,i,r){return i*Math.sqrt(1-(n=n/r-1)*n)+e},easeInOutCirc:function(t,n,e,i,r){return(n/=r/2)<1?-i/2*(Math.sqrt(1-n*n)-1)+e:i/2*(Math.sqrt(1-(n-=2)*n)+1)+e}});for(var n in t.easing)"function"==typeof t.easing[n]&&this.easingArr.push(n)}};e.exports=r});
+;define("file-widget-1:videoPlay/Werbung/FlashWerbung/FlashWerbung.js",function(e,n,t){function o(e){d.call(this),this.options=e,this.logPrintToWeb=!!r.getParam("log_print"),this.originPlayerCalled=!1,this.originCallback=!1,this.adTimePass=!1,this.contentPlayerReady=!1,this.overTime=6e4,this.reset(),this.init()}var i=e("base:widget/libs/jquerypacket.js"),r=(e("base:widget/libs/underscore.js"),e("base:widget/tools/tools.js")),a=e("file-widget-1:videoPlay/context.js"),l=e("file-widget-1:videoPlay/Werbung/WerbungConfig.js"),d=e("file-widget-1:videoPlay/Werbung/Werbung.js"),s=e("file-widget-1:videoPlay/FlashPlayer/FlashPlayer.js"),g=e("file-widget-1:videoPlay/FlashPlayer/swfUtil/swfUtil.js"),u=e("file-widget-1:videoPlay/Werbung/progressAnimation/progressAnimation.js"),c=e("file-widget-1:videoPlay/utils.js"),f={player:null,fraudCount:0,domEventHandles:{clickMutedButton:function(){}},videoPlayer:!1,checkBufferTimer:0};r.inherits(o,d),o.prototype.reset=function(){l.setTimer({fraud:null,ltime:null,adTime:null,overTime:null}),window.clearTimeout(f.checkBufferTimer);var e=l.getProgressAni();e&&e.stop(),this.unBindEvent()},o.prototype.createFlashPlayer=function(e){var n=this,t="file="+encodeURIComponent(e.src)+"&showControl="+!!e.showControl+"&canPause="+!!e.canPause+"&autoStart="+!0+"&logPrintToWeb="+n.logPrintToWeb+"&onLoad="+encodeURIComponent("werbungPlayerEvent.onLoad")+"&onPlay="+encodeURIComponent("werbungPlayerEvent.onPlay")+"&onLoading="+encodeURIComponent("werbungPlayerEvent.onLoading")+"&onPlayAfterLoading="+encodeURIComponent("werbungPlayerEvent.onPlayAfterLoading")+"&onTime="+encodeURIComponent("werbungPlayerEvent.onTime")+"&onError="+encodeURIComponent("werbungPlayerEvent.onError")+"&onOver="+encodeURIComponent("werbungPlayerEvent.onOver"),o=i(l.getContainer()).find("#werbung-player")[0];f.player=g(o,{id:"werbungplayer",src:"/m-static/file-widget-1/videoPlay/FlashPlayer/swfUtil/DiskPlayer.swf",flashvars:t,allowFullScreenInteractive:!0,allowFullScreen:!0,wmode:"Opaque",quality:"high"}),this.createFlashCoreCallback(),this.bindEvent()},o.prototype.createFlashCoreCallback=function(){var e=this,n=i(l.getContainer()),t=(n.find('[node-type="werbung-progress"]'),n.find('[node-type="percent-text"]'),n.find('[node-type="countdown"]'),{onLoad:function(){n.find("#werbungplayer").addClass("visiblevideo")},onPlay:function(){l.getProgressAni().go()},onLoading:function(){},onPlayAfterLoading:function(){},onTime:function(){},onError:function(t){console.error(t),n.find('[node-type="werbung-default"]').show(),a.getContext().log.send({type:"werbung_playerr_flash"}),c.sendLog({type:e.options.flag+"_video_public_"+l.getAdTime()+"_ad_error"},e)},onOver:function(){f.player.playMe(),c.sendLog({type:e.options.flag+"_video_public_"+l.getAdTime()+"_ad"},e)}});window.werbungPlayerEvent=t},o.prototype.createProgressAnimation=function(){var e=i(l.getContainer()),n=e.find('[node-type="werbung-progress"]'),t=e.find('[node-type="werbung-progress-text"]'),o=new u({duration:1e3*l.getAdTime(),percent:100,dom:n,style:"width",update:function(e){t.text("正在努力加载视频资源..."+Math.floor(e)+"%")}});l.setProgressAni(o)},o.prototype.bindEvent=function(){{var e=this;i(l.getContainer())}i(window).on("blur",function(){window.clearTimeout(l.getTimer("overTime"))}),i(window).on("focus",function(){e.overTimeHandler()})},o.prototype.unBindEvent=function(){i(l.getContainer()).find('[node-type="muted-button"]').unbind("click",f.domEventHandles.clickMutedButton),a.getContext().message.remove("buffer-loaded")},o.prototype.countdownHandler=function(){var e=this,n=setTimeout(function(){e.createOriginPlayer()},1e3*l.getltime()+1e3),t=setTimeout(function(){e.adTimePass=!0,e.contentPlayerReady&&e.adTimePass?l.getProgressAni().finish(function(){e.callOriginPlayer()}):a.getContext().log.send({type:"web_flash_werbung_loop"})},1e3*l.getAdTime());l.setTimer({ltime:n,adTime:t})},o.prototype.overTimeHandler=function(){var e,n=this;if("undefined"!=typeof document.hidden?e="hidden":"undefined"!=typeof document.msHidden?e="msHidden":"undefined"!=typeof document.webkitHidden&&(e="webkitHidden"),e)var t=setTimeout(function(){n.contentPlayerReady||document[e]||(n.reset(),a.getContext().message.trigger("video-trigger-list-error",{msg:"网络不给力，请稍后重试",addRetry:!0,werbungErr:!0}),a.getContext().log.send({type:"web_flash_werbung_error"}))},n.overTime);l.setTimer({overTime:t})},o.prototype.animationHandler=function(){var e=this;l.getProgressAni()||e.createProgressAnimation(),l.getProgressAni().go(function(){e.animationHandler()})},o.prototype.callOriginPlayer=function(){var e=this;if(!e.originPlayerCalled){e.originPlayerCalled=!0,e.reset();var n=i(l.getContainer());n.find('[node-type="werbung-info-container"]').hide(),g.destroy(f.player),n.find("#werbung-player").hide(),e.originCallback&&e.originCallback(e.videoPlayer),e.videoPlayer&&e.videoPlayer.play()}},o.prototype.createOriginPlayer=function(){var e=this,n=i(l.getContainer());e.options.container=n.find("#video-player")[0],e.options.adToken=l.getAdToken(),e.options.werbungPlayer=e,e.originCallback=e.options.callback,e.options.callback=function(n){e.videoPlayer=n,e.adTimePass||e.checkPlayerBuffer()},new s(e.options)},o.prototype.checkPlayerBuffer=function(){var e=this;f.checkBufferTimer=setTimeout(function(){e.videoPlayer&&e.videoPlayer.getBuffer&&e.videoPlayer.getBuffer()>5?a.getContext().message.trigger("buffer-loaded"):e.checkPlayerBuffer()},1e3)},o.prototype.checkWerbung=function(){var e=this;i.ajax({url:e.options.getUrl(s.getBPSType()),data:{nom3u8:1}}).done(function(n){n&&133===n.errno&&0!==n.adTime?(l.setAdToken(n.adToken),l.setAdTime(n.adTime),l.setltime(n.ltime),e.createProgressAnimation(),e.getWerbungInfo({type:"fetch",keys:i.stringify({ad_videoplay:0})}),a.getContext().log.send({type:"web_flash_werbung_hasad"})):(e.adTimePass=!0,e.contentPlayerReady=!0,e.createOriginPlayer(),e.callOriginPlayer(),a.getContext().log.send({type:"web_flash_werbung_noad"}))}).fail(function(n){var t=i.parseJSON(n.responseText);t&&133===t.errno&&0!==t.adTime?(l.setAdToken(t.adToken),l.setAdTime(t.adTime),l.setltime(t.ltime),e.createProgressAnimation(),e.getWerbungInfo({type:"fetch",keys:i.stringify({ad_videoplay:0})})):(e.adTimePass=!0,e.contentPlayerReady=!0,e.createOriginPlayer(),e.callOriginPlayer(),a.getContext().log.send({type:"werbung_neterr"}))})},o.prototype.getWerbungInfo=function(e){var n=this;i.ajax({url:"/api/getconfig",data:e,dataType:"json"}).done(function(e){if(e&&e.list&&e.list.length&&e.list[0].value){n.data=i.parseJSON(e.list[0].value),n.updateWerbungView({data:n.data,pageFlag:n.options.flag});var t="";t="M3U8_AUTO_480"===s.getBPSType()?n.data.m3u8_ts:n.data.m3u8_flv,n.createFlashPlayer({src:t,showControl:!1,canPause:!1})}else n.updateWerbungView({pageFlag:n.options.flag}),a.getContext().log.send({type:"web_flash_werbung_error_default"})}).fail(function(){n.updateWerbungView({pageFlag:n.options.flag}),a.getContext().log.send({type:"web_flash_werbung_error_default"})}).always(function(){n.countdownHandler(),n.overTimeHandler(),n.animationHandler()})},o.prototype.checkFraud=function(){var e=this,n=i(l.getContainer()),t=setTimeout(function(){n.find("#video-player").length&&n.find("#werbung-info-container").length?e.checkFraud():(window.clearTimeout(t),f.fraudCount++,e.createWerbungPlayer({container:e.options.container,type:"Flash"}),f.fraudCount>2?(n.find('[node-type="werbung-default-img"]').show(),n.find('[node-type="werbung-info-container"]').show(),n.find("#video-wrapper").addClass("visiblevideo")):(e.checkFraud(),e.checkWerbung()))},500);l.setTimer({fraud:t})},o.prototype.init=function(){var e=this;e.createContainer(e.options),e.createWerbungPlayer({container:e.options.container,type:"Flash"}),e.checkFraud(),e.checkWerbung(),a.getContext().message.listen("buffer-loaded",function(){e.contentPlayerReady=!0,e.contentPlayerReady&&e.adTimePass&&l.getProgressAni().finish(function(){e.callOriginPlayer()})})},o.create=function(e){return new o(e)},t.exports=o});
+;define("file-widget-1:videoPlay/Werbung/HTML5Werbung/HTML5Werbung.js",function(e,t,n){var o=e("base:widget/libs/jquerypacket.js"),r=e("file-widget-1:videoPlay/context.js"),i=e("file-widget-1:videoPlay/Werbung/WerbungConfig.js"),a=e("file-widget-1:videoPlay/Werbung/Werbung.js"),d=e("file-widget-1:videoPlay/HTML5Player/HTML5Player.js"),s=e("file-widget-1:videoPlay/Werbung/progressAnimation/progressAnimation.js"),l=e("file-widget-1:videoPlay/utils.js"),g=e("base:widget/tools/tools.js"),u={adPlayer:null,fraudCount:0,domEventHandles:{clickMutedButton:function(){}}},p=function(e){a.call(this),this.options=e,this.adTimeCountDown=0,this.playerEvent={},this.adplaying=null,this.adPicShow=!1,this.adTimePass=!1,this.contentPlayerReady=!1,this.overTime=6e4,this.overTimePass=!1,this.contentPlayerStartLock=!1,this.reset(),this.init()};g.inherits(p,a),p.prototype.reset=function(){i.setTimer({fraud:null,ltime:null,adTime:null,overTime:null});var e=i.getProgressAni(),t=r.getContext();e&&e.stop(),u.adPlayer&&u.adPlayer.pause(),t.playerInstance&&t.playerInstance.destroy(),this.unBindEvent()},p.prototype.createHTML5ADPlayer=function(e){var t=this;l.getVideoJS().then(function(n){var r=o(i.getContainer()).find("#html5-werbung-player")[0];u.adPlayer=n(r,{sync:!0,html5:{vhs:{segmentStartTimeKey:"dtsTime"}}}),l.sendH5Log({type:"vedio_h5_init_werbung_video"},t.options),u.adPlayer.one("loadeddata",function(){l.sendH5Log({type:"vedio_h5_get_werbung_loadeddata"},t.options)}),u.adPlayer.one("playing",function(){l.sendH5Log({type:"vedio_h5_werbung_playing"},t.options)}),u.adPlayer.controls(!1),u.adPlayer.src(e),t.bindPlayerEvent()})},p.prototype.bindEvent=function(){u.domEventHandles.clickMutedButton=function(){u.adPlayer.muted()?(o(this).find('[note-type="muted-icon"]').removeClass("muted-icon-off").addClass("muted-icon-on"),u.adPlayer.muted(!1)):(o(this).find('[note-type="muted-icon"]').removeClass("muted-icon-on").addClass("muted-icon-off"),u.adPlayer.muted(!0))},o(i.getContainer()).find('[node-type="muted-button"]').on("click",u.domEventHandles.clickMutedButton)},p.prototype.unBindEvent=function(){o(i.getContainer()).find('[node-type="muted-button"]').unbind("click",u.domEventHandles.clickMutedButton)},p.prototype.bindPlayerEvent=function(){var e=this,t=u.adPlayer.el().firstChild,n=o(i.getContainer());e.playerEvent.loadStartEvent=function(){n.find("#html5-werbung-player").addClass("visiblevideo")},e.playerEvent.errorEvent=function(){u.adPlayer.pause();var a=t.errorinfo,d=a&&o.parseJSON(a.responseText);console.error(a),console.error(d),n.find('[node-type="werbung-default"]').show(),n.find(".vjs-modal-dialog-content").hide(),r.getContext().log.send({type:"werbung_playerr_h5"}),l.sendLog({type:e.options.flag+"_video_public_"+i.getAdTime()+"_ad_error"},e)},u.adPlayer.on("loadstart",e.playerEvent.loadStartEvent),u.adPlayer.on("error",e.playerEvent.errorEvent)},p.prototype.unbindPlayerEvent=function(){var e=this;u.adPlayer&&u.adPlayer.off("error",e.playerEvent.errorEvent)},p.prototype.createProgressAnimation=function(){var e=o(i.getContainer()),t=e.find('[node-type="werbung-progress"]'),n=e.find('[node-type="werbung-progress-text"]'),r=new s({duration:1e3*i.getAdTime(),percent:100,dom:t,style:"width",update:function(e){n.text("正在努力加载视频资源..."+Math.floor(e)+"%")}});i.setProgressAni(r)},p.prototype.checkWerbung=function(){var e=this;o.ajax({url:e.options.getUrl(d.supportsNativeHls?"M3U8_AUTO_480":"M3U8_FLV_264_480"),data:{nom3u8:1}}).done(function(t){t&&133===t.errno&&0!==t.adTime?(l.sendH5Log({type:"vedio_h5_get_werbung_duration",werbung:"has_ad"},e.options),i.setAdToken(t.adToken),i.setAdTime(t.adTime),i.setltime(t.ltime),e.adTimeCountDown=t.adTime,e.createProgressAnimation(),e.getWerbungInfo({type:"fetch",keys:o.stringify({ad_videoplay:0})}),r.getContext().log.send({type:"web_h5_werbung_hasad"})):(l.sendH5Log({type:"vedio_h5_get_werbung_duration",werbung:"no_ad"},e.options),e.callOriginPlayer(),r.getContext().log.send({type:"web_h5_werbung_noad"}))}).fail(function(t){var n=o.parseJSON(t.responseText);n&&133===n.errno&&0!==n.adTime?(l.sendH5Log({type:"vedio_h5_get_werbung_duration",werbung:"has_ad"},e.options),i.setAdToken(n.adToken),i.setAdTime(n.adTime),i.setltime(n.ltime),e.adTimeCountDown=n.adTime,e.createProgressAnimation(),e.getWerbungInfo({type:"fetch",keys:o.stringify({ad_videoplay:0})})):(l.sendH5Log({type:"vedio_h5_get_werbung_duration",werbung:"no_ad"},e.options),e.callOriginPlayer(),r.getContext().log.send({type:"werbung_neterr"}))})},p.prototype.getWerbungInfo=function(e){var t=this;o.ajax({url:"/api/getconfig",data:e,dataType:"json"}).done(function(e){if(e&&e.list&&e.list.length&&e.list[0].value){l.sendH5Log({type:"vedio_h5_get_werbung_m3u8"},t.options),t.data=o.parseJSON(e.list[0].value),t.updateWerbungView({data:t.data,pageFlag:t.options.flag}),t.adplaying=!0;var n=t.data.m3u8_ts,i="application/x-mpegURL";t.createHTML5ADPlayer({src:n,type:i})}else l.sendH5Log({type:"vedio_h5_get_werbung_m3u8",werbung:"werbung_aderr"},t.options),t.updateWerbungView({pageFlag:t.options.flag}),t.adPicShow=!0,r.getContext().log.send({type:"werbung_aderr"})}).fail(function(){l.sendH5Log({type:"vedio_h5_get_werbung_m3u8",werbung:"werbung_neterr"},t.options),t.updateWerbungView({pageFlag:t.options.flag}),t.adPicShow=!0,r.getContext().log.send({type:"werbung_aderr"})}).always(function(){t.animationHandler(),t.countdownHandler()})},p.prototype.countdownHandler=function(){var e=this,t=setTimeout(function(){e.callOriginPlayer()},1e3*i.getltime()+1e3),n=setTimeout(function(){e.adTimePass=!0,e.contentPlayerReady&&!e.contentPlayerStartLock?(e.contentPlayerStartLock=!0,i.getProgressAni().finish(function(){l.sendH5Log({type:"vedio_h5_werbung_end"},e.options),e.adplaying=!1,e.adPicShow=!1,o(i.getContainer()).find('[node-type="werbung-info-container"]').hide(),o(i.getContainer()).find("#werbung-player").remove(),e.unbindPlayerEvent(),r.getContext().message.trigger("player-play")})):r.getContext().log.send({type:"web_h5_werbung_loop"})},1e3*i.getAdTime()),a=setTimeout(function(){if(!e.contentPlayerReady){var t=g.client()||{};r.getContext().message.trigger("video-trigger-list-error",{msg:"网络不给力，请稍后重试",addRetry:!0,werbungErr:!0}),l.sendH5Log({type:"vedio_h5_real_timeout",os:g.os(),browser:t.browserString},e.options),l.sendVideoLog({op:"vast_player_play_error",error_type:"CLIENT_ERROR",error_info:{player_error:{system_time:+new Date,error_code:400005}}},e.options),r.getContext().log.send({type:"web_h5_werbung_error"})}},e.overTime);i.setTimer({ltime:t,adTime:n,overTime:a})},p.prototype.animationHandler=function(){var e=this;i.getProgressAni()||e.createProgressAnimation(),i.getProgressAni().go(function(){e.animationHandler()})},p.prototype.callOriginPlayer=function(){var e=this,t=o(i.getContainer());if(e.options.adToken=i.getAdToken(),e.options.container=t.find("#video-player")[0],e.adplaying||e.adPicShow){var n={autoplay:!0,onBeforePlay:function(){return e.contentPlayerReady=!0,e.adTimePass?!0:!1},onPlay:function(){e.contentPlayerStartLock||(e.contentPlayerStartLock=!0,r.getContext().message.trigger("player-pause"),i.getProgressAni().finish(function(){l.sendH5Log({type:"vedio_h5_werbung_end"},e.options),e.adplaying=!1,e.adPicShow=!1,t.find('[node-type="werbung-info-container"]').hide(),t.find("#werbung-player").remove(),e.unbindPlayerEvent(),r.getContext().message.trigger("player-play")}))}};o.extend(e.options,n)}else e.adplaying=!1,e.adPicShow=!1,e.contentPlayerStartLock=!0,t.find('[node-type="werbung-info-container"]').hide(),t.find("#werbung-player").remove(),e.unbindPlayerEvent();new d(e.options)},p.prototype.checkFraud=function(){var e=this,t=o(i.getContainer()),n=setTimeout(function(){e.adplaying!==!1&&(t.find("#video-player").length&&t.find("#werbung-player").length&&t.find("#werbung-info-container").length?e.checkFraud():(window.clearTimeout(n),u.fraudCount++,e.createWerbungPlayer({container:e.options.container,type:"HTML5"}),u.fraudCount>2?(t.find('[node-type="werbung-default-img"]').show(),t.find('[node-type="werbung-info-container"]').show(),t.find("#video-wrapper").addClass("visiblevideo")):(e.checkFraud(),e.checkWerbung())))},500);i.setTimer({fraud:n})},p.prototype.init=function(){var e=this;this.createContainer(e.options),this.createWerbungPlayer({container:e.options.container,type:"HTML5"}),l.getVideoCSS(),this.checkFraud(),this.checkWerbung()},p.create=function(e){return new p(e)},n.exports=p});
+;define("file-widget-1:videoPlay/log.js",function(e,i,o){o.exports={mix:{init:{logType:"count",description:"播放初始化"},segmentLoaderror:{logType:"count",description:"分片加载失败"},segmentLoadsuccess:{logType:"count",description:"分片加载成功"},playError:{logType:"count",description:"播放是否异常"},firstBuffer:{logType:"time",description:"首次缓冲加载时间"},firstLoading:{logType:"time",description:"首次卡顿时长"},loading:{logType:"time",description:"播放过程卡顿时长"},seek:{logType:"time",description:"每次seek后缓冲时长"}}}});
+;define("file-widget-1:videoPlay/start.js",function(e,r,i){var o=e("base:widget/libs/jquerypacket.js"),t=e("file-widget-1:videoPlay/context.js"),a=e("base:widget/storage/storage.js"),n=e("file-widget-1:videoPlay/utils.js"),s=e("file-widget-1:videoPlay/Werbung/WerbungConfig.js"),d=e("file-widget-1:videoPlay/HTML5Player/HTML5Player.js"),l=e("file-widget-1:videoPlay/Werbung/HTML5Werbung/HTML5Werbung.js"),g=e("file-widget-1:videoPlay/FlashPlayer/FlashPlayer.js"),_=e("file-widget-1:videoPlay/Werbung/FlashWerbung/FlashWerbung.js"),v=e("file-widget-1:videoPlay/utils/dict.js"),p=e("base:widget/vip/vip.js"),y=e("file-widget-1:videoPlay/log/logger.js"),u={},f={eventBind:!1,werbungErr:!1,bindEvent:function(e,r){if(!f.eventBind){f.eventBind=!0;var i=o.extend({},r),a=o(i.container);e.message.listen("video-trigger-list-error",function(e){y.updateErrorFlag(!0),f.werbungErr=!!e.werbung,f.currentResolution=e.currentResolution,n.errTip({container:a,msg:e.msg,addRetry:e.addRetry,flashInstallBtn:e.flashInstallBtn})}),a.delegate('[node-type="retry"]',"click",function(){var r=window.__LOG_INFO__||{},t=(new Date).getTime();r.retryLogID=r.uk+t+(1e10*Math.random()+"").slice(0,1);var s="video_h5_retry_play",d="web_h5_werbung_retry";return v.levelDict.h265===i.useNewSDK&&(s="video_h265_retry_play_click",d="web_h265_werbung_retry"),i.retryLogType=s,n.sendH5Log({type:s,werbungErr:f.werbungErr},i),f.werbungErr&&n.sendH5Log({type:d},i),n.removeErrTip({container:a}),i.useNewSDK===v.levelDict.h265?void e.message.trigger("video-player-retry","v7"):void u.start(e,o.extend(i,{currentResolution:f.currentResolution}))}),t.getContext().message.listen("video-player-retry",function(r){if("v7"===r||"v5"===r){var s=window.__LOG_INFO__||{},d=(new Date).getTime();s.retryLogID=s.uk+d+(1e10*Math.random()+"").slice(0,1);var l="video_v7_retry_play";i.useNewSDK=0,"v7"===r&&(l="video_h265_retry_play",i.useNewSDK=1),i.retryLogType=l,n.sendH5Log({type:l},i),o("#video-root").remove();var g=t.getContext().ui.loading({container:a,text:"正在切换其他播放器...",size:20});o(".loading-container").css("margin","-20px 0 0 -60px"),g.show(),i.werbung=!1,i.autoDowngradeFlag=!0,e.loadedVideoJS=!1,e.loadingVideoJS=!1,e.loadedVideoCSS=!1,t.getContext().message.callPlugin("网盘视频播放器@com.baidu.pan",i),setTimeout(function(){g.hide()},2e3)}})}}};u.start=function(e,r){function i(i){i?g.isSupport()?(n.sendH5Log({type:"vedio_play_use_flash",from:c},r),r.werbung&&!r.adToken?_.create(r):g.create(r)):(n.sendH5Log({type:"vedio_play_install_flash",from:c},r),w.trigger("video-trigger-list-error",{msg:"安装Flash插件后就可以看视频啦，快来下载安装吧！<br/>（安装成功后，重启浏览器就可以播放啦）<br/>",flashInstallBtn:!0})):(n.getVideoJS().then(o.noop,o.noop),n.sendH5Log({type:"vedio_play_use_h5",from:c},r),e.useNewSDK===v.levelDict.v5&&n.sendH5Log({type:"video_play_use_h5_old",from:c},r),e.useNewSDK===v.levelDict.v7&&n.sendH5Log({type:"video_play_use_h5_new",from:c},r),e.useNewSDK===v.levelDict.h265&&n.sendH5Log({type:"video_play_use_h5_h265",from:c},r),r.werbung&&!r.adToken?(e.loadedVideoCSS=!1,l.create(r)):(n.getVideoCSS(),d.create(r)))}function u(){try{o.ajax({type:"post",url:"/recent/report",data:{detail:JSON.stringify([{type:3,fs_id:parseInt(r.file.fs_id,10),category:1,view_time:parseInt(a.getItem("video_"+r.file.md5)||0,10),op_time:Math.floor((new Date).getTime()/1e3)}])},async:!1})}catch(e){console.warn("上报视频播放时间失败")}}var w=e.message,c="";e.param=r,e.useNewSDK=void 0!==r.useNewSDK?r.useNewSDK:1,e.originSDKType=e.useNewSDK,e.needPauseAd=r.needPauseAd,e.channel=r.channel,t.setContext(e),y.updateErrorFlag(!1),f.werbungErr=!1,f.bindEvent(e,r),n.sendH5Log({type:"vedio_h5_plugin_init"},r);var h=n.systemInfo||{};switch(e.log.send(o.extend({type:"videopreview",from:r.flag,useNewSDK:e.useNewSDK,isvip:p.getVipValue(),retryLogType:r.retryLogType||""},h)),n.sendVideoLog({op:"vast_player_plugin_init"},r),r.flag){case"playvideo":c="videopreview_pan";break;case"sharevideo":c="videopreview_share";break;case"doc_sharevideo":c="videopreview_share";break;case"mboxvideo":c="videopreview_mbox";break;case"mailvideo":c="videopreview_mail";break;case"guanjiavideo":c="videopreview_guanjia";break;default:c="videopreview_other"}if(e.log.send(o.extend({type:c,from:r.flag,useNewSDK:e.useNewSDK,isvip:p.getVipValue(),retryLogType:r.retryLogType||""},h)),!r.file||!r.container)return w.trigger("video-trigger-list-error",{msg:"文件不存在，换一个试试吧"}),n.sendH5Log({type:"vedio_h5_file_no_found"},r),void n.sendVideoLog({op:"vast_player_play_error",error_type:"CLIENT_ERROR",error_info:{player_error:{system_time:+new Date,error_code:400001}}},r);if(!r.file.fs_id)return w.trigger("video-trigger-list-error",{msg:"视频出错了，请稍后重试"}),n.sendH5Log({type:"vedio_h5_file_no_fs_id"},r),void n.sendVideoLog({op:"vast_player_play_error",error_type:"CLIENT_ERROR",error_info:{player_error:{system_time:+new Date,error_code:400002}}},r);if(n.checkFileType(r.file)){s.getFsid()===r.file.fs_id?r.adToken=s.getAdToken():(s.setFsid(r.file.fs_id),s.setAdToken(""));var m=d.isSupport();if(m){var b=e.useNewSDK===v.levelDict.flash;i(b),n.sendH5Log({type:"vedio_h5_force_flash",flash:b?1:0},r)}else i(!0);"playvideo"===r.flag&&o(window).on("unload",u)}else w.trigger("video-trigger-list-error",{msg:"暂不支持播放此格式的视频"}),n.sendH5Log({type:"vedio_h5_file_no_support"},r),n.sendVideoLog({op:"vast_player_play_error",error_type:"CLIENT_ERROR",error_info:{player_error:{system_time:+new Date,error_code:400003}}},r)},i.exports=u});
+;define("file-widget-1:videoPlay/utils/video-level.js",function(e,i,n){function o(e,i){var n="";if(v.contains(i.h265WhiteList,e))n="h265";else if(v.contains(i.v7WhiteList,e))n="v7";else{if(!v.contains(i.v5WhiteList,e))return"";n="v5"}return{type:n,value:f.levelDict[n]}}function t(e,i,n,o){if(!i)return!1;var t=v.filter(i,function(i){var n=i.os===e.os||"*"===i.os,o=i.browser===e.browser||"*"===i.browser;return n&&o});return t.length?v.some(t,function(i){var t=o||"*"===i.osVersion||u.checkIsVersionMatch(e.osVersionNum,i.osVersion,n),r="*"===i.version||u.checkIsVersionMatch(e.version,i.version,n);return t&&r?!0:void 0}):!1}function r(e){var i=e.deviceInfo,n=e.ruleConfig,r=e.whiteListInfo,s=e.videoScene,a=window.locals.get("uk"),c=o(a,r);if(c)return c;var l="",u=d.hasAudioVisualProduct(),_=0===window.locals.get("is_svip"),h=v.contains(n.video_h256_os_version_white_scene,s);if(t(i,n.video_h265,void 0,h)&&_&&!u){var w=n.video_h265_black_uk||[],y=v.contains(w,a)||t(i,n.video_h265_black_ua_up)||t(i,n.video_h265_black_ua,"=");l=y?"v7":"h265"}else l=t(i,n.video_flash,"<=")?"flash":"v7";return{type:l,value:f.levelDict[l]}}function s(e,i,n){l.log.send({type:"web_video_get_level_error",from:e,errMsg:i,errCode:n||null})}function a(e,i){return e?i?v.isArray(e)&&v.isArray(i)?e.concat(i):void 0:e:i}function c(e){var i=u.getBrowserInfo(window.navigator.userAgent),n={type:"v7",value:f.levelDict.v7};return new Promise(function(o){Promise.all([_,h]).then(function(t){n=r({deviceInfo:i,ruleConfig:$.extend({},f.uaDict,t[0]),whiteListInfo:t[1],videoScene:e}),o(n)}).catch(function(e){o(n),s("compute",e)})})}var v=e("base:widget/libs/underscore.js"),l=e("system-core:context/context.js").instanceForSystem,u=e("file-widget-1:videoPlay/utils/device-info.js"),f=e("file-widget-1:videoPlay/utils/dict.js"),d=e("file-widget-1:videoPlay/utils/user-info.js"),_=new Promise(function(e){var i="amis",n={},o="/act/api/conf?conf_key=web_video_player_rule";$.ajax({url:o}).done(function(o){if(0===o.errno)try{var t=o.data||[];v.each(t,function(e){var i=e.conf_value,o=i.play_rule,t=JSON.parse(o);for(var r in t){var s=t[r]||{};n[r]=a(n[r],s)}}),e(n)}catch(r){e(n),s(i,r.message,o.errno)}else e(n),s(i,o.errmsg,o.errno)}).fail(function(){e(n),s(i,"yun config ajax fail")})}),h=new Promise(function(e){var i={h265WhiteList:[],v7WhiteList:[],v5WhiteList:[]},n="/act/api/conf?conf_key=web_video_player_white_list";$.ajax({url:n}).done(function(n){if(0===n.errno)try{var o=n.data||[],t=o[0]||{},r=t.conf_value,s=r.play_white_list,c=JSON.parse(s);for(var v in c){var l=c[v]||[];i[v]=a(i[v],l)}e(i)}catch(u){e(i)}else e(i)}).fail(function(){e(i)})}),w={getLevel:c};n.exports=w});

@@ -1,0 +1,898 @@
+"use strict";
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+(function (h, l) {
+  (typeof exports === "undefined" ? "undefined" : _typeof(exports)) == "object" && (typeof module === "undefined" ? "undefined" : _typeof(module)) < "u" ? module.exports = l() : typeof define == "function" && define.amd ? define(l) : (h = (typeof globalThis === "undefined" ? "undefined" : _typeof(globalThis)) < "u" ? globalThis : h || self, h["wp-download"] = l());
+})(void 0, function () {
+  "use strict";
+
+  var Y = Object.defineProperty;
+
+  var X = function X(h, l, C) {
+    return l in h ? Y(h, l, {
+      enumerable: !0,
+      configurable: !0,
+      writable: !0,
+      value: C
+    }) : h[l] = C;
+  };
+
+  var A = function A(h, l, C) {
+    return X(h, _typeof(l) != "symbol" ? l + "" : l, C), C;
+  };
+
+  var h = "success",
+      l = "fail",
+      C = "error",
+      c = "progress",
+      w = "perConnSendSuc",
+      v = "perConnPollSuc",
+      b = "appLocalHttpsSuc",
+      $ = [w, v, b, "schemaPollSuc"],
+      L = "schemaFail",
+      H = [L, "schemaPollFail"];
+
+  var P = /*#__PURE__*/function () {
+    function P(t) {
+      _classCallCheck(this, P);
+
+      A(this, "callbackFnObj");
+      this.callbackFnObj = t;
+    }
+
+    _createClass(P, [{
+      key: "callFn",
+      value: function callFn(t, u) {
+        if (this.checkHasFn(t)) {
+          if (this.callbackFnObj[t](u), t === C) {
+            this.callFail(C);
+            return;
+          }
+
+          if (t === c && u) {
+            if ($.indexOf(u) !== -1) {
+              this.callSuccess();
+              return;
+            }
+
+            H.indexOf(u) !== -1 && this.callFail(l);
+          }
+        }
+      }
+    }, {
+      key: "callSuccess",
+      value: function callSuccess() {
+        this.checkHasFn(h) && this.callbackFnObj[h]();
+      }
+    }, {
+      key: "callFail",
+      value: function callFail(t) {
+        this.checkHasFn(l) && this.callbackFnObj[l](t);
+      }
+    }, {
+      key: "checkHasFn",
+      value: function checkHasFn(t) {
+        return !!(this.callbackFnObj && this.callbackFnObj[t]);
+      }
+    }]);
+
+    return P;
+  }();
+
+  var N = function N(n) {
+    var t = "";
+
+    for (var u in n) {
+      if (n.hasOwnProperty(u)) {
+        var e = n[u];
+        Array.isArray(n[u]) && (e = encodeURIComponent(JSON.stringify(n[u]))), t += "".concat(u, "=").concat(e, "&");
+      }
+    }
+
+    return t = "?" + t.substring(0, t.length - 1), t;
+  },
+      U = function U() {
+    return navigator.platform.toLowerCase().indexOf("win") === 0;
+  },
+      R = function R(n, t, u) {
+    return typeof n == "string" && (n = n.replace(/(^|\.)(\d)(?=\.|$)/g, "$10$2").replace(/\./g, ""), n = n.length <= 6 ? n += "00" : n, n = parseInt(n, 10)), typeof t == "string" && (t = t.replace(/(^|\.)(\d)(?=\.|$)/g, "$10$2").replace(/\./g, ""), t = t.length <= 6 ? t += "00" : t, t = parseInt(t, 10)), u ? n > t : n >= t;
+  },
+      G = function G() {
+    var n = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var t = arguments.length > 1 ? arguments[1] : undefined;
+
+    var e = Object.assign({}, {
+      maxQueryTime: 15,
+      queryInterval: 2e3,
+      queryUrl: "/share/taskquery",
+      queryMethod: "get"
+    }, n),
+        s = e.maxQueryTime,
+        i = e.queryInterval,
+        r = e.queryUrl,
+        o = e.queryMethod,
+        F = e.processRes,
+        E = function E(a, f) {
+      var S = {},
+          m = "",
+          O = "";
+      return a && (S.taskid = a), f && f.type === "enterprise" && (O = "/mid_enterprise", S.cid = f.cid), Object.keys(S).forEach(function (k) {
+        m += m.length ? "&" : "?", m += "".concat(k, "=").concat(S[k]);
+      }), t[o]("".concat(O).concat(r).concat(m));
+    };
+
+    e.taskQuery && (E = e.taskQuery);
+    var d = 0;
+    var _ = {
+      9: "\u67E5\u8BE2\u7ED3\u679C\u8D85\u65F6\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5",
+      10: "\u67E5\u8BE2\u4EFB\u52A1\u51FA\u9519\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5"
+    };
+
+    var B = function B(a, f) {
+      return new Promise(function (S, m) {
+        var O = function O(D) {
+          d = 0, S(D);
+        };
+
+        if (d > s) {
+          O({
+            errno: 9,
+            show_msg: _[9]
+          });
+          return;
+        }
+
+        var k = function k(D) {
+          var j = {
+            errno: 10,
+            show_msg: _[10]
+          };
+          O(D || j);
+        };
+
+        d++, E(a, f).then(function (D) {
+          if (typeof F == "function" && (D = F(D) || D), D.errno === 0) switch (D.status) {
+            case "pending":
+            case "running":
+              setTimeout(function () {
+                S(B(a, f));
+              }, i);
+              break;
+
+            case "success":
+              O(D);
+              break;
+
+            default:
+              k(Object.assign({}, D, {
+                errno: 1
+              }));
+              break;
+          } else k();
+        })["catch"](function (D) {
+          k();
+        });
+      });
+    };
+
+    return B;
+  },
+      z = function z(n) {
+    var t = window.document;
+    var u, e;
+    return t.cookie.length > 0 && (u = t.cookie.indexOf(n + "="), u !== -1) ? (u = u + n.length + 1, e = t.cookie.indexOf(";", u), e === -1 && (e = t.cookie.length), decodeURI(t.cookie.substring(u, e))) : "";
+  },
+      M = function M(n) {
+    var t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+        u,
+        e,
+        s,
+        i,
+        r,
+        o;
+
+    for (s = n.length, e = 0, u = ""; e < s;) {
+      if (i = n.charCodeAt(e++) & 255, e === s) {
+        u += t.charAt(i >> 2), u += t.charAt((i & 3) << 4), u += "==";
+        break;
+      }
+
+      if (r = n.charCodeAt(e++), e === s) {
+        u += t.charAt(i >> 2), u += t.charAt((i & 3) << 4 | (r & 240) >> 4), u += t.charAt((r & 15) << 2), u += "=";
+        break;
+      }
+
+      o = n.charCodeAt(e++), u += t.charAt(i >> 2), u += t.charAt((i & 3) << 4 | (r & 240) >> 4), u += t.charAt((r & 15) << 2 | (o & 192) >> 6), u += t.charAt(o & 63);
+    }
+
+    return u;
+  },
+      T = function T() {
+    var n = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "GET";
+    var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+    var u = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    var e = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : !0;
+    return new Promise(function (s, i) {
+      n = n.toUpperCase();
+      var r;
+      window.XMLHttpRequest && (r = new XMLHttpRequest()), n.toUpperCase() === "GET" ? (r.open(n, t, e), r.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), r.send()) : n === "POST" ? (r.open(n, t, e), r.setRequestHeader("Content-type", "application/json"), r.send(JSON.stringify(u))) : i("error type"), r.onreadystatechange = function () {
+        if (r.readyState === 4) if (r.status === 200) {
+          var o = r.response;
+          _typeof(o) != "object" && (o = JSON.parse(o)), s(o);
+        } else i(r);
+      };
+    });
+  },
+      g = {
+    DEFAULT_QUERY: {
+      channel: "chunlei",
+      clienttype: 0,
+      web: 1,
+      app_id: 250528
+    },
+    GET_BROWSERID: "/api/invoker/get",
+    CHECK_STATUS: "/api/invoker/check",
+    SEND_DATA_BY_SERVER: "/api/invoker/send",
+    CHECK_IS_ONLINE: "/api/invoker/online",
+    GET_DLINK: "/api/download",
+    GET_SHARE_DLINK: "/api/sharedownload",
+    GET_TEMPLATE_VAR: "/api/gettemplatevariable"
+  },
+      x = function x(n) {
+    return n.get("".concat(g.GET_BROWSERID, "?t=").concat(new Date().getTime())).then(function (t) {
+      return t;
+    });
+  },
+      q = function q(n, t) {
+    return n.get(g.CHECK_IS_ONLINE, {
+      params: {
+        browserId: t
+      }
+    }).then(function (u) {
+      return u;
+    });
+  },
+      K = function K(n, t) {
+    var u = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+    var e = Object.assign({}, t, {
+      downloadInfo: JSON.stringify(t.downloadInfo)
+    });
+    return n.post(g.SEND_DATA_BY_SERVER + u, e).then(function (s) {
+      return s;
+    });
+  },
+      V = function V(n) {
+    var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    return n.get(g.GET_TEMPLATE_VAR, {
+      params: _objectSpread({}, t)
+    }).then(function (u) {
+      return u;
+    });
+  },
+      y = function y(n, t) {
+    var u = Object.assign({}, t, {
+      fidlist: JSON.stringify(t.fidlist)
+    });
+    return n.get(g.GET_DLINK + N(g.DEFAULT_QUERY), {
+      params: u
+    });
+  },
+      W = function W(n, t) {
+    var u = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+    var e = Object.assign({}, t, {
+      fidlist: JSON.stringify(t.fidlist)
+    });
+    return n.post(g.GET_SHARE_DLINK + N(g.DEFAULT_QUERY) + u, {
+      params: e
+    }).then(function (s) {
+      return s;
+    });
+  },
+      J = {
+    ErrorMessage: {
+      0: "\u6210\u529F",
+      "-1": "\u7528\u6237\u540D\u548C\u5BC6\u7801\u9A8C\u8BC1\u5931\u8D25",
+      "-2": "\u5907\u7528",
+      "-3": "\u7528\u6237\u672A\u6FC0\u6D3B\uFF08\u8C03\u7528init\u63A5\u53E3\uFF09",
+      "-4": "COOKIE\u4E2D\u672A\u627E\u5230host_key&user_key\uFF08\u6216BDUSS\uFF09",
+      "-5": "host_key\u548Cuser_key\u65E0\u6548",
+      "-6": "\u767B\u5F55\u5931\u8D25\uFF0C\u8BF7\u91CD\u65B0\u767B\u5F55",
+      "-7": "\u6587\u4EF6\u6216\u76EE\u5F55\u540D\u9519\u8BEF\u6216\u65E0\u6743\u8BBF\u95EE",
+      "-8": "\u8BE5\u76EE\u5F55\u4E0B\u5DF2\u5B58\u5728\u6B64\u6587\u4EF6",
+      "-9": "\u6587\u4EF6\u88AB\u6240\u6709\u8005\u5220\u9664\uFF0C\u64CD\u4F5C\u5931\u8D25",
+      "-11": "\u7236\u76EE\u5F55\u4E0D\u5B58\u5728",
+      "-12": "\u8BBE\u5907\u5C1A\u672A\u6CE8\u518C",
+      "-13": "\u8BBE\u5907\u5DF2\u7ECF\u88AB\u7ED1\u5B9A",
+      "-14": "\u5E10\u53F7\u5DF2\u7ECF\u521D\u59CB\u5316",
+      "-21": "\u9884\u7F6E\u6587\u4EF6\u65E0\u6CD5\u8FDB\u884C\u76F8\u5173\u64CD\u4F5C",
+      "-22": "\u88AB\u5206\u4EAB\u7684\u6587\u4EF6\u65E0\u6CD5\u91CD\u547D\u540D\uFF0C\u79FB\u52A8\u7B49\u64CD\u4F5C",
+      "-23": "\u6570\u636E\u5E93\u64CD\u4F5C\u5931\u8D25\uFF0C\u8BF7\u8054\u7CFBnetdisk\u7BA1\u7406\u5458",
+      "-24": "\u8981\u53D6\u6D88\u7684\u6587\u4EF6\u5217\u8868\u4E2D\u542B\u6709\u4E0D\u5141\u8BB8\u53D6\u6D88public\u7684\u6587\u4EF6\u3002",
+      "-25": "\u975E\u516C\u6D4B\u7528\u6237",
+      "-26": "\u9080\u8BF7\u7801\u5931\u6548",
+      1: "\u670D\u52A1\u5668\u9519\u8BEF ",
+      2: "\u8BE5\u6587\u4EF6\u5939\u4E0D\u53EF\u4EE5\u79FB\u52A8",
+      3: "\u4E00\u6B21\u64CD\u4F5C\u6587\u4EF6\u4E0D\u53EF\u8D85\u8FC7100\u4E2A",
+      4: "\u65B0\u6587\u4EF6\u540D\u9519\u8BEF",
+      5: "\u76EE\u6807\u76EE\u5F55\u975E\u6CD5",
+      6: "\u5907\u7528",
+      7: "NS\u975E\u6CD5\u6216\u65E0\u6743\u8BBF\u95EE",
+      8: "ID\u975E\u6CD5\u6216\u65E0\u6743\u8BBF\u95EE",
+      9: "\u7533\u8BF7key\u5931\u8D25",
+      10: "\u521B\u5EFA\u6587\u4EF6\u7684superfile\u5931\u8D25",
+      11: "user_id(\u6216user_name)\u975E\u6CD5\u6216\u4E0D\u5B58\u5728",
+      12: "\u90E8\u5206\u6587\u4EF6\u5DF2\u5B58\u5728\u4E8E\u76EE\u6807\u6587\u4EF6\u5939\u4E2D",
+      13: "\u6B64\u76EE\u5F55\u65E0\u6CD5\u5171\u4EAB",
+      14: "\u7CFB\u7EDF\u9519\u8BEF",
+      15: "\u64CD\u4F5C\u5931\u8D25",
+      102: "\u65E0\u6743\u9650\u64CD\u4F5C\u8BE5\u76EE\u5F55",
+      103: "\u63D0\u53D6\u7801\u9519\u8BEF",
+      104: "\u9A8C\u8BC1cookie\u65E0\u6548",
+      201: "\u7CFB\u7EDF\u9519\u8BEF",
+      202: "\u7CFB\u7EDF\u9519\u8BEF",
+      203: "\u7CFB\u7EDF\u9519\u8BEF",
+      204: "\u7CFB\u7EDF\u9519\u8BEF",
+      205: "\u7CFB\u7EDF\u9519\u8BEF",
+      301: "\u5176\u4ED6\u8BF7\u6C42\u51FA\u9519",
+      501: "\u83B7\u53D6\u7684LIST\u683C\u5F0F\u975E\u6CD5",
+      618: "\u8BF7\u6C42curl\u8FD4\u56DE\u5931\u8D25",
+      619: "pcs\u8FD4\u56DE\u9519\u8BEF\u7801",
+      600: "json\u89E3\u6790\u51FA\u9519",
+      601: "exception\u629B\u51FA\u5F02\u5E38",
+      617: "getFilelist\u5176\u4ED6\u9519\u8BEF",
+      211: "\u65E0\u6743\u64CD\u4F5C\u6216\u88AB\u5C01\u7981",
+      404: "\u79D2\u4F20md5\u4E0D\u5339\u914D rapidupload \u9519\u8BEF\u7801",
+      406: "\u79D2\u4F20\u521B\u5EFA\u6587\u4EF6\u5931\u8D25 rapidupload \u9519\u8BEF\u7801",
+      407: "fileModify\u63A5\u53E3\u8FD4\u56DE\u9519\u8BEF\uFF0C\u672A\u8FD4\u56DErequestid rapidupload \u9519\u8BEF\u7801",
+      31080: "\u6211\u4EEC\u7684\u670D\u52A1\u5668\u51FA\u9519\u4E86\uFF0C\u7A0D\u5019\u8BD5\u8BD5\u5427",
+      31021: "\u7F51\u7EDC\u8FDE\u63A5\u5931\u8D25\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u6216\u7A0D\u5019\u518D\u8BD5",
+      31075: "\u4E00\u6B21\u652F\u6301\u64CD\u4F5C999\u4E2A\uFF0C\u51CF\u70B9\u8BD5\u8BD5\u5427",
+      31116: "\u4F60\u7684\u7A7A\u95F4\u4E0D\u8DB3\u4E86\u54DF\uFF0C\u8D76\u7D27<a href='//yun.baidu.com/buy/center?tag=2&from=multi-file'>\u8D2D\u4E70\u7A7A\u95F4</a>\u5427",
+      112: "\u9875\u9762\u5DF2\u8FC7\u671F\uFF0C\u8BF7<a href='javascript:window.location.reload();'>\u5237\u65B0</a>\u540E\u91CD\u8BD5",
+      111: "\u5F53\u524D\u8FD8\u6709\u672A\u5B8C\u6210\u7684\u4EFB\u52A1\uFF0C\u9700\u5B8C\u6210\u540E\u624D\u80FD\u64CD\u4F5C"
+    }
+  },
+      p = {
+    PRODUCT_PAN: "pan",
+    PRODUCT_PAN_SHARE: "sf",
+    PRODUCT_MBOX: "mbox",
+    PRODUCT_SHARE: "share",
+    GUANJIA_VERSION_COMPARE: "4.8.0",
+    LOCAL_HTTPS_DOMAIN: "https://localhost.pan.baidu.com",
+    WINDOWS_BLACK_LOW_VERSION: "7.37.0.0",
+    WINDOWS_BLACK_HIGH_VERSION: "7.37.1.0"
+  },
+      I = {
+    currentProduct: null,
+    config: {
+      bizConfig: function bizConfig() {},
+      http: function http() {},
+      uk: ""
+    },
+    sign: {
+      signOneOrigin: "",
+      sign: "",
+      timestamp: ""
+    },
+    invokeCallback: P,
+    setConfig: function setConfig(n, t) {
+      this.config = n, this.invokeCallback = t;
+    },
+    setCurrentProduct: function setCurrentProduct(n) {
+      this.currentProduct = n;
+    },
+    _doError: function _doError(n, t) {
+      var u = "";
+      var e = this;
+
+      if (n && (u = u || {
+        2: "\u4E0B\u8F7D\u5931\u8D25\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5",
+        116: "\u8BE5\u5206\u4EAB\u4E0D\u5B58\u5728\uFF01",
+        "-1": "\u60A8\u4E0B\u8F7D\u7684\u5185\u5BB9\u4E2D\u5305\u542B\u8FDD\u89C4\u4FE1\u606F\uFF01",
+        118: "\u6CA1\u6709\u4E0B\u8F7D\u6743\u9650\uFF01",
+        113: "\u9875\u9762\u5DF2\u8FC7\u671F\uFF0C\u8BF7<a href=\"javascript:window.location.reload();\">\u5237\u65B0</a>\u540E\u91CD\u8BD5",
+        121: "\u4F60\u9009\u62E9\u64CD\u4F5C\u7684\u6587\u4EF6\u8FC7\u591A\uFF0C\u51CF\u70B9\u8BD5\u8BD5\u5427\u3002"
+      }[n] || J.ErrorMessage[n]), n === -20) {
+        e._callBizFn("verifyCode", n);
+
+        return;
+      }
+
+      u = u || "\u7F51\u7EDC\u9519\u8BEF\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5", e._callBizFn(C, t || u, n);
+    },
+    getDlinkShare: function getDlinkShare(n, t) {
+      var _this = this;
+
+      var u = function u(e) {
+        var s = {
+          product: p.PRODUCT_SHARE,
+          encrypt: 0,
+          timestamp: "",
+          sign: ""
+        },
+            i = {};
+        return e.vcode_input && e.vcode_str && (i.vcode_input = e.vcode_input, i.vcode_str = e.vcode_str), e.source && (i.source = e.source), e.isForBatch && (i.type = "batch"), e.isForGuanjia && (i.encrypt = 1), e.ct && e.cv && (i.ct = e.ct, i.cv = e.cv), i = Object.assign({}, s, i, {
+          uk: t ? _this.config.uk : e.share_uk,
+          primaryid: t ? e.fidlist[0] : e.share_id,
+          product: e.product || I.currentProduct,
+          fid_list: JSON.stringify(e.fidlist),
+          path_list: JSON.stringify(e.pathList),
+          sign: e.sign,
+          timestamp: e.timestamp,
+          isPublic: e.isPublic
+        }), i;
+      };
+
+      return this._ajaxGetDlinkShare(u(n), t);
+    },
+    getDlink: function getDlink(n) {
+      var _this2 = this;
+
+      return n.sign && n.timestamp ? y(this.config.http, {
+        fidlist: n.fidlist,
+        type: n.type,
+        sign: n.sign,
+        timestamp: n.timestamp
+      }) : this._getSign().then(function (t) {
+        return y(_this2.config.http, {
+          fidlist: n.fidlist,
+          type: n.type,
+          sign: t.sign,
+          timestamp: t.timestamp
+        });
+      });
+    },
+    _doAjaxGetDlinkShare: function _doAjaxGetDlinkShare(n, t, u) {
+      var _this3 = this;
+
+      return W(this.config.http, n, "&sign=".concat(t, "&timestamp=").concat(u)).then(function (e) {
+        return e.errno !== 0 && _this3._doError(e.errno), e;
+      })["catch"](function () {
+        _this3._doError();
+      });
+    },
+    _ajaxGetDlinkShare: function _ajaxGetDlinkShare(n, t) {
+      var _this4 = this;
+
+      var u = {
+        encrypt: 0
+      };
+
+      if (!n.isPublic && !t) {
+        var s = window.location.pathname.split("/s/"),
+            i = localStorage.getItem(s[1] + "_bdclnd") || z("BDCLND");
+        u.extra = JSON.stringify({
+          sekey: decodeURIComponent(i)
+        });
+      }
+
+      var e = Object.assign({}, u, n);
+      return e.sign && delete e.sign, t ? (e.type = "dlink", delete e.fid_list, this._getSign().then(function (s) {
+        return _this4._doAjaxGetDlinkShare(e, s.signOneOrigin, s.timestamp);
+      })) : this._doAjaxGetDlinkShare(e, n.sign, n.timestamp);
+    },
+    _getSign: function _getSign() {
+      var _this5 = this;
+
+      if (this.sign.signOneOrigin) return Promise.resolve(Object.assign({}, this.sign));
+      var n = ["sign1", "sign2", "sign3", "timestamp"];
+      return V(this.config.http, {
+        fields: JSON.stringify(n)
+      }).then(function (t) {
+        var _t$result = t.result,
+            u = _t$result.sign1,
+            e = _t$result.sign2,
+            s = _t$result.sign3,
+            i = _t$result.timestamp,
+            r = function r(o, F) {
+          console.log(o, F);
+        };
+
+        try {
+          r = new Function("return " + e)();
+        } catch (o) {
+          console.error(o);
+        }
+
+        if (typeof r != "function") throw new Error("get sign fail");
+        return _this5.sign = {
+          signOneOrigin: u,
+          sign: M(r(s, u)),
+          timestamp: i
+        };
+      });
+    },
+    _callBizFn: function _callBizFn(n, t, u) {
+      this.invokeCallback.callFn(n, t, u);
+    }
+  };
+
+  var Q = /*#__PURE__*/function () {
+    function Q(t) {
+      _classCallCheck(this, Q);
+
+      A(this, "$config");
+      A(this, "$http");
+      A(this, "guanjiaInfo");
+      A(this, "guanjiaList");
+      A(this, "localGuanjiaInfo");
+      A(this, "cDownloadOption");
+      A(this, "invokeCallback");
+
+      this._init(t);
+    }
+
+    _createClass(Q, [{
+      key: "_init",
+      value: function _init(t) {
+        if (!t || !t.http) {
+          console.error("[init error]: \u7F3A\u5C11\u5FC5\u8981\u53C2\u6570 http");
+          return;
+        }
+
+        this.$config = t || {}, this.$http = this.$config.http, this.guanjiaInfo = {
+          browserId: "",
+          seq: "",
+          version: "",
+          online: 2,
+          port: 0
+        }, this.localGuanjiaInfo = Object.assign({}, {}, this.guanjiaInfo), this.invokeCallback = new P(this.$config.bizConfig), I.setConfig(this.$config, this.invokeCallback);
+      }
+    }, {
+      key: "download",
+      value: function download(t) {
+        if (!t.fileList || !t.fileList.length) {
+          this._callBizFn(C, "[do download error]: \u7F3A\u5C11\u5FC5\u8981\u53C2\u6570 fileList");
+
+          return;
+        }
+
+        this.cDownloadOption = t, this._checkAppServer(this.cDownloadOption);
+      }
+    }, {
+      key: "_callBizFn",
+      value: function _callBizFn(t, u) {
+        this.invokeCallback.callFn(t, u);
+      }
+    }, {
+      key: "_safeGetBrowserId",
+      value: function _safeGetBrowserId() {
+        if (this._callBizFn(c, "getBrowserId"), !window.localStorage) return Promise.resolve({});
+        var t = "wp_download_browserId",
+            u = window.localStorage.getItem(t);
+        return u ? Promise.resolve({
+          errno: 0,
+          browserId: u
+        }) : this._getBrowserId().then(function (e) {
+          if (e.errno === 0) return window.localStorage.setItem(t, e.browserId), e;
+        });
+      }
+    }, {
+      key: "_getBrowserId",
+      value: function _getBrowserId() {
+        return x(this.$http);
+      }
+    }, {
+      key: "_checkIsOnline",
+      value: function _checkIsOnline(t) {
+        return this._callBizFn(c, "checkIsOnline"), q(this.$http, t);
+      }
+    }, {
+      key: "_getShareDlink",
+      value: function _getShareDlink(t, u, e, s, i) {
+        var _this6 = this;
+
+        I.getDlinkShare(Object.assign(t, this.cDownloadOption.extra || {}), i).then(function (r) {
+          if (_this6._callBizFn(c, "getDlinkShareEnd"), r.errno === 0) {
+            if (r.dlink) {
+              var o = {};
+              r.dlink.forEach(function (F) {
+                o[F.fs_id] = F.dlink;
+              }), u.forEach(function (F) {
+                F.link = o[F.fs_id] || "";
+              }), e(u);
+            } else e(r.list);
+          } else s();
+        });
+      }
+    }, {
+      key: "_getMainDlink",
+      value: function _getMainDlink(t, u, e, s) {
+        var _this7 = this;
+
+        I.getDlink(Object.assign(t, this.cDownloadOption.extra || {})).then(function (i) {
+          if (_this7._callBizFn(c, "getDlinkPanEnd"), i.errno === 0) {
+            if (i.dlink) {
+              var r = {};
+              i.dlink.forEach(function (o) {
+                r[o.fs_id] = o.dlink;
+              }), u.forEach(function (o) {
+                o.link = r[o.fs_id] || "";
+              }), e(u);
+            } else e(i.list);
+          } else s();
+        });
+      }
+    }, {
+      key: "_getGuanjiaList",
+      value: function _getGuanjiaList(t) {
+        var _this8 = this;
+
+        return new Promise(function (u, e) {
+          var i = _this8.cDownloadOption.fileList;
+          var r = i.map(function (E) {
+            var d = E.isdir,
+                _E$size = E.size,
+                _ = _E$size === void 0 ? 0 : _E$size,
+                B = E.path,
+                a = E.fs_id,
+                f = E.dlink;
+
+            return {
+              isdir: "" + d,
+              md5: E.md5 || "",
+              size: "" + _,
+              server_path: B,
+              uk: "",
+              shareid: "",
+              token: "",
+              fs_id: a,
+              link: f || ""
+            };
+          }),
+              o = i.map(function (E) {
+            return E.path;
+          });
+
+          if (r.filter(function (E) {
+            return !E.link;
+          }).map(function (E) {
+            return E.fs_id;
+          }).length) {
+            var E = _this8.guanjiaInfo.version,
+                d = {
+              fidlist: i.map(function (B) {
+                return B.fs_id;
+              }),
+              pathList: o,
+              type: "dlink",
+              isForGuanjia: !0,
+              ct: "pcygj",
+              cv: E
+            };
+            t && (t.vcode_input && (d.vcode_input = t.vcode_input), t.vcode_str && (d.vcode_str = t.vcode_str));
+            var _ = _this8.cDownloadOption;
+            I.setCurrentProduct(_.product), _this8._callBizFn(c, "getDlink"), _.product === p.PRODUCT_PAN ? _this8._getMainDlink(d, r, u, e, !1) : _.product === p.PRODUCT_SHARE ? _this8._getShareDlink(d, r, u, e, !1) : _.product === p.PRODUCT_PAN_SHARE && _this8._getShareDlink(d, r, u, e, !0);
+          } else u(r);
+        });
+      }
+    }, {
+      key: "_checkCallStatus",
+      value: function _checkCallStatus(t) {
+        var u = t.browserId,
+            e = t.seq,
+            s;
+        return G({
+          maxQueryTime: 3,
+          queryUrl: "".concat(g.CHECK_STATUS, "?browserId=").concat(u, "&seq=").concat(e),
+          processRes: function processRes(r) {
+            return s = r.status, r.status === 1 ? r.status = h : r.status = "running", r;
+          }
+        }, this.$http)().then(function (r) {
+          return r.errno === 0 ? {
+            errno: 0,
+            status: 1
+          } : r.errno === 9 && s === 2 ? {
+            errno: 0,
+            status: 2
+          } : {
+            status: 3
+          };
+        });
+      }
+    }, {
+      key: "_sendAppServer",
+      value: function _sendAppServer(t) {
+        var _this9 = this;
+
+        var u = this.guanjiaInfo.browserId;
+        var e = this.$config.uk,
+            s = this.cDownloadOption.extra,
+            i = s && s.share_url;
+
+        var r = _objectSpread({
+          method: this.cDownloadOption.product === "pan" ? "DownloadSelfOwnItems" : "DownloadShareItems",
+          uk: "" + e,
+          checkuser: this.cDownloadOption.product === p.PRODUCT_PAN_SHARE,
+          filelist: t,
+          share_url: i
+        }, this.$config.bizConfig.nativeParam || {});
+
+        this._callBizFn(c, "perConnSendStart"), K(this.$http, {
+          browserId: u,
+          downloadInfo: r
+        }).then(function (o) {
+          var F = o.seq,
+              E = o.status;
+          _this9.guanjiaInfo.seq = F;
+
+          var d = function d() {
+            return _this9._checkAppLocal().then(function (a) {
+              a === h ? console.log("\u672C\u5730https\u670D\u52A1\u8C03\u7AEF\u6210\u529F\uFF01") : _();
+            })["catch"](function () {
+              _();
+            });
+          },
+              _ = function _() {
+            _this9._callBizFn(c, "schema");
+
+            var a = _this9._getNativeParam();
+
+            _this9._openYunGuanjiaBySchema("baiduyunguanjia://evoked-download/?browserId=".concat(u, "&seq=").concat(F).concat(a)).then(function () {
+              B("schemaPoll");
+            })["catch"](function () {
+              _this9._callBizFn(c, L), _this9._invokeFail();
+            });
+          };
+
+          var B = function B(a) {
+            return _this9._callBizFn(c, a + "Start"), _this9._checkCallStatus({
+              browserId: u,
+              seq: F
+            }).then(function (f) {
+              if (f.errno === 0) {
+                if (f.status === 1) return _this9._callBizFn(c, a + "Suc"), _this9._callBizFn("end"), h;
+
+                _this9._callBizFn(c, a + "Fail");
+              }
+
+              return l;
+            })["catch"](function (f) {
+              return _this9._callBizFn(c, a + "Fail"), l;
+            });
+          };
+
+          if (o.errno === 0) {
+            var a = !1;
+            _this9.guanjiaInfo.version && (a = R(_this9.guanjiaInfo.version, p.WINDOWS_BLACK_LOW_VERSION), a = a && R(p.WINDOWS_BLACK_HIGH_VERSION, _this9.guanjiaInfo.version), a = a && p.WINDOWS_BLACK_HIGH_VERSION !== _this9.guanjiaInfo.version), console.log("isBlack", a, _this9.guanjiaInfo), E === 0 && !a ? (_this9._callBizFn(c, w), _this9._callBizFn("end")) : (_this9._callBizFn(c, "perConnSendFail"), E === 1 ? B("perConnPoll").then(function (f) {
+              f === l && d();
+            }) : d());
+          } else d();
+        });
+      }
+    }, {
+      key: "_downloadInAppErr",
+      value: function _downloadInAppErr() {
+        this._callBizFn("end");
+      }
+    }, {
+      key: "_sendAppLocal",
+      value: function _sendAppLocal() {
+        var _this$guanjiaInfo = this.guanjiaInfo,
+            t = _this$guanjiaInfo.browserId,
+            u = _this$guanjiaInfo.seq;
+        var e = "".concat(p.LOCAL_HTTPS_DOMAIN, ":").concat(this.localGuanjiaInfo.port, "/downloadpc");
+
+        var s = this._getNativeParam(),
+            i = "".concat(e, "?browserId=").concat(t, "&sequence=").concat(u, "&src_from=web_https&t=").concat(Date.now());
+
+        return T("GET", i + s).then(function (r) {
+          return r;
+        });
+      }
+    }, {
+      key: "_getAppLocalPort",
+      value: function _getAppLocalPort() {
+        var _this10 = this;
+
+        return function (u) {
+          var e = "".concat(p.LOCAL_HTTPS_DOMAIN, ":").concat(u, "/guanjia");
+          return T("GET", "".concat(e, "?method=getversion&t=").concat(Date.now())).then(function (s) {
+            var i = {
+              errorno: -1,
+              version: ""
+            };
+
+            try {
+              typeof s == "string" ? i = JSON.parse(s) : i = s;
+            } catch (r) {
+              console.log("pares getVersion fail:", r);
+            }
+
+            return i.errorno === 0 ? (_this10.localGuanjiaInfo.port = u, _this10.localGuanjiaInfo.version = i.version, u) : 0;
+          })["catch"](function () {
+            return Promise.reject(0);
+          });
+        }(1e4);
+      }
+    }, {
+      key: "_checkAppLocal",
+      value: function _checkAppLocal() {
+        var _this11 = this;
+
+        return U() ? (this._callBizFn(c, "appLocalPortStart"), this._getAppLocalPort().then(function (t) {
+          return t ? (_this11._callBizFn(c, "appLocalHttpsStart"), _this11._sendAppLocal().then(function (u) {
+            return u.errorno === 0 ? (_this11._callBizFn(c, b), _this11._callBizFn("end"), h) : (_this11._callBizFn(c, "appLocalHttpsFail"), l);
+          })["catch"](function () {
+            return _this11._callBizFn(c, "appLocalHttpsFail"), l;
+          })) : (_this11._callBizFn(c, "appLocalPortFail"), l);
+        })["catch"](function () {
+          return _this11._callBizFn(c, "appLocalPortFail"), l;
+        })) : Promise.resolve(l);
+      }
+    }, {
+      key: "_getNativeParam",
+      value: function _getNativeParam() {
+        var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : !0;
+        var u = this.$config.bizConfig.nativeParam || {};
+        var e = "";
+        return Object.keys(u).forEach(function (s) {
+          e += "&".concat(s, "=").concat(u[s]);
+        }), !t && e && (e = e.substr(1, e.length - 1)), e;
+      }
+    }, {
+      key: "_openYunGuanjiaBySchema",
+      value: function _openYunGuanjiaBySchema(t) {
+        return new Promise(function (u) {
+          var e = !1,
+              s = function s() {
+            e = !0;
+          };
+
+          window.addEventListener("blur", s);
+
+          var i = function i() {
+            e && setTimeout(function () {
+              u("");
+            }, 100), e = !1, window.removeEventListener("focus", i);
+          };
+
+          window.addEventListener("focus", i);
+          var r = document.createElement("a"),
+              o = null;
+          typeof MouseEvent == "function" ? o = new MouseEvent("click", {
+            bubbles: !0,
+            cancelable: !1
+          }) : (o = document.createEvent("MouseEvents"), o.initEvent("click", !0, !1)), r.href = t, r.dispatchEvent(o), setTimeout(function () {
+            window.removeEventListener("blur", s), e || (window.removeEventListener("focus", i), u(""));
+          }, 100);
+        });
+      }
+    }, {
+      key: "_checkAppServer",
+      value: function _checkAppServer(t) {
+        var _this12 = this;
+
+        return this._callBizFn("start"), this._safeGetBrowserId().then(function (u) {
+          if (u.errno === 0) {
+            var e = u.browserId;
+            return _this12.guanjiaInfo.browserId = e, _this12._checkIsOnline(e).then(function (s) {
+              return s.errno === 0 ? (s.version && s.online !== 2 && (_this12.guanjiaInfo.version = s.version, _this12.guanjiaInfo.online = s.online), _this12._getGuanjiaList(t).then(function (i) {
+                return _this12.guanjiaList = i, _this12._sendAppServer(i);
+              })["catch"](function (i) {
+                console.log(i);
+              })) : Promise.reject();
+            });
+          }
+        });
+      }
+    }]);
+
+    return Q;
+  }();
+
+  return Q;
+});

@@ -1,0 +1,325 @@
+define("disk-share:widget/system/util/logs/audioPreview.js",function(e,t,o){function a(e,t){if(t||(t={}),e){var o=s[e],a=[];i.getSidListArr().then(function(e){a=e}).finally(function(){o=p.extend({},o,t),o.ext=p.extend({},o.ext,{sidList:a}),n.sendLog(o)})}}var p=e("base:widget/libs/jquerypacket.js"),i=e("disk-share:widget/system/util/ab.js"),s={commonBase:{serverId:19005,from:"net_basics",page:"audio_view_page",parasitifer:"web"},audioPreview:{type:"dis",value:"audio_player_di",comment:"音频播放器展示"},playbackEndPopup:{type:"dis",value:"Playback_end_popup_dis",comment:"试听结束弹窗展示"},speechToTextPopup:{type:"dis",value:"speech_to_text_popup_dis",comment:"文稿回端弹窗展示"},playSuccess:{type:"dis",value:"play_success",comment:"播放成功"},playError:{type:"dis",value:"play_error",comment:"播放失败"},audioPlay:{type:"clk",value:"audio_play_clk",comment:"点击音频试听"},speechToText:{type:"clk",value:"speech_to_text_clk",comment:"文稿功能的点击"},saveAudio:{type:"clk",value:"save_audio_clk",comment:"点击立即保存（试听结束弹窗）"},goApp:{type:"clk",value:"go_app_clk",comment:"点击打开客户端（试听结束弹窗）"},speechToApp:{type:"clk",value:"speech_to_text_go_app_click",comment:"点击打开客户端（文稿功能）"}},c=window.BpData;c||(c=function(){},c.prototype.sendLog=function(){});var n=new c(s.commonBase);o.exports.send=function(e,t){setTimeout(function(){a(e,t)},0)}});
+;define('disk-share:widget/pageModule/share-file-main/fileType/music/music-new.js', function(require, exports, module){ /**
+ * @file
+ * @author: yuanchengyong@baidu.com
+ * @date: 16/6/22
+ */
+var $ = require('base:widget/libs/jquerypacket.js');
+var context = require('system-core:context/context.js').instanceForSystem;
+var vipStatus = require('base:widget/vip/vip.js');
+var pcInvokerLog = require('disk-share:widget/system/util/logs/pcInvoker.js');
+var audioPreviewLog = require('disk-share:widget/system/util/logs/audioPreview.js');
+
+var pri = {
+    player: null,
+    limitTime: 30,
+    limited: false,
+    lastDialog: null
+};
+
+context.log.send({
+    name: 'web_link_share_preview_action',
+    value: {
+        value: '外链分享页音频播放',
+        category: 2
+    }
+});
+audioPreviewLog.send('audioPreview');
+
+function showLimitDialog(options) {
+    pcInvokerLog.send('webEvokedBtnDis', {
+        page: 'audio_details', // 当前该插件仅在单文件音频落地页调用
+        ext: {
+            scene: 'share_link',
+            btn: 'share_audio_limit'
+        }
+    });
+
+    options = options || {};
+    options.filesList = options.filesList || [];
+
+    if (pri.lastDialog) {
+        pri.lastDialog.$dialog.removeClass('dialog2024-new').addClass('dialog2024-new');
+    }
+
+    var dialog = context.ui.confirm({
+        title: '试听结束，你可以选择',
+        className: 'dialog2024 dialog2024-new',
+        width: '660px',
+        outerHeight: '254px',
+        body: `<div class="video-over-tip-inner audio-inner-wrap">
+                    <div class="video-over-tip-inner-left audio-inner-left">
+                        <div class="text">保存音频</div>
+                        <div class="desc">保存后可收听完整音频</div>
+                    </div>
+                    <div class="video-over-tip-inner-right audio-inner-right">
+                        <div class="text">直接在电脑端收听</div>
+                        <div class="recommend">推荐</div>
+                        <div class="desc">不想保存音频，前往网盘电脑端</div>
+                    </div>
+                </div>`,
+        sureText: '立即保存',
+        cancelText: '打开电脑端',
+        onSure: function () {
+            context.message.callPlugin('保存到网盘@com.baidu.pan.share', {
+                filesList: options.filesList,
+                isFileConsumeScene: true
+            });
+            dialog.hide();
+            audioPreviewLog.send('saveAudio');
+        },
+        onCancel: function () {
+            context.message.callPlugin('网盘外链-调端@com.baidu.pan', {
+                btn: 'share_audio_limit'
+            });
+            dialog.hide();
+            audioPreviewLog.send('goApp');
+        }
+    });
+
+    pri.lastDialog = dialog;
+
+    return dialog;
+}
+
+function showSimpleDialog(op, options) {
+    if (pri.lastDialog) {
+        pri.lastDialog.$dialog.removeClass('dialog2024-new');
+    }
+
+    var dialogOptions = $.extend({
+        title: '提示',
+        className: 'dialog2024 dialog-audio-preview',
+        width: '464px',
+        body: '',
+        draggable: false,
+        position: {
+            xy: 'center'
+        },
+        sureText: '取消',
+        cancelText: '打开电脑端',
+        onSure: function () {
+            dialog.hide();
+        }
+    }, options, {
+        body: '<div style="margin-top: -4px;padding: 0 0 6px 0;font-weight: 400;">' + options.body + '</div>'
+    });
+
+    dialog = context.ui.confirm(dialogOptions);
+    pri.lastDialog = dialog;
+    pcInvokerLog.send('webEvokedBtnDis', {
+        page: 'audio_details', // 当前该插件仅在单文件音频落地页调用
+        ext: {
+            scene: 'share_link',
+            btn: 'share_audio_' + op
+        }
+    });
+
+    return dialog;
+}
+
+function onCreatedPlayer(player) {
+    var file = window.locals.get('file_list')[0];
+
+    player.on('timeupdate', function () {
+        player.getCurrentAudioInfo().then(function (info) {
+            info = info || {};
+
+            if (info.error === 0) {
+                var currentTime = info.info.currentTime;
+
+                if (currentTime > pri.limitTime) {
+                    player.pause();
+                    pri.limited = true;
+                    showLimitDialog();
+                    audioPreviewLog.send('playbackEndPopup');
+                }
+            }
+        });
+    });
+    player.on('error', function (errorInfo) {
+        var errorData = errorInfo.data || {};
+        var response = errorData.response || {};
+        var responseDataStr = response.data || '{}';
+        var errorResult = {
+            name: file.server_filename,
+            size: file.size,
+            error_type: errorInfo.event || '',
+            error_no: errorInfo.error,
+            error_reason: errorData.reason || '',
+        };
+
+        try {
+            var responseData = JSON.parse(responseDataStr);
+
+            if (typeof responseData.errno !== 'undefined') {
+                errorResult.errno = responseData.errno;
+            }
+        } catch (e) {
+            console.error('Error parsing response:', e);
+        }
+
+        var errno = errorResult.errno;
+        var errorMsg = '';
+
+        if (errno === 31346) {
+            errorMsg = '加载失败了，稍候重试一下吧';
+        } else if (errno === 31066 || (response.code === 404)) {
+            errorMsg = '文件不存在，换一个吧！';
+        } else if (errno === 31339) {
+            // 非法音频
+            errorMsg = '该音频无法播放噢，换一个试试吧！';
+        } else if (errno === 31341) {
+            // 转码中
+            errorMsg = '音频正在转码中，稍后再来试下吧...';
+        } else if (errno === 31346) {
+            // 转码失败
+            errorMsg = '抱歉，音频转码失败了，请换一个试试吧！';
+        } else if (errno === 31304) {
+            // 格式不支持
+            errorMsg = '文件格式不支持在线播放～';
+        } else if (errno === 31347) {
+            errorMsg = '音频过长暂不支持在线播放～';
+        } else if (errno === 31338) {
+            errorMsg = '该音频分辨率或码率太高暂不支持在线播放～';
+        } else if (errno === 31023) {
+            errorMsg = '文件异常，请刷新后重试～';
+        } else if (errno === 31391) {
+            errorMsg = '文件违规，已根据相关法律法规予以屏蔽';
+        } else if (errno === 31326 || errno === 31426) {
+            errorMsg = '音频播放失败';
+        } else {
+            errorMsg = navigator.onLine ? '音频播放失败，请稍后重试～' : '网络异常，请联网后重试～';
+        }
+
+        context.ui.tip({
+            mode: 'caution',
+            msg: errorMsg || '播放失败，请稍后再试',
+            sticky: false
+        });
+        audioPreviewLog.send('playError', {
+            ext: errorResult
+        });
+
+        return errorResult;
+    });
+    player.on('ended', function () {
+        showLimitDialog();
+    });
+    player.on('playing', function () {
+        audioPreviewLog.send('playSuccess', {
+            ext: {
+                name: file.server_filename,
+                size: file.size
+            }
+        });
+    });
+}
+
+window.locals.get('sign', 'timestamp', 'share_uk', 'shareid', function (sign, stamp, shareUK, shareid) {
+    function getUrl(file) {
+        return location.protocol + '//' + location.host
+            + '/share/streaming?channel=chunlei&uk=' + shareUK
+            + '&fid=' + file.fs_id
+            + '&sign=' + sign
+            + '&timestamp=' + stamp
+            + '&shareid=' + shareid
+            + '&type=M3U8_MP3_128'
+            + '&vip=' + vipStatus.getVipValue()
+            + '&jsToken=' + window.jsToken;
+    }
+
+    var file = window.locals.get('file_list')[0];
+    var playerOptions = {
+        hls: {
+            overrideNative: true
+        },
+        list: [
+            {
+                type: 'm3u8',
+                url: getUrl(file)
+            }
+        ]
+    };
+
+    context.message.callPlugin('网盘音频播放器@com.baidu.pan', {
+        flag: 'share_audio',
+        container: $('#MboxWraper'),
+        file: file,
+        filesList: window.locals.get('file_list'),
+        inDialog: false,
+        isNewShare: true,
+        playerOptions,
+        eventHandlerMap: {
+            play: function () {
+                if (pri.player) {
+                    if (pri.limited) {
+                        pri.player.seek();
+                        pri.limited = false;
+                    } else {
+                        pri.player.play();
+                        audioPreviewLog.send('audioPlay');
+                    }
+                }
+
+                return false;
+            },
+            loop: function () {
+                var dialog = showSimpleDialog('loop', {
+                    body: '网页版不支持自定义播放顺序，请打开电脑端使用',
+                    onCancel: function () {
+                        context.message.callPlugin('网盘外链-调端@com.baidu.pan', {
+                            btn: 'share_audio_loop'
+                        });
+                        dialog.hide();
+                    }
+                });
+            },
+            prev: function () {
+                var dialog = showSimpleDialog('prev', {
+                    body: '网页版不支持选集，请打开电脑端使用',
+                    onCancel: function () {
+                        context.message.callPlugin('网盘外链-调端@com.baidu.pan', {
+                            btn: 'share_audio_prev'
+                        });
+                        dialog.hide();
+                    }
+                });
+            },
+            next: function () {
+                var dialog = showSimpleDialog('next', {
+                    body: '网页版不支持选集，请打开电脑端使用',
+                    onCancel: function () {
+                        context.message.callPlugin('网盘外链-调端@com.baidu.pan', {
+                            btn: 'share_audio_next'
+                        });
+                        dialog.hide();
+                    }
+                });
+            },
+            draft: function () {
+                var dialog = showSimpleDialog('draft', {
+                    body: '网页版不支持语音转文字功能，请打开电脑端使用',
+                    onCancel: function () {
+                        context.message.callPlugin('网盘外链-调端@com.baidu.pan', {
+                            btn: 'share_audio_draft'
+                        });
+                        dialog.hide();
+                        audioPreviewLog.send('speechToApp');
+                    }
+                });
+
+                audioPreviewLog.send('speechToText');
+                audioPreviewLog.send('speechToTextPopup');
+            }
+        },
+        callback: function (player) {
+            pri.player = player;
+            onCreatedPlayer(player);
+        }
+    });
+});
+ 
+});
+;define("disk-share:widget/pageModule/share-file-main/share-file-main-new.js",function(e){function i(e,i){var s=d(".new-disk-call-client");s.length>0&&g.send("webEvokedBtnDis",{page:e,ext:{scene:"share_link",btn:i}},{needExcitation:!0})}function s(e,s){setTimeout(function(){i(e,s)},1e3)}function a(){if(b>=1&&!u){var e=".video-over-tip-wrap",s="";2===b?(e="#video-start-btn-tip-saveAndBackpc",s="webVideoSaveEvokedDis"):3===b&&(e="#video-start-btn-tip-backPc",s="webVideoEvoked1Dis"),d(e).css({display:"block"}),s&&g.send(s)}else d(".video-over-tip-old").css({display:"block"});1===d(".new-disk-call-client").length&&i("video_details","pc_view")}function t(){switch(c.category){case 1:e("disk-share:widget/pageModule/share-file-main/fileType/video/video.js"),a();break;case 2:1!==window.locals.get("loginstate")&&c.size<52428800?h.makePreviewMusicLogin():(e(1!==b||u?"disk-share:widget/pageModule/share-file-main/fileType/music/music.js":"disk-share:widget/pageModule/share-file-main/fileType/music/music-new.js"),1===d(".new-disk-call-client").length&&i("audio_details","pc_listen"));break;case 3:e("disk-share:widget/pageModule/share-file-main/fileType/picture/picture.js"),d(".share-file-viewer").addClass("share-file-viewer-picture"),s("file3_details","pc_open");break;case 5:e("disk-share:widget/pageModule/share-file-main/fileType/application.js"),s("file5_details","pc_open");break;case 7:e("disk-share:widget/pageModule/share-file-main/fileType/bt.js"),s("file7_details","pc_open");break;default:e(_?"disk-share:widget/pageModule/share-file-main/fileType/document.js":"disk-share:widget/pageModule/share-file-main/fileType/other.js"),s("file"+c.category+"_details","pc_open")}}function l(){var e=c.mediaType;return"audio"===e?(b=1,void t()):"video"!==e?void t():void p.getInfoByKey("main_web_videodegradation_0761","BAIDU_ID").then(function(e){b=e?Number(e):0,b=w||b+1,window.locals.set("video_disk_share",b)}).catch(function(e){console.error("获取失败",e)}).finally(function(){t()})}var n=e("system-core:context/context.js").instanceForSystem,d=e("base:widget/libs/jquerypacket.js"),o=n.message,r=d(window).height(),c=window.locals.get("file_list")[0],h=e("disk-share:widget/system/util/util.js"),p=e("disk-share:widget/system/util/ab.js"),g=e("disk-share:widget/system/util/logs/pcInvoker.js"),f=e("disk-share:widget/pageModule/share-header/share-im/share-im.js"),u=window.location.pathname.indexOf("/link/")>-1,w=localStorage.getItem("pan_agent_id"),m=e("disk-share:widget/system/util/logs/riskLabel.js"),k=e("disk-share:widget/system/util/riskLabelUtil.js");n.extend({list:{getSelected:function(){return[c]}}});var v=Math.max(r,700)-260-40;d(".share-file-viewer").css({height:"calc(100% - 20px)"}).addClass("share-file-viewer-new"),d(".module-share-file-main").css({height:"calc(100% - 214px)"}),d("#ft").css({position:"relative"}),k.getIsHasRiskFile();var y=d(".risk-label");y.length>0&&y.mouseenter(function(){var e=window.locals.get("file_list")||[],i=k.getLogParams(e);m.send("iconHover",{ext:i})}),o.listen("ad-share-list-single-show",function(){d(".share-file-viewer").css({height:(v>500?v-100:400)+"px"}),r-38<=d(".frame-main").height()+78&&d("#ft").css({position:"relative"})});var _=/\.(pdf|(doc|ppt|xls)x?)$/i.test(c.server_filename),b=0;l(),f.isShowImGroupList().then(function(e){e&&(d(".module-share-file-main").css({height:"calc(100% - 274px)"}),d("#layoutApp .frame-main").css({"min-height":"710px"}))})});
+;define("disk-share:widget/pageModule/start/single-new.js",function(e){e("disk-share:widget/system/util/contextExtend.js"),e("disk-share:widget/pageModule/share-header/share-header-new.js"),e("disk-share:widget/pageModule/share-header/share-top-bar/share-top-bar.js"),e("disk-share:widget/pageModule/share-person-info/share-person-info-new.js"),e("disk-share:widget/pageModule/sidebar-business-ad/sidebar-business-ad.js"),e("disk-share:widget/pageModule/share-file-main/share-file-main-new.js"),e("disk-share:widget/pageModule/share-file-main/share-single.js"),e("disk-share:widget/pageModule/share-footer/share-footer.js"),e("disk-share:widget/pageModule/share-footer/share-bottom-bar/share-bottom-bar.js"),e("disk-share:widget/pageModule/start/preFetchData.js");var s=e("system-core:context/context.js").instanceForSystem.spy;s.performance("single_page","web-share"),s.getSpyInstance(function(){var e=window.locals.get("ufcTime");e&&s.sendTimePerf("shareList",e,{group:"share_perf",project:"web-share",pageName:"single_page",clientType:"web"}).end({whiteScreen:Math.round(window.__perf_white_screen),firstScreen:Math.round(window.__perf_first_screen),completeScreen:Math.round(performance.now())})})});
